@@ -15,7 +15,7 @@ nav {
   height: 30vh;
   background-color: #F1CB86;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: space-between;
 } 
 .nav-menus {
