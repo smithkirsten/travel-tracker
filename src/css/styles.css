@@ -2,3 +2,15 @@ body {
   background: #F4ECDC;
   font-family: 'Inter', sans-serif;
 }
+.login-page {
+  background-color: #170F3D;
+}
+nav, 
+aside {
+  background-color: #F1CB86;
+}
+
+button {
+  background-color: #170F3D;
+  font: #F4ECDC;
+}
