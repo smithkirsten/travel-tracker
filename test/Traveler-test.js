@@ -8,7 +8,6 @@ import tripTestData from './trips-test-data';
 import DestRepo from '../src/DestRepo'
 import destTestData from './destination-test-data';
 
-
 describe('Traveler', () => {
   let traveler;
   let badData;
@@ -31,7 +30,7 @@ describe('Traveler', () => {
   });
   
   it('should have a travelType property and a trips property', () => {
-    expect(traveler.travelType).to.equal('relaxer');
+    expect(traveler.travelerType).to.equal('relaxer');
     expect(traveler.trips.length).to.equal(3)
     expect(traveler.trips[0]).to.deep.equal({
       id: 5,
