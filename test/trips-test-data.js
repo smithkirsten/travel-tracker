@@ -78,6 +78,16 @@ const tripTestData = [
   duration: 4,
   status: "approved",
   suggestedActivities: [ ]
+  },
+  {
+    id: 9,
+    userID: 1,
+    destinationID: 17,
+    travelers: 2,
+    date: "2023/04/30",
+    duration: 5,
+    status: "pending",
+    suggestedActivities: [ ]
   }
 ];
 
