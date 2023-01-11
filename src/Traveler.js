@@ -8,6 +8,13 @@ class Traveler {
     this.trips = trips;
   }
 
+  findTrip(id) {
+    const trip = this.trips.find(trip => trip.id === id);
+    return trip ? trip : false;
+  }
+
+  
+
 };
 
 export default Traveler;
