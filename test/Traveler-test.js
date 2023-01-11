@@ -5,17 +5,20 @@ const dayjs = require('dayjs')
 import Traveler from '../src/Traveler';
 import travelersTestData from './traveler-test-data';
 import tripTestData from './trips-test-data';
+import DestRepo from '../src/DestRepo'
+import destTestData from './destination-test-data';
 
 
 describe('Traveler', () => {
   let traveler;
   let badData;
   let destRepo;
+  let trips;
   beforeEach(() => {
-    traveler = new Traveler(travelersTestData[0]);
-    traveler.trips = tripTestData.filter(trip => trip.userID === traveler.id);
+    destRepo = new DestRepo(destTestData)
+    traveler = new Traveler(travelersTestData[0], trips);
+    trips = tripTestData.filter(trip => trip.userID === traveler.id);
     badData = new Traveler({});
-    destRepo = new destRepo(destTestData)
   });
 
   it('should be an instance of Traveler', () => {
@@ -29,7 +32,6 @@ describe('Traveler', () => {
   
   it('should have a travelType property and a trips property', () => {
     expect(traveler.travelType).to.equal('relaxer');
-   
     expect(traveler.trips.length).to.equal(3)
     expect(traveler.trips[0]).to.deep.equal({
       id: 5,
