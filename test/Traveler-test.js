@@ -13,6 +13,7 @@ describe('Traveler', () => {
   let destRepo;
   beforeEach(() => {
     traveler = new Traveler(travelersTestData[0]);
+    traveler.trips = tripTestData.filter(trip => trip.userID === traveler.id);
     badData = new Traveler({});
     destRepo = new destRepo(destTestData)
   });
@@ -26,13 +27,10 @@ describe('Traveler', () => {
     expect(traveler.name).to.equal('Ham Leadbeater');
   });
   
-  it('should have a travelType property and a trips property that defaults to an empty array', () => {
+  it('should have a travelType property and a trips property', () => {
     expect(traveler.travelType).to.equal('relaxer');
-    expect(traveler.trips).to.deep.equal([]);
-
-    traveler.trips = tripTestData.filter(trip => trip.userID === traveler.id);//instantiate into trips
-
-    expect(traveler.trips.length).to.equal(2)
+   
+    expect(traveler.trips.length).to.equal(3)
     expect(traveler.trips[0]).to.deep.equal({
       id: 5,
       userID: 1,
@@ -62,8 +60,7 @@ describe('Traveler', () => {
   it('should calculate total cost of all trips', () => {
     //create method in trips to calc 10% of trip
     //create method in trips to calc cost of trip
-    4740 
-    expect(traveler.calcTotalCosts()).to.equal();
+    expect(traveler.calcTotalCosts()).to.equal(10320);
     expect(badData.calcTotalCosts()).to.equal(false) //or could return null to use ?? in future functions?
   });
 
@@ -86,6 +83,7 @@ describe('Traveler', () => {
       suggestedActivities: [ ]
     })
     expect(traveler.findUpcomingTrips('2023/05/01')).to.equal(false);
-
   });
+
+
 });
