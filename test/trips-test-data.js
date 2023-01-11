@@ -79,6 +79,6 @@ const tripTestData = [
   status: "approved",
   suggestedActivities: [ ]
   }
-]
+];
 
 export default tripTestData;

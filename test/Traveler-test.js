@@ -11,8 +11,10 @@ import tripTestData from './trips-test-data';
 describe('Traveler', () => {
   let traveler;
   let badData = {};
+  let destRepo;
   beforeEach(() => {
     traveler = new Traveler(travelersTestData[0]);
+    destRepo = new destRepo(destTestData)
   });
 
   it('should be an instance of Traveler', () => {
@@ -48,6 +50,7 @@ describe('Traveler', () => {
 
   it('should be able to filter trips by status', () => {
     expect(traveler.tripsByStatus()).to.equal();
+
   });
 
 });
