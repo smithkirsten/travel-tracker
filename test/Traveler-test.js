@@ -1,6 +1,36 @@
 const chai = require("chai");
+// const { default: Traveler } = require("../src/Traveler");
 const expect = chai.expect;
 
+import Traveler from '../src/Traveler';
+import travelersTestData from './traveler-test-data';
+
+
+
+
 describe('Traveler', () => {
+  let traveler;
+  let badData = {};
+  beforeEach(() => {
+    traveler = new Traveler(travelersTestData[0]);
+  });
+
+  it('should be an instance of Traveler', () => {
+    expect(traveler).be.an.instanceof(Traveler);
+  });
+
+  it('should have an id and name', () => {
+    expect(traveler.id).to.equal(1)
+    expect(traveler.name).to.equal('Ham Leadbeater');
+  });
+  
+  it('should have a travelType property and a trips property that defaults to an empty array', () => {
+    expect(traveler.travelType).to.equal('relaxer');
+    expect(traveler.trips).to.deep.equal([]);
+  });
+
+  it('should calculate total cost of all trips'), {
+    expect()
+  }
 
 });
