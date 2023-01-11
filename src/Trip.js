@@ -11,6 +11,7 @@ class Trip {
     this.status = tripInfo.status || 'pending';
     this.suggestedActivities = tripInfo.suggestedActivities || [];
   }
+  
 }
 
 export default Trip;
