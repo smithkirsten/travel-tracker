@@ -46,7 +46,8 @@ describe('Trip', () => {
 
   it('should have optional properties for: status that defaults to pending and suggestedActivities that defaults to an empty array', () => {
     const trip2 = new Trip({ id: 2, userId: 6, destinationID: 22, travelers: 3, date: "2023/10/02", duration: 10 })
-    expect(trip.status).to.equal(pending);
+    expect(trip2.status).to.equal("pending");
+    expect(trip.status).to.equal("approved");
     expect(trip.suggestedActivities).to.deep.equal([]);
   });
 
