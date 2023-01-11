@@ -1,6 +1,6 @@
 const chai = require("chai");
-// const { default: Traveler } = require("../src/Traveler");
 const expect = chai.expect;
+const dayjs = require('dayjs')
 
 import Traveler from '../src/Traveler';
 import travelersTestData from './traveler-test-data';
