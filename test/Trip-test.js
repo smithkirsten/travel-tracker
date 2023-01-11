@@ -60,8 +60,8 @@ describe('Trip', () => {
     expect(badTrip.calcTripCost()).to.equal(false);
   });
 
-  it('should return the destination as a string')
-
+  it('should return the destination as a string', () => {
     expect(trip.findDestName()).to.equal('Castries, St Lucia');
     expect(badTrip.findDestName()).to.equal(false);
+  });
 });
