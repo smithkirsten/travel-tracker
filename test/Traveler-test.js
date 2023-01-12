@@ -60,7 +60,7 @@ describe('Traveler', () => {
   });
 
   it('should calculate total cost of all trips', () => {
-    expect(traveler.calcTotalSpent(destRepo)).to.equal(10329);
+    expect(traveler.calcTotalSpent(destRepo)).to.equal('10329.00');
     expect(badData.calcTotalSpent(destRepo)).to.equal(false) //or could return null to use ?? in future functions?
   });
 
@@ -72,10 +72,14 @@ describe('Traveler', () => {
     expect(badData.tripsByStatus('approved')).to.equal(false);
   });
 
-  it('should be able to filter for upcoming trips', () => {
-    const upcomingTrips = traveler.findUpcomingTrips('2023/1/11');
+  it('should be able to filter for past and upcoming trips', () => {
+    const upcomingTrips = traveler.findTripsByDate('post', '2023/1/11');
     expect(upcomingTrips[0].id).to.equal(9);
-    expect(traveler.findUpcomingTrips('2023/05/01')).to.equal(false);
+    expect(traveler.findTripsByDate('post', '2023/05/01')).to.equal(undefined);
+
+    const pastTrips = traveler.findTripsByDate('pre', '2022/06/25');
+    expect(pastTrips[0].id).to.equal(5);
+    expect(traveler.findTripsByDate('pre', '2022/04/20')).to.equal(undefined);
   });
 
 

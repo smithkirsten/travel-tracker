@@ -26,9 +26,15 @@ class Traveler {
     return trips ? trips : false;
   };
 
-  findUpcomingTrips(date) {
-    const trips = this.trips?.filter(trip => dayjs(date).isBefore(dayjs(trip.date)));
-    return trips.length > 0 ? trips : false; 
+  findTripsByDate(prefix, date) {
+    let trips;
+    if(prefix === 'pre') {
+      trips = this.trips?.filter(trip => dayjs(date).isAfter(dayjs(trip.date)));
+      return trips.length > 0 ? trips : undefined; 
+    } else if(prefix === 'post') {
+      trips = this.trips?.filter(trip => dayjs(date).isBefore(dayjs(trip.date)));
+      return trips.length > 0 ? trips : undefined;
+    }
   }
 };
 
