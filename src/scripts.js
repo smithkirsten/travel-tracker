@@ -52,7 +52,9 @@ function resolvePromises(promisesPromises) {
       console.log('resolved values: ', values)
       assignData(values);
       //check to see what values are present and should be displayed/hidden
+      
       //displayTravelerDOM
+      
       //or displayAgentDOM
    
     })
@@ -62,10 +64,6 @@ function assignData(values) {
   currentUser = new Traveler(values[0], [])
   values[1].forEach(trip => currentUser.trips.push(new Trip(trip)))
   destRepo = new DestRepo(values[3])
-
-  console.log('currentUser: ', currentUser)
-  console.log('user trips: ', currentUser.trips)
-  console.log('destinations: ', destRepo)
 }
   
   
