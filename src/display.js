@@ -48,11 +48,11 @@ function createTripCard(trip, cost, destination) {
     <img class="card-image" src="${destination.image}" alt="${destination.alt}">
     <section class="card-body">
       <h3 class="card-heading">${destination.destination}</h3>
-      <p class="trip-duration">${trip.duration}</p>
-      <p class="trip-travelers">${trip.travelers}</p>
+      <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
+      <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
     </section>
     <footer class="card-footer">
-      <p class="trip-cost">${cost}</p>
+      <p class="trip-cost">total cost: <span>${cost}</span></p>
       <p class="trip-status">${trip.status}</p>
     </footer>
   </article>`;
