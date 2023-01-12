@@ -2,15 +2,19 @@ body {
   background: #F4ECDC;
   font-family: 'Inter', sans-serif;
 }
+
 .login-page {
   background-color: #170F3D;
 }
+
 h1 {
   font-family: 'Kalam', cursive;
 }
+
 .catchphrase {
   font-size: x-small;
 }
+
 nav {
   height: 30vh;
   background-color: #F1CB86;
@@ -18,22 +22,27 @@ nav {
   flex-direction:row;
   justify-content: space-between;
 } 
+
 .nav-menus {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
+
 button {
   color: #F4ECDC;
 }
+
 .logo {
   width: 20vw;
   height: 20vh;
 }
+
 .avatar {
   width: 5vw;
   height: 5vh;
 }
+
 main {
   display: flex;
   flex-direction: row;
