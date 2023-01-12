@@ -18,9 +18,17 @@ class Traveler {
       total += trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo);
       return total;
     }, 0);
-
     return total ? total : false;
   }
+
+  tripsByStatus(status) {
+    const trips = this.trips?.filter(trip => trip.status === status);
+    return trips ? trips : false;
+  }
+
+  
+
+
 
 };
 
