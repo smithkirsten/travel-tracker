@@ -13,5 +13,13 @@ import Agent from '..src/Agent'
 import './images/sunset.png'
 import './images/blank-user-profile.png'
 
+//global variables
+let currentUser;
+let destRepo;
+let newTripEst;
+
+//event listeners
+window.addEventListener('load', )
+
 
 
