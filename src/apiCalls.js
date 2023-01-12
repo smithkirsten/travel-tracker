@@ -1,16 +1,16 @@
-let travelers;
-let destinations;
-let trips;
+// let travelers;
+// let destinations;
+// let trips;
 
 //pass in travelers, travelers/id, trips, or destinations
 function getData(type) {
-  const url = `	http://localhost:3001/api/v1/${type}`;
+  const url = `http://localhost:3001/api/v1/${type}`;
   return fetch(url)
     .then(response => {
-      if(promise.ok) {
+      if(response.ok) {
         return response.json();
       } else {
-        throw new Error(response);
+        throw Promise.reject(response)
       }
     })
 }
@@ -30,3 +30,5 @@ function sendData(method, type, postData) {
     return response.json();
   })
 };
+
+export default { getData, sendData };
