@@ -68,6 +68,12 @@ button {
   font: #F4ECDC;
 }
 
+.cards-display {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+}
+
 .card {
   height: 30vh;
   width: 20vw;
