@@ -18,8 +18,9 @@ import './images/sunset.png'
 import './images/blank-user-profile.png'
 
 //query selectors
-const profleButton = document.querySelector(".profile-button");
+const profileButton = document.querySelector(".profile-button");
 const profileDownOptions = document.querySelector(".profile-dropdown-content");
+const logoutButton = document.querySelector("#logoutButton");
 
 //global variables
 let currentUser;
@@ -35,6 +36,7 @@ let newTripEst;
 
 //event listeners
 window.addEventListener('load', loadForTraveler(5))
+profileButton.addEventListener('click', showProfileDropDownOptions())
 
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)
@@ -87,6 +89,7 @@ function checkUserData() {
 }
 
 function displayTravelerDOM() {
+  display.destinationsDropDown(destRepo.destinations)
   display.userName(currentUser.name);
   display.userTotals(currentUser, destRepo)
   display.userTrips(currentUser.trips, destRepo)

@@ -36,11 +36,11 @@
       <p class="catchphrase">Why face life's problems when you can run away</p>
     </div>
     <div class="nav-menus">
-      <div class="profile-dropdown">
+      <div class="dropdown" id="profileDropdown">
         <button class="profile-button">profile <img class="avatar" src="./images/blank-user-profile.png" alt="user avatar"></button>
-      </div>
-      <div class="profile-dropdown-content">
-        <button class="logout" id="logoutButton" aria-controls="logout">logout</button>
+        <menu class="profile-dropdown-content" aria-expanded="false">
+          <button class="logout" id="logoutButton" aria-controls="logout">logout</button>
+        </menu>
       </div>
       <div class="filter-dropdown">
         <button class="filter-button">filter by</button>
@@ -64,12 +64,17 @@
         <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
         <label for="travelersInput" class="new-trip-input">Number of Travelers</label>
         <input type="number" name="travelers_input" class="user-input-fields" id="traverlersInput" min="1" required>
-        <div class="dropdown destinations">
+        <label for="destinations" class="hidden">Destinations</label>
+        <select class="destinations" name="destinations" type="text" id="destinations" autofocus required>
+          <option class="destinations" name="destinations">Destinations</option>
+        </select>
+        
+        
+        <!-- <div class="dropdown-destinations">
           <button class="dropbutton" id="destinations-dropdown" aria-controls="dropdown-content"></button>
           <menu class="data-dropdown" id="dropdown-content" aria-expanded="false">
             <button class="select-dest drop-option" id="destination1" aria-controls="destination1">Some Destination</button>
-            <!-- add these destination buttons dynamically -->
-          </menu>
+          </menu> -->
         </div>
       </form>
       <div id="userSumWrapper">

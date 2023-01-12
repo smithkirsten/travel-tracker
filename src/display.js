@@ -6,7 +6,13 @@ const totalTrips = document.getElementById('totalTripsDisp');
 const sassyDisp = document.getElementById('sassyDisp');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
 const cardsDisplay = document.getElementById('cardsDisplay');
+const destinationsMenu = document.getElementById('destinations')
 
+function destinationsDropDown(destinations) {
+  destinations.forEach(destination => {
+    destinationsMenu.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`
+  })
+}
 
 function userName(traveler) {
   if(!traveler) {
@@ -61,4 +67,4 @@ function createTripCard(trip, cost, destination) {
 
 
 
-export default { userName, userTotals, userTrips };
+export default { userName, userTotals, userTrips, destinationsDropDown };

@@ -6,6 +6,7 @@ body {
 button {
   color: #F4ECDC;
   cursor: pointer;
+  border: none;
 }
 
 .login-page {
@@ -34,20 +35,28 @@ nav {
   align-items: flex-end;
 }
 
-.profile-dropdown {
+.dropdown {
   display: inline-block;
   position: relative;
+}
+
+.profile-button {
+  color: black;
+  background-color: #F1CB86;
+  height: 5vh;
+  width: 10vw;
+}
+
+.avatar {
+  width: 20px;
+  height: 20px;
 }
 
 .profile-dropdown-content {
   display: none;
   overflow: auto;
   position: absolute;
-  width: 100%;
-}
-
-.profile-dropdown:hover .profile-dropdown-content {
-  display: block;
+  width: 25%;
 }
 
 .logo {
@@ -101,6 +110,11 @@ button {
   background-size: cover;
   height: 50%;
   text-align: center;
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
 }
 
 .hidden {
