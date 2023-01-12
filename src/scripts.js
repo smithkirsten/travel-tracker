@@ -32,18 +32,15 @@ window.addEventListener('load', loadForTraveler(5))
 
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)
-    .then(data => currentUser = new Traveler(data, []))
+    .then(data => data)
     .catch(error => console.log(error));
   let tripsPromise = apiCalls.getData('trips')
     .then(data => {
-      data.trips
-        .filter(trip => trip.userID === userId)
-        .forEach(trip => currentUser.trips.push(new Trip(trip)))
-      console.log(currentUser.trips)
+      return data.trips.filter(trip => trip.userID === userId)
     })
     .catch(error => console.log(error));
   let destinationsPromise = apiCalls.getData('destinations')
-    .then(data => destRepo = new DestRepo(data))
+    .then(data => data)
     .catch(error => console.log(error));
 
   resolvePromises([travelerPromise, tripsPromise, destinationsPromise]);
@@ -52,12 +49,23 @@ function loadForTraveler(userId) {
 function resolvePromises(promisesPromises) {
   Promise.all(promisesPromises)
     .then(values => {
-      //is it a problem that my trips value is undefined here if my globals console.log ok?
-      console.log(values)
+      console.log('resolved values: ', values)
+      assignData(values);
       //check to see what values are present and should be displayed/hidden
       //displayTravelerDOM
       //or displayAgentDOM
+   
     })
-};
+  };
+  
+function assignData(values) {
+  currentUser = new Traveler(values[0], [])
+  values[1].forEach(trip => currentUser.trips.push(new Trip(trip)))
+  destRepo = new DestRepo(values[3])
 
-
+  console.log('currentUser: ', currentUser)
+  console.log('user trips: ', currentUser.trips)
+  console.log('destinations: ', destRepo)
+}
+  
+  

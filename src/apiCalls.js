@@ -1,6 +1,3 @@
-// let travelers;
-// let destinations;
-// let trips;
 
 //pass in travelers, travelers/id, trips, or destinations
 function getData(type) {
