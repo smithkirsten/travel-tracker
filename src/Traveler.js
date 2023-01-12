@@ -27,7 +27,7 @@ class Traveler {
   };
 
   findUpcomingTrips(date) {
-    const trips = this.trips?.filter(trip => dayjs(date) < dayjs(trip.date));
+    const trips = this.trips?.filter(trip => dayjs(date).isBefore(dayjs(trip.date)));
     return trips.length > 0 ? trips : false; 
   }
 
