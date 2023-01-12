@@ -43,7 +43,7 @@ function loadForTraveler(userId) {
     })
     .catch(error => console.log(error));
   let destinationsPromise = apiCalls.getData('destinations')
-    .then(data => data)
+    .then(data => data.destinations)
     .catch(error => console.log(error));
 
   resolvePromises([travelerPromise, tripsPromise, destinationsPromise]);
@@ -53,6 +53,7 @@ function resolvePromises(promisesPromises) {
   Promise.all(promisesPromises)
     .then(values => {
       //conditional based on login to assign traveler or agent login
+      console.log(values)
       assignTravelerData(values);
       //check to see what values are present and should be displayed/hidden
       console.log(currentUser.name)
@@ -66,7 +67,9 @@ function resolvePromises(promisesPromises) {
 function assignTravelerData(values) {
   currentUser = new Traveler(values[0], [])
   values[1].forEach(trip => currentUser.trips.push(new Trip(trip)))
-  destRepo = new DestRepo(values[3])
+  console.log(values[2])
+  destRepo = new DestRepo(values[2])
+  console.log(destRepo)
 }
 
 function checkUserData() {
@@ -84,6 +87,7 @@ function checkUserData() {
 function displayTravelerDOM() {
   // checkUserData()
   display.userName(currentUser.name);
+  display.userTrips(currentUser, destRepo)
 }
 
 function displayAgentDOM() {
@@ -91,5 +95,3 @@ function displayAgentDOM() {
   //helper functions to remove hidden on Agent display
   //display pending trips on load
 }
-  
-  
