@@ -21,7 +21,7 @@ function userTrips(traveler, destinations) {
     totalTrips.innerText = 'Book your first trip';
     sassyDisp.innerText = 'and leave your real life behind';
   } else {
-    investDisp.innerText = `You have invested ${traveler.calcTotalSpent(destinations)} in avoidance`
+    investDisp.innerText = `You have invested $${traveler.calcTotalSpent(destinations)} in avoidance`
     totalTrips.innerText = `It has brought you to ${traveler.trips.length} new places`
     sassyDisp.innerText = 'but the things it has gotten you out of is priceless'
   }

@@ -18,7 +18,7 @@ class Traveler {
       total += trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo);
       return total;
     }, 0);
-    return total ? total : false;
+    return total ? total.toFixed(2) : false;
   };
 
   tripsByStatus(status) {
