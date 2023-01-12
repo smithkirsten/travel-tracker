@@ -9,6 +9,11 @@ button {
   border: none;
 }
 
+span {
+  color:#170F3D;
+  font-weight: bolder;
+}
+
 .login-page {
   background-color: #170F3D;
 }
@@ -32,6 +37,7 @@ nav {
 .nav-menus {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: flex-end;
 }
 

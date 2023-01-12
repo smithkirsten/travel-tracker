@@ -116,5 +116,5 @@ function displayAgentDOM() {
 
 function showProfileDropDownOptions() {
 	profileDownOptions.classList.toggle("show")
-	profileDownOptions.getAttribute("aria-expanded") === "false" ? dropDownOptions.setAttribute("aria-expanded", "true") : dropDownOptions.setAttribute("aria-expanded", "false");
+	profileDownOptions.getAttribute("aria-expanded") === "false" ? profileDownOptions.setAttribute("aria-expanded", "true") : dropDownOptions.setAttribute("aria-expanded", "false");
 }
