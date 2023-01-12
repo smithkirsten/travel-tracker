@@ -84,12 +84,14 @@ function displayTravelerDOM() {
 }
 
 function displayFilteredTrips(filter) {
+  //do I need a case for 'all' or will default catch it?
+  //do I need to redisplay the whole DOM or will this just redisplay the field?
   switch(filter) {
     case 'upcoming':
-      display.userTrips(currentUser.findUpcomingTrips(dayjs()), destRepo)
+      display.userTrips(currentUser.findTripsByDate('post', dayjs()), destRepo)
       break;
     case 'past':
-      display.userTrips(currentUser.findTripsBefore(dayjs()), destRepo)
+      display.userTrips(currentUser.findTripsByDate('pre', dayjs()), destRepo)
       break;
     case 'pending':
       display.userTrips(currentUser.tripsByStatus('pending'), destRepo)
