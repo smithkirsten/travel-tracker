@@ -52,28 +52,25 @@ function loadForTraveler(userId) {
 function resolvePromises(promisesPromises) {
   Promise.all(promisesPromises)
     .then(values => {
-      assignData(values);
+      //conditional based on login to assign traveler or agent login
+      assignTravelerData(values);
       //check to see what values are present and should be displayed/hidden
-      
-      //displayTravelerDOM
-      
+      console.log(currentUser.name)
+      //conditional to displayTravelerDOM
+      displayTravelerDOM();
       //or displayAgentDOM
    
     })
   };
   
-function assignData(values) {
+function assignTravelerData(values) {
   currentUser = new Traveler(values[0], [])
   values[1].forEach(trip => currentUser.trips.push(new Trip(trip)))
   destRepo = new DestRepo(values[3])
 }
 
 function checkUserData() {
-  if(currentUser.name) {
-    //loop through all welcome messages and display user name
-  } else {
-    //loop through all welcome messages and insert "Welcome new user"
-  }
+  
   if(currentUser.trips.length < 1) {
     //display trip cards
     //display totals
@@ -85,7 +82,8 @@ function checkUserData() {
 }
 
 function displayTravelerDOM() {
-  checkUserData()
+  // checkUserData()
+  display.userName(currentUser.name);
 }
 
 function displayAgentDOM() {

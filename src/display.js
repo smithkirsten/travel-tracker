@@ -1,9 +1,10 @@
 //query selectors
-const welcomeMessages = document.querySelectorAll(.welcome-message);
+const welcomeMessages = document.querySelectorAll('.welcome-message');
 
 
 
 function userName(traveler) {
+  console.log(traveler)
   if(!traveler) {
     welcomeMessages.forEach(message => message.innerText = 'Welcome, Traveler!');
   } else {
