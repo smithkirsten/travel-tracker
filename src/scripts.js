@@ -85,10 +85,22 @@ function checkUserData() {
 }
 
 function displayTravelerDOM() {
-  // checkUserData()
   display.userName(currentUser.name);
   display.userTotals(currentUser, destRepo)
-  display.userTrips(currentUser, destRepo)
+  display.userTrips(currentUser.trips, destRepo)
+}
+
+function displayFilteredTrips(filter) {
+  if(filter === 'all') {
+    display.userTrips(currentUser.trips, destRepo)
+  } 
+
+  //switch statement for each:
+
+  //upcoming
+  //pending
+  //past
+  //all 
 }
 
 function displayAgentDOM() {

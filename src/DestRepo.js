@@ -3,7 +3,7 @@ class DestRepo {
     this.destinations = destinations;
   };
 
-  findDestById(id) {
+  findDestByID(id) {
     const destination = this.destinations.find(destination => destination.id ===id);
     return destination ? destination : false;
   };

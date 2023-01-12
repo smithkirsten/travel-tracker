@@ -6,6 +6,8 @@ const totalTrips = document.getElementById('totalTripsDisp');
 const sassyDisp = document.getElementById('sassyDisp');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
 const cardsDisplay = document.getElementById('cardsDisplay');
+
+
 function userName(traveler) {
   if(!traveler) {
     welcomeMessages.forEach(message => message.innerText = 'Welcome, Traveler!');
@@ -27,11 +29,15 @@ function userTotals(traveler, destinations) {
   }
 }
 
-function userTrips(traveler, destinations) {
-  if(traveler.trips.length < 1) {
+function userTrips(trips, destinations) {
+  if(trips.length < 1) {
     cardsDisplay.classList.add('hidden')
     noTripsDisplay.classList.remove('hidden')
   } else {
+    trips.forEach(trip => {
+      const destination = destinations.findDestByID(trip.destinationID)
+      cardsDisplay.innerHTML += createTripCard(trip, destination);
+    })
     //for each trip, create card
       //interpolate image into src
       //interpolate trip id into id
@@ -41,6 +47,10 @@ function userTrips(traveler, destinations) {
       //interpolate status
       //interpolate total cost
   }
+}
+
+function createTripCard(trip, destination) {
+  
 }
 
 
