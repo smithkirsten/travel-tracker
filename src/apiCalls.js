@@ -19,7 +19,7 @@ function getData(type) {
 function sendData(method, type, postData) {
   const url = `http://localhost:3001/api/v1/${type}`;
   return promise = fetch(url, {
-    method: 'POST',
+    method: method,
     body: JSON.stringify(postData),
     headers: { 'Content-Type': 'application/json' }
   })
