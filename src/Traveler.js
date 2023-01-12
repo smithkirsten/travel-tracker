@@ -13,7 +13,14 @@ class Traveler {
     return trip ? trip : false;
   }
 
-  
+  calcTotalSpent(destRepo) {
+    const total = this.trips?.reduce((total, trip) => {
+      total += trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo);
+      return total;
+    }, 0);
+
+    return total ? total : false;
+  }
 
 };
 

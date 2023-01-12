@@ -7,6 +7,7 @@ import travelersTestData from './traveler-test-data';
 import tripTestData from './trips-test-data';
 import DestRepo from '../src/DestRepo'
 import destTestData from './destination-test-data';
+import Trip from '../src/Trip';
 
 describe('Traveler', () => {
   let traveler;
@@ -16,7 +17,7 @@ describe('Traveler', () => {
   beforeEach(() => {
     destRepo = new DestRepo(destTestData)
     traveler = new Traveler(travelersTestData[0], trips);
-    trips = tripTestData.filter(trip => trip.userID === traveler.id);
+    trips = tripTestData.filter(trip => trip.userID === traveler.id).map(trip => new Trip(trip));
     badData = new Traveler({});
   });
 
@@ -59,10 +60,8 @@ describe('Traveler', () => {
   });
 
   it('should calculate total cost of all trips', () => {
-    //create method in trips to calc 10% of trip
-    //create method in trips to calc cost of trip
-    expect(traveler.calcTotalCosts()).to.equal(10320);
-    expect(badData.calcTotalCosts()).to.equal(false) //or could return null to use ?? in future functions?
+    expect(traveler.calcTotalSpent(destRepo)).to.equal(10329);
+    expect(badData.calcTotalSpent(destRepo)).to.equal(false) //or could return null to use ?? in future functions?
   });
 
   it('should be able to filter trips by status', () => {
