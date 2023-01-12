@@ -9,7 +9,6 @@ import DestRepo from '../src/DestRepo'
 import Agent from '../src/Agent'
 // import Destination from '../src/Destination'
 import apiCalls from '../src/apiCalls'
-console.log(apiCalls)
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 import './images/sunset.png'
@@ -29,17 +28,22 @@ let newTripEst;
 
 
 //event listeners
-window.addEventListener('load', loadForTraveler(1))
+window.addEventListener('load', loadForTraveler(5))
 
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)
-    .then(data => {console.log(data)})
+    .then(data => currentUser = new Traveler(data, []))
     .catch(error => console.log(error));
   let tripsPromise = apiCalls.getData('trips')
-    .then(data => {console.log(data)})
+    .then(data => {
+      let trips = data.trips.filter(trip => trip.userID === userId);
+      trips.forEach(trip => currentUser.trips.push(new Trip(trip)))
+      console.log(trips)
+      console.log(currentUser.trips)
+    })
     .catch(error => console.log(error));
   let destinationsPromise = apiCalls.getData('destinations')
-    .then(data => {console.log(data)})
+    .then(data => destRepo = new DestRepo(data))
     .catch(error => console.log(error));
 
   resolvePromises([travelerPromise, tripsPromise, destinationsPromise]);
