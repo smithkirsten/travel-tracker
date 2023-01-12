@@ -72,24 +72,38 @@
           </menu>
         </div>
       </form>
+      <div class="user-summary" id="userSumWrapper">
+        <article class="user-summary trav-view">
+          <h3 class="welcome-message">Welcome, User</h3>
+          <p class="user-display" id="investDisp"></p> //escape is calling
+          <p class="user-display" id="totalTripsDisp"></p> //book your first trip
+          <p class="user-display" id="sassyDisp">but the things it has gotten you out of are priceless</p>
+        </article >
 
-      <article class="user-summary">
-        <h3>Welcome, User</h3>
-        <p class="user-display" id="investDisp"></p>
-        <p class="user-display" id="totalTripsDisp"></p>
-        <p class="user-display" id="sassyDisp">but the things it has gotten you out of are priceless</p>
-      </article >
+        <article class="user-summary trav-error hidden">
+          <h3>Welcome, User</h3>
+          <p class="user-display" id="totalTripsDisp"></p>
+          <p class="user-display" id="sassyDisp">but the things it has gotten you out of are priceless</p>
+        </article >
 
-      <article class="trip-estimate hidden">
-        <p class="estimate" id="nightsEst"></p>
-        <p class="estimate" id="destinationEst"></p>
-        <p class="estimate" id="guestsEst"></p>
-        <p class="estimate fee" id="feeEst"></p>
-        <div class="submit-section">
-          <p class="estimate total" id="totalEst"></p>
-          <button class="book-button"><img></button>
-        </div> 
-      </article>
+        <article class="trip-estimate hidden">
+          <h3>Your Trip Estimate</h3>
+          <p class="estimate" id="nightsEst"></p>
+          <p class="estimate" id="destinationEst"></p>
+          <p class="estimate" id="guestsEst"></p>
+          <p class="estimate fee" id="feeEst"></p>
+          <div class="submit-section">
+            <p class="estimate total" id="totalEst"></p>
+            <button class="book-button"><img></button>
+          </div> 
+        </article>
+        <!-- <article class="user-summary agent-view">
+          <h3>Welcome, Agent</h3>
+          <p class="user-display" id="investDisp"></p>
+          <p class="user-display" id="totalTripsDisp"></p>
+          <p class="user-display" id="sassyDisp">but the things it has gotten you out of are priceless</p>
+        </article > -->
+      </div>
     </aside>
     <section class="cards-display" id="cardsDisplay"></section>
   </main>

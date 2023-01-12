@@ -8,7 +8,10 @@ import Trip from '../src/Trip';
 import DestRepo from '../src/DestRepo'
 import Agent from '../src/Agent'
 // import Destination from '../src/Destination'
+
+//import functions
 import apiCalls from '../src/apiCalls'
+import display from '../src/display'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 import './images/sunset.png'
@@ -49,7 +52,6 @@ function loadForTraveler(userId) {
 function resolvePromises(promisesPromises) {
   Promise.all(promisesPromises)
     .then(values => {
-      console.log('resolved values: ', values)
       assignData(values);
       //check to see what values are present and should be displayed/hidden
       
@@ -64,6 +66,32 @@ function assignData(values) {
   currentUser = new Traveler(values[0], [])
   values[1].forEach(trip => currentUser.trips.push(new Trip(trip)))
   destRepo = new DestRepo(values[3])
+}
+
+function checkUserData() {
+  if(currentUser.name) {
+    //loop through all welcome messages and display user name
+  } else {
+    //loop through all welcome messages and insert "Welcome new user"
+  }
+  if(currentUser.trips.length < 1) {
+    //display trip cards
+    //display totals
+  } else {
+    //hide cards section
+      //you haven't booked any trips yet!
+    //hide trav-view
+  }
+}
+
+function displayTravelerDOM() {
+  checkUserData()
+}
+
+function displayAgentDOM() {
+  //helper functions to hide Traveler display 
+  //helper functions to remove hidden on Agent display
+  //display pending trips on load
 }
   
   
