@@ -3,9 +3,9 @@
 const welcomeMessages = document.querySelectorAll('.welcome-message');
 const investDisp = document.getElementById('investDisp');
 const totalTrips = document.getElementById('totalTripsDisp');
-const sassyDisp = document.getElementById('sassyDisp')
-
-
+const sassyDisp = document.getElementById('sassyDisp');
+const noTripsDisplay = document.getElementById('noTripsDisplay');
+const cardsDisplay = document.getElementById('cardsDisplay');
 function userName(traveler) {
   if(!traveler) {
     welcomeMessages.forEach(message => message.innerText = 'Welcome, Traveler!');
@@ -15,7 +15,7 @@ function userName(traveler) {
 };
 
 
-function userTrips(traveler, destinations) {
+function userTotals(traveler, destinations) {
   if(traveler.trips.length < 1) {
     investDisp.innerText = 'Escape is calling...';
     totalTrips.innerText = 'Book your first trip';
@@ -27,6 +27,22 @@ function userTrips(traveler, destinations) {
   }
 }
 
+function userTrips(traveler, destinations) {
+  if(traveler.trips.length < 1) {
+    cardsDisplay.classList.add('hidden')
+    noTripsDisplay.classList.remove('hidden')
+  } else {
+    //for each trip, create card
+      //interpolate image into src
+      //interpolate trip id into id
+      //interpolate destination name into header
+      //interpolate duration
+      //interpolate num travelers
+      //interpolate status
+      //interpolate total cost
+  }
+}
 
 
-export default { userName, userTrips };
+
+export default { userName, userTotals, userTrips };

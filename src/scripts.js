@@ -87,6 +87,7 @@ function checkUserData() {
 function displayTravelerDOM() {
   // checkUserData()
   display.userName(currentUser.name);
+  display.userTotals(currentUser, destRepo)
   display.userTrips(currentUser, destRepo)
 }
 
