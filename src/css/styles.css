@@ -69,12 +69,15 @@ button {
 }
 
 .card {
+  height: 30vh;
   width: 20vw;
+  
 }
 
-.card-image {
-  width: 100%;
-  height: 100%
+.card-header {
+  background-size: cover;
+  height: 50%;
+  text-align: center;
 }
 
 .hidden {

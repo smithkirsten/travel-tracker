@@ -45,9 +45,10 @@ function userTrips(trips, destinations) {
 function createTripCard(trip, cost, destination) {
   return `
   <article class="card" id="${trip.id}">
-    <img class="card-image" src="${destination.image}" alt="${destination.alt}">
+    <header class="card-header" style="background-image: url('${destination.image}')">
+    <h3 class="card-heading">${destination.destination}</h3>
+    </header>
     <section class="card-body">
-      <h3 class="card-heading">${destination.destination}</h3>
       <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
       <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
     </section>
