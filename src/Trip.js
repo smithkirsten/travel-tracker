@@ -25,7 +25,7 @@ class Trip {
   }
   
   findDestName(destRepo) {
-    const destination = destRepo.findDestById(this.destinationID);
+    const destination = destRepo.findDestByID(this.destinationID);
     return destination ? destination.destination : false;
   }
 
