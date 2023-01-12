@@ -55,8 +55,7 @@ function resolvePromises(promisesPromises) {
       //conditional based on login to assign traveler or agent login
       console.log(values)
       assignTravelerData(values);
-      //check to see what values are present and should be displayed/hidden
-      console.log(currentUser.name)
+
       //conditional to displayTravelerDOM
       displayTravelerDOM();
       //or displayAgentDOM

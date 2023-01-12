@@ -36,21 +36,26 @@ function userTrips(trips, destinations) {
   } else {
     trips.forEach(trip => {
       const destination = destinations.findDestByID(trip.destinationID)
-      cardsDisplay.innerHTML += createTripCard(trip, destination);
+      const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations)
+      cardsDisplay.innerHTML += createTripCard(trip, tripCost, destination);
     })
-    //for each trip, create card
-      //interpolate image into src
-      //interpolate trip id into id
-      //interpolate destination name into header
-      //interpolate duration
-      //interpolate num travelers
-      //interpolate status
-      //interpolate total cost
   }
 }
 
-function createTripCard(trip, destination) {
-  
+function createTripCard(trip, cost, destination) {
+  return `
+  <article class="card" id="${trip.id}">
+    <img class="card-image" src="${destination.image}" alt="${destination.alt}">
+    <section class="card-body">
+      <h3 class="card-heading">${destination.destination}</h3>
+      <p class="trip-duration">${trip.duration}</p>
+      <p class="trip-travelers">${trip.travelers}</p>
+    </section>
+    <footer class="card-footer">
+      <p class="trip-cost">${cost}</p>
+      <p class="trip-status">${trip.status}</p>
+    </footer>
+  </article>`;
 }
 
 
