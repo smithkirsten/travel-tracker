@@ -1,3 +1,4 @@
+const dayjs = require('dayjs');
 
 //query selectors
 const welcomeMessages = document.querySelectorAll('.welcome-message');
@@ -48,13 +49,19 @@ function userTrips(trips, destinations) {
   }
 }
 
+function resetCards() {
+  cardsDisplay.innerHTML = '';
+}
+
 function createTripCard(trip, cost, destination) {
+  const date = dayjs(trip.date).format('MMMM D, YYYY')
   return `
   <article class="card" id="${trip.id}">
     <header class="card-header" style="background-image: url('${destination.image}')">
     <h3 class="card-heading">${destination.destination}</h3>
     </header>
     <section class="card-body">
+      <p class="trip-date">${date}</p>
       <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
       <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
     </section>
@@ -67,4 +74,4 @@ function createTripCard(trip, cost, destination) {
 
 
 
-export default { userName, userTotals, userTrips, destinationsDropDown };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards };

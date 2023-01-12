@@ -20,7 +20,8 @@ import './images/blank-user-profile.png'
 //query selectors
 const profileButton = document.querySelector(".profile-button");
 const profileDownOptions = document.querySelector(".profile-dropdown-content");
-const logoutButton = document.querySelector("#logoutButton");
+const logoutButton = document.getElementById('logoutButton');
+const filters = document.getElementById('filters')
 
 //global variables
 let currentUser;
@@ -36,6 +37,11 @@ let newTripEst;
 
 //event listeners
 window.addEventListener('load', loadForTraveler(5))
+
+filters.addEventListener('change', () => {
+  displayFilteredTrips(filters.value)
+})
+
 profileButton.addEventListener('click', showProfileDropDownOptions())
 
 function loadForTraveler(userId) {
@@ -99,19 +105,6 @@ function displayFilteredTrips(filter) {
     default:
       display.userTrips(currentUser.trips, destRepo);
   }
-
-
-
-  if(filter === 'all') {
-    display.userTrips(currentUser.trips, destRepo)
-  } 
-
-  //switch statement for each:
-
-  //upcoming
-  //pending
-  //past
-  //all 
 }
 
 function displayAgentDOM() {
