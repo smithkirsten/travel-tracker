@@ -17,6 +17,9 @@ import display from '../src/display'
 import './images/sunset.png'
 import './images/blank-user-profile.png'
 
+//query selectors
+const profleButton = document.querySelector(".profile-button");
+const profileDownOptions = document.querySelector(".profile-dropdown-content");
 
 //global variables
 let currentUser;
@@ -106,4 +109,9 @@ function displayAgentDOM() {
   //helper functions to hide Traveler display 
   //helper functions to remove hidden on Agent display
   //display pending trips on load
+}
+
+function showProfileDropDownOptions() {
+	profileDownOptions.classList.toggle("show")
+	profileDownOptions.getAttribute("aria-expanded") === "false" ? dropDownOptions.setAttribute("aria-expanded", "true") : dropDownOptions.setAttribute("aria-expanded", "false");
 }

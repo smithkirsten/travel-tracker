@@ -3,6 +3,11 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+button {
+  color: #F4ECDC;
+  cursor: pointer;
+}
+
 .login-page {
   background-color: #170F3D;
 }
@@ -29,8 +34,20 @@ nav {
   align-items: flex-end;
 }
 
-button {
-  color: #F4ECDC;
+.profile-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.profile-dropdown-content {
+  display: none;
+  overflow: auto;
+  position: absolute;
+  width: 100%;
+}
+
+.profile-dropdown:hover .profile-dropdown-content {
+  display: block;
 }
 
 .logo {
