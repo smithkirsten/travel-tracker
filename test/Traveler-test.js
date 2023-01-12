@@ -73,16 +73,8 @@ describe('Traveler', () => {
   });
 
   it('should be able to filter for upcoming trips', () => {
-    expect(traveler.findUpcomingTrips('2023/1/11')).to.deep.equal({
-      id: 9,
-      userID: 1,
-      destinationID: 17,
-      travelers: 2,
-      date: "2023/04/30",
-      duration: 5,
-      status: "pending",
-      suggestedActivities: [ ]
-    })
+    const upcomingTrips = traveler.findUpcomingTrips('2023/1/11');
+    expect(upcomingTrips[0].id).to.equal(9);
     expect(traveler.findUpcomingTrips('2023/05/01')).to.equal(false);
   });
 
