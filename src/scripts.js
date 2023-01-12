@@ -36,9 +36,9 @@ function loadForTraveler(userId) {
     .catch(error => console.log(error));
   let tripsPromise = apiCalls.getData('trips')
     .then(data => {
-      let trips = data.trips.filter(trip => trip.userID === userId);
-      trips.forEach(trip => currentUser.trips.push(new Trip(trip)))
-      console.log(trips)
+      data.trips
+        .filter(trip => trip.userID === userId)
+        .forEach(trip => currentUser.trips.push(new Trip(trip)))
       console.log(currentUser.trips)
     })
     .catch(error => console.log(error));
@@ -52,6 +52,7 @@ function loadForTraveler(userId) {
 function resolvePromises(promisesPromises) {
   Promise.all(promisesPromises)
     .then(values => {
+      //is it a problem that my trips value is undefined here if my globals console.log ok?
       console.log(values)
       //check to see what values are present and should be displayed/hidden
       //displayTravelerDOM
