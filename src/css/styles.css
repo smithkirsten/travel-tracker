@@ -69,6 +69,16 @@ nav {
   height: 5vh;
 }
 
+.filter-content {
+  font-size: x-small;
+}
+.filters {
+  width: 15px;
+  font-size: small;
+  background-color: #F1CB86;
+  border: none;
+}
+
 main {
   display: flex;
   flex-direction: row;
@@ -81,6 +91,10 @@ aside {
   align-items: center;
   width: 20vw;
   height: 70vh;
+}
+
+.destinations {
+  width: 15vw;
 }
 
 .user-summary {

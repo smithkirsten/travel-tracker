@@ -43,13 +43,13 @@
         </menu>
       </div>
       <div class="filter-dropdown">
-        <button class="filter-button">filter by</button>
-        <menu class="filter-dropdown" id="filterOptions" aria-expanded="false">
-          <button class="filter" id="upcomingFilter" aria-controls="upcomingTrips">upcoming trips</button>
-          <button class="filter" id="pendingFilter" aria-controls="upcomingTrips">pending trips</button>
-          <button class="filter" id="pastFilter" aria-controls="upcomingTrips">past trips</button>
-          <button class="filter" id="allFilter" aria-controls="upcomingTrips">all trips</button>
-        </menu>
+        <label for="filters" class="filter-content">Filter by</label>
+        <select class="filters" name="filters" type="text" id="filters" autofocus required>
+          <option class="filters" name="filters">all</option>
+          <option class="filters" name="filters">upcoming</option>
+          <option class="filters" name="filters">past</option>
+          <option class="filters" name="filters">pending</option>
+        </select>
       </div>
     </div>
   </nav>
@@ -68,13 +68,6 @@
         <select class="destinations" name="destinations" type="text" id="destinations" autofocus required>
           <option class="destinations" name="destinations">Destinations</option>
         </select>
-        
-        
-        <!-- <div class="dropdown-destinations">
-          <button class="dropbutton" id="destinations-dropdown" aria-controls="dropdown-content"></button>
-          <menu class="data-dropdown" id="dropdown-content" aria-expanded="false">
-            <button class="select-dest drop-option" id="destination1" aria-controls="destination1">Some Destination</button>
-          </menu> -->
         </div>
       </form>
       <div id="userSumWrapper">
