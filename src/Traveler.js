@@ -30,11 +30,6 @@ class Traveler {
     const trips = this.trips?.filter(trip => dayjs(date).isBefore(dayjs(trip.date)));
     return trips.length > 0 ? trips : false; 
   }
-
-
-
-
-
 };
 
 export default Traveler;
