@@ -76,18 +76,6 @@ function assignTravelerData(values) {
   console.log(destRepo)
 }
 
-function checkUserData() {
-  
-  if(currentUser.trips.length < 1) {
-    //display trip cards
-    //display totals
-  } else {
-    //hide cards section
-      //you haven't booked any trips yet!
-    //hide trav-view
-  }
-}
-
 function displayTravelerDOM() {
   display.destinationsDropDown(destRepo.destinations)
   display.userName(currentUser.name);
@@ -96,6 +84,22 @@ function displayTravelerDOM() {
 }
 
 function displayFilteredTrips(filter) {
+  switch(filter) {
+    case 'upcoming':
+      display.userTrips(currentUser.findUpcomingTrips(dayjs()), destRepo)
+      break;
+    case 'past':
+      display.userTrips(currentUser.findTripsBefore(dayjs()), destRepo)
+      break;
+    case 'pending':
+      display.userTrips(currentUser.tripsByStatus('pending'), destRepo)
+      break;
+    default:
+      display.userTrips(currentUser.trips, destRepo);
+  }
+
+
+
   if(filter === 'all') {
     display.userTrips(currentUser.trips, destRepo)
   } 
