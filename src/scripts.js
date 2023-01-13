@@ -135,7 +135,9 @@ function bookTrip() {
   .then(response => {
     console.log(response)
     //display success 'your trip to DESTINATION is booked!'
-
+    //get request
+    //resolve promise
+    //redisplay DOM
   })
   .catch(error => {
     console.log(error)
