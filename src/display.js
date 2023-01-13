@@ -1,20 +1,29 @@
 const dayjs = require('dayjs');
+import Trip from '../src/Trip'
 
 //query selectors
 const welcomeMessages = document.querySelectorAll('.welcome-message');
+const noTripsDisplay = document.getElementById('noTripsDisplay');
+const cardsDisplay = document.getElementById('cardsDisplay');
+
+const travSummary = document.getElementById('travSummary');
 const investDisp = document.getElementById('investDisp');
 const totalTrips = document.getElementById('totalTripsDisp');
 const sassyDisp = document.getElementById('sassyDisp');
-const noTripsDisplay = document.getElementById('noTripsDisplay');
-const cardsDisplay = document.getElementById('cardsDisplay');
 const destinationsMenu = document.getElementById('destinations');
 const travelersInput = document.getElementById('traverlersInput');
 const destinationInput = document.getElementById('destinations');
 const startCalendar = document.getElementById('calendarStart');
 const endCalendar = document.getElementById('calendarEnd');
 const inputs = document.querySelectorAll('.new-trip-input')
-const travSummary = document.getElementById('travSummary');
+
 const tripEst = document.getElementById('tripEstimate');
+const nightsEst = document.getElementById('nightsEst');
+const destinationEst = document.getElementById('destinationEst');
+const guestsEst = document.getElementById('guestsEst');
+const feeEst = document.getElementById('feeEst')
+const totalEst = document.getElementById('totalEst')
+
 
 function destinationsDropDown(destinations) {
   destinations.forEach(destination => {
@@ -100,7 +109,7 @@ function calendarMin() {
 function createTripEstimate() {
   //how to do trip ID????
     //store length of trip data array at GET request and increment?
-  newTripEst = {
+  newTripEst = new Trip({
     id: nextTripID,
     userID: currentUser.id, 
     destinationID: +destinationInput.value, 
@@ -109,14 +118,20 @@ function createTripEstimate() {
     duration: startCalendar.value.diff(endCalendar.value), 
     status: 'pending', 
     suggestedActivities: []
-}
+})
 
 console.log(newTripEst)
 }
 
-function tripEstimate() {
+function tripEstimate(trip, destRepo) {
   travSummary.classList.add('hidden')
-  //interpolate newTripEst into block
+  
+  nightsEst.innerText = trip.duration;
+  destinationEst.innerText = destinationInput.text;
+  guestsEst.innerText = trip.travelers;
+  feeEst.innerText = trip.calcAgentFee(destRepo)
+  totalEst.innerText = trip.calcAgentFee(destRepo);
+
   tripEst.classList.remove('hidden')
 }
 
