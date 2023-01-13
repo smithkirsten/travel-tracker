@@ -40,7 +40,7 @@ let nextTripID;
 
 
 //event listeners
-window.addEventListener('load', loadForTraveler(5))
+window.addEventListener('load', loadForTraveler(5)) //also set min start date to today
 
 filters.addEventListener('change', () => {
   console.log('hello!')
@@ -97,6 +97,7 @@ function assignTravelerData(values) {
 }
 
 function displayTravelerDOM() {
+  display.setStartCalendar();
   display.destinationsDropDown(destRepo.destinations);
   display.userName(currentUser.name);
   display.userTotals(currentUser, destRepo);

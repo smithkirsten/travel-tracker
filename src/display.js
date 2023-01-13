@@ -100,12 +100,15 @@ function createTripCard(trip, cost, destination) {
 // 	sleepCalendar.setAttribute("max", today);
 // }
 
-function calendarMax() {
-  return;
+function setStartCalendar() {
+  const today = dayjs().format('YYYY-MM-DD');
+  startCalendar.setAttribute('min', today);
 }
 
-function calendarMin() {
-  return;
+function setEndCalendar() { //but what if someone reselects the value of start after selecting the value of end?
+  const start = dayjs(startCalendar.value);
+  const end = start.add(2, 'day').format('YYYY-MM-DD')
+  endCalendar.setAttribute('min', end)
 }
 
 function createTripEstimate(currentUser, nextTripID) {
@@ -149,5 +152,13 @@ function clearInputs() {
 
 }
 
+//start with button and end cal disabled
+//on click on form (add event listeners for querySelectAll?)
+//if start calendar has value, enable end calendar and set min date to start date++
+//if none are empty... use every()??
+  //enable button
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, calendarMax, calendarMin, createTripEstimate, tripEstimate, clearInputs };
+
+
+
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setStartCalendar, setEndCalendar, createTripEstimate, tripEstimate, clearInputs };
