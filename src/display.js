@@ -71,6 +71,24 @@ function createTripCard(trip, cost, destination) {
   </article>`;
 };
 
+// function setTodaysDateToMaxDate() {
+// 	let today = new Date();
+// 	let dd = String(today.getDate()).padStart(2, '0');
+// 	let mm = String(today.getMonth() + 1).padStart(2, '0');
+// 	let yyyy = today.getFullYear();
+// 	today = `${yyyy}-${mm}-${dd}`;
+// 	activityCalendar.setAttribute("max", today);
+// 	hydrationCalendar.setAttribute("max", today);
+// 	sleepCalendar.setAttribute("max", today);
+// }
+
+function calendarMax() {
+  return;
+}
+
+function calendarMin() {
+  return;
+}
 
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, calendarMax, calendarMin };
