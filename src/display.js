@@ -56,7 +56,6 @@ function userTrips(trips, destinations) {
     cardsDisplay.classList.add('hidden')
     noTripsDisplay.classList.remove('hidden')
   } else {
-    console.log(trips)
     cardsDisplay.classList.remove('hidden')
     noTripsDisplay.classList.add('hidden')
     trips.forEach(trip => {
@@ -110,22 +109,26 @@ function calendarMin() {
 }
 
 function createTripEstimate(currentUser, nextTripID) {
-  //how to do trip ID????
-    //store length of trip data array at GET request and increment?
+  const start = dayjs(startCalendar.value);
+  const end = dayjs(endCalendar.value)
+
+  
     return new Trip({
-    id: nextTripID,
-    userID: currentUser.id, 
-    destinationID: +destinationInput.value, 
-    travelers: travelersInput.value,
-    date: dayjs(startCalendar.value).format('YYYY/MM/DD'), 
-    duration: dayjs(startCalendar.value).diff(endCalendar.value), 
-    status: 'pending', 
-    suggestedActivities: []
-})
+      id: nextTripID,
+      userID: currentUser.id, 
+      destinationID: +destinationInput.value, 
+      travelers: travelersInput.value,
+      date: dayjs(startCalendar.value).format('YYYY/MM/DD'), 
+      duration: end.diff(start, 'day'), 
+      status: 'pending', 
+      suggestedActivities: []
+    })
 }
 
 function tripEstimate(trip, destRepo) {
   travSummary.classList.add('hidden')
+
+  console.log(trip)
 
   nightsEst.innerText = trip.duration;
   destinationEst.innerText = destRepo.findDestByID(trip.destinationID).destination;

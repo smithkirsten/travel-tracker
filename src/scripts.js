@@ -77,7 +77,6 @@ function resolvePromises(promisesPromises) {
   Promise.all(promisesPromises)
     .then(values => {
       //conditional based on login to assign traveler or agent login
-      console.log(values)
       assignTravelerData(values);
 
       //conditional to displayTravelerDOM
@@ -104,8 +103,6 @@ function displayTravelerDOM() {
 }
 
 function displayFilteredTrips(filter) {
-  //do I need a case for 'all' or will default catch it?
-  //do I need to redisplay the whole DOM or will this just redisplay the field?
   switch(filter) {
     case 'upcoming':
       display.userTrips(currentUser.findTripsByDate('post', dayjs()), destRepo)
