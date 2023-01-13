@@ -21,7 +21,8 @@ import './images/blank-user-profile.png'
 const profileButton = document.querySelector(".profile-button");
 const profileDownOptions = document.querySelector(".profile-dropdown-content");
 const logoutButton = document.getElementById('logoutButton');
-const filters = document.getElementById('filters')
+const filters = document.getElementById('filters');
+const estimateButton = document.getElementById('estButton');
 
 //global variables
 let currentUser;
@@ -43,6 +44,10 @@ filters.addEventListener('change', () => {
   displayFilteredTrips(filters.value)
   //currently only works one time for each selection
   //cannot re-select without refreshing
+})
+
+estimateButton.addEventListener('click', (event) => {
+  event.preventDefault();
 })
 
 profileButton.addEventListener('click', showProfileDropDownOptions())
