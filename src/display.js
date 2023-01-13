@@ -23,7 +23,6 @@ function userName(traveler) {
   }
 };
 
-
 function userTotals(traveler, destinations) {
   if(traveler.trips.length < 1) {
     investDisp.innerText = 'Escape is calling...';
@@ -70,7 +69,7 @@ function createTripCard(trip, cost, destination) {
       <p class="trip-status">${trip.status}</p>
     </footer>
   </article>`;
-}
+};
 
 
 

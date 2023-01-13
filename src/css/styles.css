@@ -99,6 +99,10 @@ aside {
   height: 70vh;
 }
 
+.traveler-input {
+  width: 34px;
+}
+
 .destinations {
   width: 15vw;
 }

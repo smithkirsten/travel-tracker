@@ -39,7 +39,10 @@ let newTripEst;
 window.addEventListener('load', loadForTraveler(5))
 
 filters.addEventListener('change', () => {
+  display.resetCards();
   displayFilteredTrips(filters.value)
+  //currently only works one time for each selection
+  //cannot re-select without refreshing
 })
 
 profileButton.addEventListener('click', showProfileDropDownOptions())

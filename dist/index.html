@@ -60,10 +60,10 @@
       <form>
         <label for="calendarStart" class="new-trip-input">Takeoff</label>
         <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
-        <label for="calendarEnd" class="new-trip-input">Return</label>
-        <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
+        <label for="calendarEnd" class="calendar-input">Return</label>
+        <input type="date" name="start_date" class="calendar-input" id="calendarStart" required>
         <label for="travelersInput" class="new-trip-input">Number of Travelers</label>
-        <input type="number" name="travelers_input" class="user-input-fields" id="traverlersInput" min="1" required>
+        <input type="number" name="travelers_input" class="traveler-input" id="traverlersInput" min="1" max="50"required>
         <label for="destinations" class="hidden">Destinations</label>
         <select class="destinations" name="destinations" type="text" id="destinations" autofocus required>
           <option class="destinations" name="destinations">Destinations</option>
