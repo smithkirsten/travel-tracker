@@ -89,26 +89,16 @@ function createTripCard(trip, cost, destination) {
   </article>`;
 };
 
-// function setTodaysDateToMaxDate() {
-// 	let today = new Date();
-// 	let dd = String(today.getDate()).padStart(2, '0');
-// 	let mm = String(today.getMonth() + 1).padStart(2, '0');
-// 	let yyyy = today.getFullYear();
-// 	today = `${yyyy}-${mm}-${dd}`;
-// 	activityCalendar.setAttribute("max", today);
-// 	hydrationCalendar.setAttribute("max", today);
-// 	sleepCalendar.setAttribute("max", today);
-// }
-
-function setStartCalendar() {
+function setCalendarMins() {
   const today = dayjs().format('YYYY-MM-DD');
   startCalendar.setAttribute('min', today);
+  endCalendar.setAttribute('min', dayjs().add(1, 'day').format('YYYY-MM-DD'))
 }
 
 function setEndCalendar() {
   if(!endCalendar.value || dayjs(endCalendar.value).isBefore(dayjs(startCalendar.value))){
     endCalendar.value = undefined;
-    const start = dayjs(startCalendar.value);
+    const start = dayjs(startCalendar.value) || dayjs(startCalendar.min);
     const end = start.add(1, 'day').format('YYYY-MM-DD')
     endCalendar.setAttribute('min', end)
   }
@@ -165,4 +155,4 @@ function clearInputs() {
 
 
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setStartCalendar, setEndCalendar, createTripEstimate, tripEstimate, clearInputs };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, createTripEstimate, tripEstimate, clearInputs };

@@ -43,7 +43,6 @@ let nextTripID;
 window.addEventListener('load', loadForTraveler(5)) //also set min start date to today
 
 filters.addEventListener('change', () => {
-  console.log('hello!')
   display.resetCards();
   displayFilteredTrips(filters.value)
 })
@@ -97,7 +96,7 @@ function assignTravelerData(values) {
 }
 
 function displayTravelerDOM() {
-  display.setStartCalendar();
+  display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
   display.userName(currentUser.name);
   display.userTotals(currentUser, destRepo);
@@ -121,7 +120,8 @@ function displayFilteredTrips(filter) {
 }
 
 function bookTrip() {
-  display.clearInputs()
+  display.clearInputs();
+  display.setCalendarMins();
   apiCalls.sendData('POST', 'trips', newTripEst)
   .then(response => {
     console.log(response)
