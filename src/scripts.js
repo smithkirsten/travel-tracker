@@ -110,6 +110,17 @@ function displayFilteredTrips(filter) {
   }
 }
 
+function createTripEstimate() {
+  //capture input values -> newTripEst
+  //display.tripEstimate(newTripEst)
+
+}
+
+function bookTrip() {
+  //apiCalls POST
+
+}
+
 function displayAgentDOM() {
   //helper functions to hide Traveler display 
   //helper functions to remove hidden on Agent display
