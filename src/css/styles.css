@@ -20,6 +20,7 @@ span {
 
 h1 {
   font-family: 'Kalam', cursive;
+  font-size: 36px;
 }
 
 .catchphrase {
@@ -33,6 +34,11 @@ nav {
   flex-direction:row;
   justify-content: space-between;
 } 
+
+.left-nav {
+  display: flex;
+  align-items: center;
+}
 
 .nav-menus {
   display: flex;
@@ -66,8 +72,8 @@ nav {
 }
 
 .logo {
-  width: 20vw;
-  height: 20vh;
+  width: 13vw;
+  height: 23vh;
 }
 
 .avatar {
