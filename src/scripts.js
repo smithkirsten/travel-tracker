@@ -42,6 +42,7 @@ let nextTripID;
 window.addEventListener('load', loadForTraveler(5))
 
 filters.addEventListener('change', () => {
+  console.log('hello!')
   display.resetCards();
   displayFilteredTrips(filters.value)
   //currently only works one time for each selection
@@ -50,8 +51,8 @@ filters.addEventListener('change', () => {
 
 estimateButton.addEventListener('click', (event) => {
   event.preventDefault();
-  newTripEst = display.createTripEstimate();
-  display.tripEstimate(newTripEst)
+  newTripEst = display.createTripEstimate(currentUser, nextTripID);
+  display.tripEstimate(newTripEst, destRepo)
 })
 
 

@@ -52,10 +52,13 @@ function userTotals(traveler, destinations) {
 }
 
 function userTrips(trips, destinations) {
-  if(trips.length < 1) {
+  if(!trips) {
     cardsDisplay.classList.add('hidden')
     noTripsDisplay.classList.remove('hidden')
   } else {
+    cardsDisplay.classList.remove('hidden')
+    noTripsDisplay.classList.add('hidden')
+    console.log('makin cards')
     trips.forEach(trip => {
       const destination = destinations.findDestByID(trip.destinationID)
       const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations)
@@ -106,7 +109,7 @@ function calendarMin() {
   return;
 }
 
-function createTripEstimate(nextTripID) {
+function createTripEstimate(currentUser, nextTripID) {
   //how to do trip ID????
     //store length of trip data array at GET request and increment?
     return new Trip({
@@ -114,8 +117,8 @@ function createTripEstimate(nextTripID) {
     userID: currentUser.id, 
     destinationID: +destinationInput.value, 
     travelers: travelersInput.value,
-    date: dayjs(startCalendar.value).format(YYYY/MM/DD), 
-    duration: startCalendar.value.diff(endCalendar.value), 
+    date: dayjs(startCalendar.value).format('YYYY/MM/DD'), 
+    duration: dayjs(startCalendar.value).diff(endCalendar.value), 
     status: 'pending', 
     suggestedActivities: []
 })
@@ -125,7 +128,7 @@ function tripEstimate(trip, destRepo) {
   travSummary.classList.add('hidden')
 
   nightsEst.innerText = trip.duration;
-  destinationEst.innerText = destinationInput.text;
+  destinationEst.innerText = destRepo.findDestByID(trip.destinationID).destination;
   guestsEst.innerText = trip.travelers;
   feeEst.innerText = trip.calcAgentFee(destRepo)
   totalEst.innerText = trip.calcAgentFee(destRepo);
