@@ -130,11 +130,14 @@ function tripEstimate(trip, destRepo) {
 
   console.log(trip)
 
-  nightsEst.innerText = trip.duration;
+  nightsEst.innerText = `${trip.duration} days in`;
   destinationEst.innerText = destRepo.findDestByID(trip.destinationID).destination;
-  guestsEst.innerText = trip.travelers;
-  feeEst.innerText = trip.calcAgentFee(destRepo)
-  totalEst.innerText = trip.calcAgentFee(destRepo);
+  guestsEst.innerText = `${trip.travelers} traveler`;
+  if(trip.travelers > 1){
+    guestsEst.innerText += 's'
+  }
+  feeEst.innerText = `agent fee ${trip.calcAgentFee(destRepo)}`
+  totalEst.innerText = `total ${trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)}`;
 
   tripEst.classList.remove('hidden')
 }
