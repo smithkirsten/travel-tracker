@@ -15,7 +15,7 @@ function getData(type) {
 //pass in trips,updateTrip, destinations
 function sendData(method, type, postData) {
   const url = `http://localhost:3001/api/v1/${type}`;
-  return promise = fetch(url, {
+  return fetch(url, {
     method: method,
     body: JSON.stringify(postData),
     headers: { 'Content-Type': 'application/json' }

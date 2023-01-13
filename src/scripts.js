@@ -24,7 +24,7 @@ const logoutButton = document.getElementById('logoutButton');
 
 const filters = document.getElementById('filters');
 const estimateButton = document.getElementById('estButton');
-const bookButton = document.getElementById('book-button')
+const bookButton = document.getElementById('bookButton')
 
 //global variables
 let currentUser;
@@ -122,10 +122,17 @@ function displayFilteredTrips(filter) {
 function bookTrip() {
   display.clearInputs()
   apiCalls.sendData('POST', 'trips', newTripEst)
-  .then()
-  .catch
-  newTripEst = undefined;
+  .then(response => {
+    console.log(response)
+    //display success 'your trip to DESTINATION is booked!'
 
+  })
+  .catch(error => {
+    console.log(error)
+    //display error message
+  })
+  newTripEst = undefined;
+  //set timer and display NEW summary
 }
 
 function displayAgentDOM() {
