@@ -24,7 +24,8 @@ const logoutButton = document.getElementById('logoutButton');
 
 const filters = document.getElementById('filters');
 const estimateButton = document.getElementById('estButton');
-const bookButton = document.getElementById('bookButton')
+const bookButton = document.getElementById('bookButton');
+const form = document.getElementById('newTripForm');
 
 //global variables
 let currentUser;
@@ -45,6 +46,12 @@ window.addEventListener('load', loadForTraveler(5)) //also set min start date to
 filters.addEventListener('change', () => {
   display.resetCards();
   displayFilteredTrips(filters.value)
+})
+
+form.addEventListener('change', (event) => {
+  event.preventDefault();
+  
+
 })
 
 estimateButton.addEventListener('click', (event) => {
@@ -98,6 +105,7 @@ function assignTravelerData(values) {
 function displayTravelerDOM() {
   display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
+  display.disableElement(estimateButton, true);
   display.userName(currentUser.name);
   display.userTotals(currentUser, destRepo);
   display.userTrips(currentUser.trips, destRepo);

@@ -104,6 +104,10 @@ function setEndCalendar() {
   }
 }
 
+function checkAllInputs() {
+  return inputs.every(field => field.value);
+}
+
 function createTripEstimate(currentUser, nextTripID) {
   const start = dayjs(startCalendar.value);
   const end = dayjs(endCalendar.value)
@@ -144,6 +148,10 @@ function clearInputs() {
 
 }
 
+function disableElement(element, boolean) {
+  element.disabled = boolean;
+}
+
 //start with button and end cal disabled
 //on click on form (add event listeners for querySelectAll?)
 //min for start cal is set on page load (and DOM redisplay?)
@@ -155,4 +163,4 @@ function clearInputs() {
 
 
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, createTripEstimate, tripEstimate, clearInputs };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, disableElement, clearInputs };
