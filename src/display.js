@@ -106,10 +106,10 @@ function calendarMin() {
   return;
 }
 
-function createTripEstimate() {
+function createTripEstimate(nextTripID) {
   //how to do trip ID????
     //store length of trip data array at GET request and increment?
-  newTripEst = new Trip({
+    return new Trip({
     id: nextTripID,
     userID: currentUser.id, 
     destinationID: +destinationInput.value, 
@@ -119,13 +119,11 @@ function createTripEstimate() {
     status: 'pending', 
     suggestedActivities: []
 })
-
-console.log(newTripEst)
 }
 
 function tripEstimate(trip, destRepo) {
   travSummary.classList.add('hidden')
-  
+
   nightsEst.innerText = trip.duration;
   destinationEst.innerText = destinationInput.text;
   guestsEst.innerText = trip.travelers;

@@ -54,6 +54,8 @@ estimateButton.addEventListener('click', (event) => {
   display.tripEstimate(newTripEst)
 })
 
+
+
 profileButton.addEventListener('click', showProfileDropDownOptions())
 
 function loadForTraveler(userId) {
@@ -61,9 +63,7 @@ function loadForTraveler(userId) {
     .then(data => data)
     .catch(error => console.log(error));
   let tripsPromise = apiCalls.getData('trips')
-    .then(data => {
-      return data.trips.filter(trip => trip.userID === userId)
-    })
+    .then(data => data.trips)
     .catch(error => console.log(error));
   let destinationsPromise = apiCalls.getData('destinations')
     .then(data => data.destinations)
@@ -87,18 +87,19 @@ function resolvePromises(promisesPromises) {
   };
   
 function assignTravelerData(values) {
-  currentUser = new Traveler(values[0], [])
-  values[1].forEach(trip => currentUser.trips.push(new Trip(trip)))
-  console.log(values[2])
-  destRepo = new DestRepo(values[2])
-  console.log(destRepo)
+  currentUser = new Traveler(values[0], []);
+  nextTripID = values[1].length + 2;
+  values[1]
+  .filter(trip => trip.userID === currentUser.id)
+  .forEach(trip => currentUser.trips.push(new Trip(trip)));
+  destRepo = new DestRepo(values[2]);
 }
 
 function displayTravelerDOM() {
-  display.destinationsDropDown(destRepo.destinations)
+  display.destinationsDropDown(destRepo.destinations);
   display.userName(currentUser.name);
-  display.userTotals(currentUser, destRepo)
-  display.userTrips(currentUser.trips, destRepo)
+  display.userTotals(currentUser, destRepo);
+  display.userTrips(currentUser.trips, destRepo);
 }
 
 function displayFilteredTrips(filter) {
