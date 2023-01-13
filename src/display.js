@@ -1,13 +1,29 @@
 const dayjs = require('dayjs');
+import Trip from '../src/Trip'
 
 //query selectors
 const welcomeMessages = document.querySelectorAll('.welcome-message');
+const noTripsDisplay = document.getElementById('noTripsDisplay');
+const cardsDisplay = document.getElementById('cardsDisplay');
+
+const travSummary = document.getElementById('travSummary');
 const investDisp = document.getElementById('investDisp');
 const totalTrips = document.getElementById('totalTripsDisp');
 const sassyDisp = document.getElementById('sassyDisp');
-const noTripsDisplay = document.getElementById('noTripsDisplay');
-const cardsDisplay = document.getElementById('cardsDisplay');
-const destinationsMenu = document.getElementById('destinations')
+const destinationsMenu = document.getElementById('destinations');
+const travelersInput = document.getElementById('traverlersInput');
+const destinationInput = document.getElementById('destinations');
+const startCalendar = document.getElementById('calendarStart');
+const endCalendar = document.getElementById('calendarEnd');
+const inputs = document.querySelectorAll('.new-trip-input')
+
+const tripEst = document.getElementById('tripEstimate');
+const nightsEst = document.getElementById('nightsEst');
+const destinationEst = document.getElementById('destinationEst');
+const guestsEst = document.getElementById('guestsEst');
+const feeEst = document.getElementById('feeEst')
+const totalEst = document.getElementById('totalEst')
+
 
 function destinationsDropDown(destinations) {
   destinations.forEach(destination => {
@@ -36,10 +52,12 @@ function userTotals(traveler, destinations) {
 }
 
 function userTrips(trips, destinations) {
-  if(trips.length < 1) {
+  if(!trips) {
     cardsDisplay.classList.add('hidden')
     noTripsDisplay.classList.remove('hidden')
   } else {
+    cardsDisplay.classList.remove('hidden')
+    noTripsDisplay.classList.add('hidden')
     trips.forEach(trip => {
       const destination = destinations.findDestByID(trip.destinationID)
       const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations)
@@ -71,6 +89,65 @@ function createTripCard(trip, cost, destination) {
   </article>`;
 };
 
+// function setTodaysDateToMaxDate() {
+// 	let today = new Date();
+// 	let dd = String(today.getDate()).padStart(2, '0');
+// 	let mm = String(today.getMonth() + 1).padStart(2, '0');
+// 	let yyyy = today.getFullYear();
+// 	today = `${yyyy}-${mm}-${dd}`;
+// 	activityCalendar.setAttribute("max", today);
+// 	hydrationCalendar.setAttribute("max", today);
+// 	sleepCalendar.setAttribute("max", today);
+// }
+
+function calendarMax() {
+  return;
+}
+
+function calendarMin() {
+  return;
+}
+
+function createTripEstimate(currentUser, nextTripID) {
+  const start = dayjs(startCalendar.value);
+  const end = dayjs(endCalendar.value)
+
+  
+    return new Trip({
+      id: nextTripID,
+      userID: currentUser.id, 
+      destinationID: +destinationInput.value, 
+      travelers: travelersInput.value,
+      date: dayjs(startCalendar.value).format('YYYY/MM/DD'), 
+      duration: end.diff(start, 'day'), 
+      status: 'pending', 
+      suggestedActivities: []
+    })
+}
+
+function tripEstimate(trip, destRepo) {
+  travSummary.classList.add('hidden')
+
+  console.log(trip)
+
+  nightsEst.innerText = `${trip.duration} days in`;
+  destinationEst.innerText = destRepo.findDestByID(trip.destinationID).destination;
+  guestsEst.innerText = `${trip.travelers} traveler`;
+  if(trip.travelers > 1){
+    guestsEst.innerText += 's'
+  }
+  feeEst.innerText = `agent fee ${trip.calcAgentFee(destRepo)}`
+  totalEst.innerText = `total ${trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)}`;
+
+  tripEst.classList.remove('hidden')
+}
+
+function clearInputs() {
+  inputs.forEach(input => input.value = '');
+  tripEst.classList.add('hidden')
+  travSummary.classList.remove('hidden')
+
+}
 
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, calendarMax, calendarMin, createTripEstimate, tripEstimate, clearInputs };

@@ -21,12 +21,16 @@ import './images/blank-user-profile.png'
 const profileButton = document.querySelector(".profile-button");
 const profileDownOptions = document.querySelector(".profile-dropdown-content");
 const logoutButton = document.getElementById('logoutButton');
-const filters = document.getElementById('filters')
+
+const filters = document.getElementById('filters');
+const estimateButton = document.getElementById('estButton');
+const bookButton = document.getElementById('bookButton')
 
 //global variables
 let currentUser;
 let destRepo;
 let newTripEst;
+let nextTripID;
 
 //login
   //on page load: login page
@@ -39,11 +43,20 @@ let newTripEst;
 window.addEventListener('load', loadForTraveler(5))
 
 filters.addEventListener('change', () => {
+  console.log('hello!')
   display.resetCards();
   displayFilteredTrips(filters.value)
-  //currently only works one time for each selection
-  //cannot re-select without refreshing
 })
+
+estimateButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  newTripEst = display.createTripEstimate(currentUser, nextTripID);
+  display.tripEstimate(newTripEst, destRepo)
+})
+
+bookButton.addEventListener('click', bookTrip)
+
+
 
 profileButton.addEventListener('click', showProfileDropDownOptions())
 
@@ -52,9 +65,7 @@ function loadForTraveler(userId) {
     .then(data => data)
     .catch(error => console.log(error));
   let tripsPromise = apiCalls.getData('trips')
-    .then(data => {
-      return data.trips.filter(trip => trip.userID === userId)
-    })
+    .then(data => data.trips)
     .catch(error => console.log(error));
   let destinationsPromise = apiCalls.getData('destinations')
     .then(data => data.destinations)
@@ -67,7 +78,6 @@ function resolvePromises(promisesPromises) {
   Promise.all(promisesPromises)
     .then(values => {
       //conditional based on login to assign traveler or agent login
-      console.log(values)
       assignTravelerData(values);
 
       //conditional to displayTravelerDOM
@@ -78,23 +88,22 @@ function resolvePromises(promisesPromises) {
   };
   
 function assignTravelerData(values) {
-  currentUser = new Traveler(values[0], [])
-  values[1].forEach(trip => currentUser.trips.push(new Trip(trip)))
-  console.log(values[2])
-  destRepo = new DestRepo(values[2])
-  console.log(destRepo)
+  currentUser = new Traveler(values[0], []);
+  nextTripID = values[1].length + 2;
+  values[1]
+  .filter(trip => trip.userID === currentUser.id)
+  .forEach(trip => currentUser.trips.push(new Trip(trip)));
+  destRepo = new DestRepo(values[2]);
 }
 
 function displayTravelerDOM() {
-  display.destinationsDropDown(destRepo.destinations)
+  display.destinationsDropDown(destRepo.destinations);
   display.userName(currentUser.name);
-  display.userTotals(currentUser, destRepo)
-  display.userTrips(currentUser.trips, destRepo)
+  display.userTotals(currentUser, destRepo);
+  display.userTrips(currentUser.trips, destRepo);
 }
 
 function displayFilteredTrips(filter) {
-  //do I need a case for 'all' or will default catch it?
-  //do I need to redisplay the whole DOM or will this just redisplay the field?
   switch(filter) {
     case 'upcoming':
       display.userTrips(currentUser.findTripsByDate('post', dayjs()), destRepo)
@@ -110,15 +119,20 @@ function displayFilteredTrips(filter) {
   }
 }
 
-function createTripEstimate() {
-  //capture input values -> newTripEst
-  //display.tripEstimate(newTripEst)
-
-}
-
 function bookTrip() {
-  //apiCalls POST
+  display.clearInputs()
+  apiCalls.sendData('POST', 'trips', newTripEst)
+  .then(response => {
+    console.log(response)
+    //display success 'your trip to DESTINATION is booked!'
 
+  })
+  .catch(error => {
+    console.log(error)
+    //display error message
+  })
+  newTripEst = undefined;
+  //set timer and display NEW summary
 }
 
 function displayAgentDOM() {

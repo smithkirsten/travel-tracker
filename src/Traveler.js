@@ -23,7 +23,7 @@ class Traveler {
 
   tripsByStatus(status) {
     const trips = this.trips?.filter(trip => trip.status === status);
-    return trips ? trips : false;
+    return trips.length > 0 ? trips : undefined;
   };
 
   findTripsByDate(prefix, date) {
