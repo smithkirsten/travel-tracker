@@ -46,8 +46,6 @@ filters.addEventListener('change', () => {
   console.log('hello!')
   display.resetCards();
   displayFilteredTrips(filters.value)
-  //currently only works one time for each selection
-  //cannot re-select without refreshing
 })
 
 estimateButton.addEventListener('click', (event) => {
@@ -56,11 +54,7 @@ estimateButton.addEventListener('click', (event) => {
   display.tripEstimate(newTripEst, destRepo)
 })
 
-bookButton.addEventListener('click', () => {
-  apiCalls.sendData('POST', 'trips', newTripEst)
-  //clear inputs
-  //display success sign
-})
+bookButton.addEventListener('click', bookTrip)
 
 
 
@@ -126,9 +120,11 @@ function displayFilteredTrips(filter) {
 }
 
 function bookTrip() {
-  //clear input fields
-  //apiCalls POST
-  //clear newTripEst
+  display.clearInputs()
+  apiCalls.sendData('POST', 'trips', newTripEst)
+  .then()
+  .catch
+  newTripEst = undefined;
 
 }
 
