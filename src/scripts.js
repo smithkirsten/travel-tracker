@@ -21,9 +21,10 @@ import './images/blank-user-profile.png'
 const profileButton = document.querySelector(".profile-button");
 const profileDownOptions = document.querySelector(".profile-dropdown-content");
 const logoutButton = document.getElementById('logoutButton');
+
 const filters = document.getElementById('filters');
 const estimateButton = document.getElementById('estButton');
-
+const bookButton = document.getElementById('book-button')
 
 //global variables
 let currentUser;
@@ -53,6 +54,12 @@ estimateButton.addEventListener('click', (event) => {
   event.preventDefault();
   newTripEst = display.createTripEstimate(currentUser, nextTripID);
   display.tripEstimate(newTripEst, destRepo)
+})
+
+bookButton.addEventListener('click', () => {
+  apiCalls.sendData('POST', 'trips', newTripEst)
+  //clear inputs
+  //display success sign
 })
 
 
