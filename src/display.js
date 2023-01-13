@@ -56,9 +56,9 @@ function userTrips(trips, destinations) {
     cardsDisplay.classList.add('hidden')
     noTripsDisplay.classList.remove('hidden')
   } else {
+    console.log(trips)
     cardsDisplay.classList.remove('hidden')
     noTripsDisplay.classList.add('hidden')
-    console.log('makin cards')
     trips.forEach(trip => {
       const destination = destinations.findDestByID(trip.destinationID)
       const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations)
