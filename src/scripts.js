@@ -50,8 +50,9 @@ filters.addEventListener('change', () => {
 
 form.addEventListener('change', (event) => {
   event.preventDefault();
-  
-
+  if(display.checkAllInputs) {
+    display.disableElement(estimateButton, false);
+  }
 })
 
 estimateButton.addEventListener('click', (event) => {
