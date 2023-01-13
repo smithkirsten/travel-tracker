@@ -105,17 +105,19 @@ function setStartCalendar() {
   startCalendar.setAttribute('min', today);
 }
 
-function setEndCalendar() { //but what if someone reselects the value of start after selecting the value of end?
-  const start = dayjs(startCalendar.value);
-  const end = start.add(2, 'day').format('YYYY-MM-DD')
-  endCalendar.setAttribute('min', end)
+function setEndCalendar() {
+  if(!endCalendar.value || dayjs(endCalendar.value).isBefore(dayjs(startCalendar.value))){
+    endCalendar.value = undefined;
+    const start = dayjs(startCalendar.value);
+    const end = start.add(1, 'day').format('YYYY-MM-DD')
+    endCalendar.setAttribute('min', end)
+  }
 }
 
 function createTripEstimate(currentUser, nextTripID) {
   const start = dayjs(startCalendar.value);
   const end = dayjs(endCalendar.value)
 
-  
     return new Trip({
       id: nextTripID,
       userID: currentUser.id, 
@@ -154,7 +156,9 @@ function clearInputs() {
 
 //start with button and end cal disabled
 //on click on form (add event listeners for querySelectAll?)
-//if start calendar has value, enable end calendar and set min date to start date++
+//min for start cal is set on page load (and DOM redisplay?)
+  //min for end cal is set on click of start cal.... but will click reg before the input?
+  //what if the user resets the start after the user selects and end date?
 //if none are empty... use every()??
   //enable button
 
