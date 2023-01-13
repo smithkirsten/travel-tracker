@@ -22,7 +22,7 @@ function sendData(method, type, postData) {
   })
   .then(response => {
     if(!response.ok) {
-      throw new Error("Data failed to reach the server");
+      throw new Error("Something went wrong, please try again later");
     }
     return response.json();
   })
