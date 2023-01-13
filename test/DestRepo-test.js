@@ -26,7 +26,7 @@ describe('DestRepo', () => {
   });
 
   it('should return a destination from its id', () => {
-    expect(destRepo.findDestById(39)).to.deep.equal({
+    expect(destRepo.findDestByID(39)).to.deep.equal({
       id: 39,
       destination: "Porto, Portugal",
       estimatedLodgingCostPerDay: 995,
@@ -34,7 +34,7 @@ describe('DestRepo', () => {
       image: "https://images.unsplash.com/photo-1564644929137-34b018daf461?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80",
       alt: "looking over the water on to a city on a hill"
     });
-    expect(destRepo.findDestById(100)).to.equal(false)
+    expect(destRepo.findDestByID(100)).to.equal(false)
   });
 
   it('should find a destination from its name', () => {

@@ -30,26 +30,28 @@
   </section>
 
   <nav>
-    <img class="logo" src="./images/sunset.png" alt="sunset logo">
-    <div>
-      <h1>Simply Escape</h1>
-      <p class="catchphrase">Why face life's problems when you can run away</p>
+    <div class="left-nav">
+      <img class="logo" src="./images/sunset.png" alt="sunset logo">
+      <div class="logo-text">
+        <h1>Simply Escape</h1>
+        <p class="catchphrase">Why face life's problems when you can run away</p>
+      </div>
     </div>
     <div class="nav-menus">
-      <div class="profile dropdown">
+      <div class="dropdown" id="profileDropdown">
         <button class="profile-button">profile <img class="avatar" src="./images/blank-user-profile.png" alt="user avatar"></button>
-        <menu class="profile-dropdown" id="profileDropdownContent" aria-expanded="false">
+        <menu class="profile-dropdown-content" aria-expanded="false">
           <button class="logout" id="logoutButton" aria-controls="logout">logout</button>
         </menu>
       </div>
       <div class="filter-dropdown">
-        <button class="filter-button">filter by</button>
-        <menu class="filter-dropdown" id="filterOptions" aria-expanded="false">
-          <button class="filter" id="upcomingFilter" aria-controls="upcomingTrips">upcoming trips</button>
-          <button class="filter" id="pendingFilter" aria-controls="upcomingTrips">pending trips</button>
-          <button class="filter" id="pastFilter" aria-controls="upcomingTrips">past trips</button>
-          <button class="filter" id="allFilter" aria-controls="upcomingTrips">all trips</button>
-        </menu>
+        <label for="filters" class="filter-content">Filter by</label>
+        <select class="filters" name="filters" type="text" id="filters" autofocus required>
+          <option class="filters" name="filters" id="all">all</option>
+          <option class="filters" name="filters" id="upcoming">upcoming</option>
+          <option class="filters" name="filters" id="past">past</option>
+          <option class="filters" name="filters" id="pending">pending</option>
+        </select>
       </div>
     </div>
   </nav>
@@ -60,38 +62,53 @@
       <form>
         <label for="calendarStart" class="new-trip-input">Takeoff</label>
         <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
-        <label for="calendarEnd" class="new-trip-input">Return</label>
-        <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
+        <label for="calendarEnd" class="calendar-input">Return</label>
+        <input type="date" name="start_date" class="calendar-input" id="calendarStart" required>
         <label for="travelersInput" class="new-trip-input">Number of Travelers</label>
-        <input type="number" name="travelers_input" class="user-input-fields" id="traverlersInput" min="1" required>
-        <div class="dropdown destinations">
-          <button class="dropbutton" id="destinations-dropdown" aria-controls="dropdown-content"></button>
-          <menu class="data-dropdown" id="dropdown-content" aria-expanded="false">
-            <button class="select-dest drop-option" id="destination1" aria-controls="destination1">Some Destination</button>
-            <!-- add these destination buttons dynamically -->
-          </menu>
+        <input type="number" name="travelers_input" class="traveler-input" id="traverlersInput" min="1" max="50"required>
+        <label for="destinations" class="hidden">Destinations</label>
+        <select class="destinations" name="destinations" type="text" id="destinations" autofocus required>
+          <option class="destinations" name="destinations">Destinations</option>
+        </select>
         </div>
       </form>
+      <div id="userSumWrapper">
+        <article class="user-summary trav-view">
+          <h3 class="welcome-message">Welcome, User</h3>
+          <p class="user-display" id="investDisp"></p>
+          <p class="user-display" id="totalTripsDisp"></p>
+          <p class="user-display" id="sassyDisp">but the things it has gotten you out of are priceless</p>
+        </article >
 
-      <article class="user-summary">
-        <h3>Welcome, User</h3>
-        <p class="user-display" id="investDisp"></p>
-        <p class="user-display" id="totalTripsDisp"></p>
-        <p class="user-display" id="sassyDisp">but the things it has gotten you out of are priceless</p>
-      </article >
-
-      <article class="trip-estimate hidden">
-        <p class="estimate" id="nightsEst"></p>
-        <p class="estimate" id="destinationEst"></p>
-        <p class="estimate" id="guestsEst"></p>
-        <p class="estimate fee" id="feeEst"></p>
-        <div class="submit-section">
-          <p class="estimate total" id="totalEst"></p>
-          <button class="book-button"><img></button>
-        </div> 
-      </article>
+        <article class="trip-estimate hidden">
+          <h3>Your Trip Estimate</h3>
+          <p class="estimate" id="nightsEst"></p>
+          <p class="estimate" id="destinationEst"></p>
+          <p class="estimate" id="guestsEst"></p>
+          <p class="estimate fee" id="feeEst"></p>
+          <div class="submit-section">
+            <p class="estimate total" id="totalEst"></p>
+            <button class="book-button"><img></button>
+          </div> 
+        </article>
+        <!-- <article class="user-summary agent-view">
+          <h3>Welcome, Agent</h3>
+          <p class="user-display" id="investDisp"></p>
+          <p class="user-display" id="totalTripsDisp"></p>
+          <p class="user-display" id="sassyDisp">but the things it has gotten you out of are priceless</p>
+        </article > -->
+      </div>
     </aside>
-    <section class="cards-display" id="cardsDisplay"></section>
+    <section class="cards-display" id="cardsDisplay">
+
+
+
+    </section>
+    <section class="hidden"id="noTripsDisplay">
+      <div class="no-trips-display">
+        <p id="noTripsMessage">no trips are available</p>
+      </div>
+    </section>
   </main>
 
 

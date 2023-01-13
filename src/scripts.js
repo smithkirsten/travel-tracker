@@ -8,12 +8,20 @@ import Trip from '../src/Trip';
 import DestRepo from '../src/DestRepo'
 import Agent from '../src/Agent'
 // import Destination from '../src/Destination'
+
+//import functions
 import apiCalls from '../src/apiCalls'
+import display from '../src/display'
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 import './images/sunset.png'
 import './images/blank-user-profile.png'
 
+//query selectors
+const profileButton = document.querySelector(".profile-button");
+const profileDownOptions = document.querySelector(".profile-dropdown-content");
+const logoutButton = document.getElementById('logoutButton');
+const filters = document.getElementById('filters')
 
 //global variables
 let currentUser;
@@ -30,6 +38,15 @@ let newTripEst;
 //event listeners
 window.addEventListener('load', loadForTraveler(5))
 
+filters.addEventListener('change', () => {
+  display.resetCards();
+  displayFilteredTrips(filters.value)
+  //currently only works one time for each selection
+  //cannot re-select without refreshing
+})
+
+profileButton.addEventListener('click', showProfileDropDownOptions())
+
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)
     .then(data => data)
@@ -40,7 +57,7 @@ function loadForTraveler(userId) {
     })
     .catch(error => console.log(error));
   let destinationsPromise = apiCalls.getData('destinations')
-    .then(data => data)
+    .then(data => data.destinations)
     .catch(error => console.log(error));
 
   resolvePromises([travelerPromise, tripsPromise, destinationsPromise]);
@@ -49,21 +66,68 @@ function loadForTraveler(userId) {
 function resolvePromises(promisesPromises) {
   Promise.all(promisesPromises)
     .then(values => {
-      console.log('resolved values: ', values)
-      assignData(values);
-      //check to see what values are present and should be displayed/hidden
-      
-      //displayTravelerDOM
-      
+      //conditional based on login to assign traveler or agent login
+      console.log(values)
+      assignTravelerData(values);
+
+      //conditional to displayTravelerDOM
+      displayTravelerDOM();
       //or displayAgentDOM
    
     })
   };
   
-function assignData(values) {
+function assignTravelerData(values) {
   currentUser = new Traveler(values[0], [])
   values[1].forEach(trip => currentUser.trips.push(new Trip(trip)))
-  destRepo = new DestRepo(values[3])
+  console.log(values[2])
+  destRepo = new DestRepo(values[2])
+  console.log(destRepo)
 }
-  
-  
+
+function displayTravelerDOM() {
+  display.destinationsDropDown(destRepo.destinations)
+  display.userName(currentUser.name);
+  display.userTotals(currentUser, destRepo)
+  display.userTrips(currentUser.trips, destRepo)
+}
+
+function displayFilteredTrips(filter) {
+  //do I need a case for 'all' or will default catch it?
+  //do I need to redisplay the whole DOM or will this just redisplay the field?
+  switch(filter) {
+    case 'upcoming':
+      display.userTrips(currentUser.findTripsByDate('post', dayjs()), destRepo)
+      break;
+    case 'past':
+      display.userTrips(currentUser.findTripsByDate('pre', dayjs()), destRepo)
+      break;
+    case 'pending':
+      display.userTrips(currentUser.tripsByStatus('pending'), destRepo)
+      break;
+    default:
+      display.userTrips(currentUser.trips, destRepo);
+  }
+}
+
+function createTripEstimate() {
+  //capture input values -> newTripEst
+  //display.tripEstimate(newTripEst)
+
+}
+
+function bookTrip() {
+  //apiCalls POST
+
+}
+
+function displayAgentDOM() {
+  //helper functions to hide Traveler display 
+  //helper functions to remove hidden on Agent display
+  //display pending trips on load
+}
+
+function showProfileDropDownOptions() {
+	profileDownOptions.classList.toggle("show")
+	profileDownOptions.getAttribute("aria-expanded") === "false" ? profileDownOptions.setAttribute("aria-expanded", "true") : dropDownOptions.setAttribute("aria-expanded", "false");
+}

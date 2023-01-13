@@ -3,12 +3,24 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+button {
+  color: #F4ECDC;
+  cursor: pointer;
+  border: none;
+}
+
+span {
+  color:#170F3D;
+  font-weight: bolder;
+}
+
 .login-page {
   background-color: #170F3D;
 }
 
 h1 {
   font-family: 'Kalam', cursive;
+  font-size: 36px;
 }
 
 .catchphrase {
@@ -23,24 +35,60 @@ nav {
   justify-content: space-between;
 } 
 
+.left-nav {
+  display: flex;
+  align-items: center;
+}
+
 .nav-menus {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: flex-end;
 }
 
-button {
-  color: #F4ECDC;
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.profile-button {
+  color: black;
+  background-color: #F1CB86;
+  height: 5vh;
+  width: 10vw;
+}
+
+.avatar {
+  width: 20px;
+  height: 20px;
+}
+
+.profile-dropdown-content {
+  display: none;
+  overflow: auto;
+  position: absolute;
+  width: 25%;
 }
 
 .logo {
-  width: 20vw;
-  height: 20vh;
+  width: 13vw;
+  height: 23vh;
 }
 
 .avatar {
   width: 5vw;
   height: 5vh;
+}
+
+.filter-content {
+  font-size: x-small;
+}
+.filters {
+  width: 15px;
+  font-size: small;
+  background-color: #F1CB86;
+  border: none;
 }
 
 main {
@@ -52,13 +100,51 @@ aside {
   background-color: #F1CB86;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 20vw;
   height: 70vh;
+}
+
+.traveler-input {
+  width: 34px;
+}
+
+.destinations {
+  width: 15vw;
+}
+
+.user-summary {
+  width: 95%;
+  background: #F4ECDC;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 button {
   background-color: #170F3D;
   font: #F4ECDC;
+}
+
+.cards-display {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+}
+
+.card {
+  height: 30vh;
+  width: 20vw;
+  
+}
+
+.card-header {
+  background-size: cover;
+  height: 50%;
+  text-align: center;
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
 }
 
 .hidden {
