@@ -119,11 +119,8 @@ function displayFilteredTrips(filter) {
   }
 }
 
-
-
-  
-
 function bookTrip() {
+  //clear input fields
   //apiCalls POST
   //clear newTripEst
 

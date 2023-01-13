@@ -12,6 +12,9 @@ const travelersInput = document.getElementById('traverlersInput');
 const destinationInput = document.getElementById('destinations');
 const startCalendar = document.getElementById('calendarStart');
 const endCalendar = document.getElementById('calendarEnd');
+const inputs = document.querySelectorAll('.new-trip-input')
+const travSummary = document.getElementById('travSummary');
+const tripEst = document.getElementById('tripEstimate');
 
 function destinationsDropDown(destinations) {
   destinations.forEach(destination => {
@@ -98,31 +101,31 @@ function createTripEstimate() {
   //how to do trip ID????
     //store length of trip data array at GET request and increment?
   newTripEst = {
-  id: nextTripID,
-  userID: currentUser.id, 
-  destinationID: +destinationInput.value, 
-  travelers: travelersInput.value,
-  date: dayjs(startCalendar.value).format(YYYY/MM/DD), 
-  duration: startCalendar.value.diff(endCalendar.value), 
-  status: 'pending', 
-  suggestedActivities: []
+    id: nextTripID,
+    userID: currentUser.id, 
+    destinationID: +destinationInput.value, 
+    travelers: travelersInput.value,
+    date: dayjs(startCalendar.value).format(YYYY/MM/DD), 
+    duration: startCalendar.value.diff(endCalendar.value), 
+    status: 'pending', 
+    suggestedActivities: []
 }
 
 console.log(newTripEst)
-// new Trip(estimate)
-
-display.tripEstimate(newTripEst)
 }
 
 function tripEstimate() {
-  //hide form
+  travSummary.classList.add('hidden')
   //interpolate newTripEst into block
-  //display block
+  tripEst.classList.remove('hidden')
 }
 
 function clearInputs() {
+  inputs.forEach(input => input.value = '');
+  tripEst.classList.add('hidden')
+  travSummary.classList.remove('hidden')
 
 }
 
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, calendarMax, calendarMin };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, calendarMax, calendarMin, createTripEstimate, tripEstimate, clearInputs };

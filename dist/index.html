@@ -60,28 +60,28 @@
     <aside>
       <h2>Plan Your Next Trip</h2>
       <form>
-        <label for="calendarStart" class="new-trip-input">Takeoff</label>
+        <label for="calendarStart" class="calendar-input">Takeoff</label>
         <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
         <label for="calendarEnd" class="calendar-input">Return</label>
-        <input type="date" name="start_date" class="calendar-input" id="calendarEnd" required>
-        <label for="travelersInput" class="new-trip-input">Number of Travelers</label>
-        <input type="number" name="travelers_input" class="traveler-input" id="traverlersInput" min="1" max="50"required>
+        <input type="date" name="start_date" class="new-trip-input" id="calendarEnd" required>
+        <label for="travelersInput" class="travelers-input">Number of Travelers</label>
+        <input type="number" name="travelers_input" class="traveler-input new-trip-input" id="traverlersInput" min="1" max="50"required>
         <label for="destinations" class="hidden">Destinations</label>
-        <select class="destinations" name="destinations" type="text" id="destinations" autofocus required>
+        <select class="destinations new-trip-input" name="destinations" type="text" id="destinations" autofocus required>
           <option class="destinations" name="destinations">Destinations</option>
         </select>
         </div>
         <button class="est-button" id="estButton">get estimate</button>
       </form>
       <div id="userSumWrapper">
-        <article class="user-summary trav-view">
+        <article class="user-summary trav-view" id="travSummary">
           <h3 class="welcome-message">Welcome, User</h3>
           <p class="user-display" id="investDisp"></p>
           <p class="user-display" id="totalTripsDisp"></p>
           <p class="user-display" id="sassyDisp">but the things it has gotten you out of are priceless</p>
         </article >
 
-        <article class="trip-estimate hidden">
+        <article class="trip-estimate hidden" id="tripEstimate">
           <h3>Your Trip Estimate</h3>
           <p class="estimate" id="nightsEst"></p>
           <p class="estimate" id="destinationEst"></p>
