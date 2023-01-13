@@ -23,10 +23,7 @@ const profileDownOptions = document.querySelector(".profile-dropdown-content");
 const logoutButton = document.getElementById('logoutButton');
 const filters = document.getElementById('filters');
 const estimateButton = document.getElementById('estButton');
-const travelersInput = document.getElementById('traverlersInput');
-const destinationInput = document.getElementById('destinations');
-const startCalendar = document.getElementById('calendarStart');
-const endCalendar = document.getElementById('calendarEnd');
+
 
 //global variables
 let currentUser;
@@ -53,7 +50,8 @@ filters.addEventListener('change', () => {
 
 estimateButton.addEventListener('click', (event) => {
   event.preventDefault();
-  createTripEstimate();
+  newTripEst = display.createTripEstimate();
+  display.tripEstimate(newTripEst)
 })
 
 profileButton.addEventListener('click', showProfileDropDownOptions())
@@ -121,25 +119,9 @@ function displayFilteredTrips(filter) {
   }
 }
 
-function createTripEstimate() {
-  //how to do trip ID????
-    //store length of trip data array at GET request and increment?
 
-  newTripEst = {
-    id: nextTripID,
-    userID: currentUser.id, 
-    destinationID: +destinationInput.value, 
-    travelers: travelersInput.value,
-    date: dayjs(startCalendar.value).format(YYYY/MM/DD), 
-    duration: startCalendar.value.diff(endCalendar.value), 
-    status: 'pending', 
-    suggestedActivities: []
-  }
-  // new Trip(estimate)
 
-  //display.tripEstimate(newTripEst)
-
-}
+  
 
 function bookTrip() {
   //apiCalls POST

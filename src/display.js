@@ -7,7 +7,11 @@ const totalTrips = document.getElementById('totalTripsDisp');
 const sassyDisp = document.getElementById('sassyDisp');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
 const cardsDisplay = document.getElementById('cardsDisplay');
-const destinationsMenu = document.getElementById('destinations')
+const destinationsMenu = document.getElementById('destinations');
+const travelersInput = document.getElementById('traverlersInput');
+const destinationInput = document.getElementById('destinations');
+const startCalendar = document.getElementById('calendarStart');
+const endCalendar = document.getElementById('calendarEnd');
 
 function destinationsDropDown(destinations) {
   destinations.forEach(destination => {
@@ -88,6 +92,36 @@ function calendarMax() {
 
 function calendarMin() {
   return;
+}
+
+function createTripEstimate() {
+  //how to do trip ID????
+    //store length of trip data array at GET request and increment?
+  newTripEst = {
+  id: nextTripID,
+  userID: currentUser.id, 
+  destinationID: +destinationInput.value, 
+  travelers: travelersInput.value,
+  date: dayjs(startCalendar.value).format(YYYY/MM/DD), 
+  duration: startCalendar.value.diff(endCalendar.value), 
+  status: 'pending', 
+  suggestedActivities: []
+}
+
+console.log(newTripEst)
+// new Trip(estimate)
+
+display.tripEstimate(newTripEst)
+}
+
+function tripEstimate() {
+  //hide form
+  //interpolate newTripEst into block
+  //display block
+}
+
+function clearInputs() {
+
 }
 
 
