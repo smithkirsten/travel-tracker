@@ -47,7 +47,6 @@ function userTotals(traveler, destinations) {
   travSummary.classList.remove('hidden');
   tripEst.classList.add('hidden');
   postResponse.classList.add('hidden');
-
   if(traveler.trips.length < 1) {
     investDisp.innerText = 'Escape is calling...';
     totalTrips.innerText = 'Book your first trip';
@@ -100,15 +99,15 @@ function createTripCard(trip, cost, destination) {
 function setCalendarMins() {
   const today = dayjs().format('YYYY-MM-DD');
   startCalendar.setAttribute('min', today);
-  endCalendar.setAttribute('min', dayjs().add(1, 'day').format('YYYY-MM-DD'))
+  endCalendar.setAttribute('min', dayjs().add(1, 'day').format('YYYY-MM-DD'));
 }
 
 function setEndCalendar() {
   if(!endCalendar.value || dayjs(endCalendar.value).isBefore(dayjs(startCalendar.value))){
     endCalendar.value = '';
     const start = dayjs(startCalendar.value) || dayjs(startCalendar.min);
-    const end = start.add(1, 'day').format('YYYY-MM-DD')
-    endCalendar.setAttribute('min', end)
+    const end = start.add(1, 'day').format('YYYY-MM-DD');
+    endCalendar.setAttribute('min', end);
   }
 }
 
@@ -125,8 +124,7 @@ function checkAllInputs() {
 
 function createTripEstimate(currentUser, nextTripID) {
   const start = dayjs(startCalendar.value);
-  const end = dayjs(endCalendar.value)
-
+  const end = dayjs(endCalendar.value);
     return new Trip({
       id: nextTripID,
       userID: currentUser.id, 
@@ -140,66 +138,48 @@ function createTripEstimate(currentUser, nextTripID) {
 }
 
 function tripEstimate(trip, destRepo) {
-  travSummary.classList.add('hidden')
-  postResponse.classList.add('hidden')
-
+  travSummary.classList.add('hidden');
+  postResponse.classList.add('hidden');
   nightsEst.innerText = `${trip.duration} days in`;
   destinationEst.innerText = destRepo.findDestByID(trip.destinationID).destination;
   guestsEst.innerText = `${trip.travelers} traveler`;
   if(trip.travelers > 1){
-    guestsEst.innerText += 's'
+    guestsEst.innerText += 's';
   }
-  feeEst.innerText = `agent fee ${trip.calcAgentFee(destRepo)}`
+  feeEst.innerText = `agent fee ${trip.calcAgentFee(destRepo)}`;
   totalEst.innerText = `total ${trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)}`;
-
-  tripEst.classList.remove('hidden')
+  tripEst.classList.remove('hidden');
 }
 
 function postDeclaration(boolean) {
   tripEst.classList.add('hidden');
   travSummary.classList.add('hidden');
-
   if(boolean) { //if wanting to reuse for agent, can also pass in currentUser.id for user and nothing for agent and check for both arguments
     postMessage.innerText = "Your trip is booked!";
   } else {
     postMessage.innerText = "Booking unsuccessful. Please try again later.";
   }
-
   postResponse.classList.remove('hidden');
-
 }
 
 function serverError(boolean) {
-  console.log(boolean)
   if(boolean) {
-    document.querySelector('main').classList.add('hidden')
-    document.getElementById('bigError').classList.remove('hidden')
+    document.querySelector('main').classList.add('hidden');
+    document.getElementById('bigError').classList.remove('hidden');
   } else {
-    document.querySelector('main').classList.remove('hidden')
-    document.getElementById('bigError').classList.add('hidden')
+    document.querySelector('main').classList.remove('hidden');
+    document.getElementById('bigError').classList.add('hidden');
   }
 }
 
 function clearInputs() {
   inputs.forEach(input => input.value = '');
-  tripEst.classList.add('hidden')
-  travSummary.classList.remove('hidden')
-
+  tripEst.classList.add('hidden');
+  travSummary.classList.remove('hidden');
 }
 
 function disableElement(element, boolean) {
   element.disabled = boolean;
 }
-
-//start with button and end cal disabled
-//on click on form (add event listeners for querySelectAll?)
-//min for start cal is set on page load (and DOM redisplay?)
-  //min for end cal is set on click of start cal.... but will click reg before the input?
-  //what if the user resets the start after the user selects and end date?
-//if none are empty... use every()??
-  //enable button
-
-
-
 
 export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, postDeclaration, serverError, disableElement, clearInputs };
