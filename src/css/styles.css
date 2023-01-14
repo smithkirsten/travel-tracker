@@ -61,14 +61,20 @@ nav {
   background-color: #F1CB86;
   height: 5vh;
   width: 7vw;
+  transition: 0.4s;
 }
 
-.profile-dropdown-content {
-  display: none;
-  overflow: auto;
-  position: absolute;
-  width: 25%;
+.active, .profile-button:hover {
+  background-color: rgb(23, 15, 61, .66);
 }
+
+.logout-panel {
+  background-color: rgb(23, 15, 61, .66);
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+}
+
 
 .logo {
   width: 13vw;

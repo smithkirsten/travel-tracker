@@ -19,7 +19,6 @@ import './images/blank-user-profile.png'
 
 //query selectors
 const profileButton = document.querySelector(".profile-button");
-const profileDownOptions = document.querySelector(".profile-dropdown-content");
 const logoutButton = document.getElementById('logoutButton');
 
 const filters = document.getElementById('filters');
