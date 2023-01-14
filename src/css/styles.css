@@ -60,7 +60,7 @@ nav {
   color: black;
   background-color: #F1CB86;
   height: 5vh;
-  width: 10vw;
+  width: 7vw;
 }
 
 .profile-dropdown-content {
@@ -77,8 +77,8 @@ nav {
 }
 
 .avatar {
-  width: 5vw;
-  height: 5vh;
+  width: 1vw;
+  height: 2vh;
 }
 
 .filter-content {
