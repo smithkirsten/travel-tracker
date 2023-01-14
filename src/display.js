@@ -90,7 +90,7 @@ function createTripCard(trip, cost, destination) {
       <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
       <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
       <footer class="card-footer">
-        <p class="trip-cost">total cost: <span>${cost}</span></p>
+        <p class="trip-cost">total cost: <span>$${cost}</span></p>
         <p class="trip-status">${trip.status}</p>
       </footer>
     </section>
