@@ -25,6 +25,9 @@ const guestsEst = document.getElementById('guestsEst');
 const feeEst = document.getElementById('feeEst')
 const totalEst = document.getElementById('totalEst')
 
+const postResponse = document.getElementById('postBox');
+const postMessage = document.getElementById('postMessage');
+
 
 function destinationsDropDown(destinations) {
   destinations.forEach(destination => {
@@ -41,6 +44,10 @@ function userName(traveler) {
 };
 
 function userTotals(traveler, destinations) {
+  travSummary.classList.remove('hidden');
+  tripEst.classList.add('hidden');
+  postResponse.classList.add('hidden');
+
   if(traveler.trips.length < 1) {
     investDisp.innerText = 'Escape is calling...';
     totalTrips.innerText = 'Book your first trip';
@@ -134,8 +141,7 @@ function createTripEstimate(currentUser, nextTripID) {
 
 function tripEstimate(trip, destRepo) {
   travSummary.classList.add('hidden')
-
-  console.log(trip)
+  postResponse.classList.add('hidden')
 
   nightsEst.innerText = `${trip.duration} days in`;
   destinationEst.innerText = destRepo.findDestByID(trip.destinationID).destination;
@@ -147,6 +153,20 @@ function tripEstimate(trip, destRepo) {
   totalEst.innerText = `total ${trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)}`;
 
   tripEst.classList.remove('hidden')
+}
+
+function postResponse(boolean, currentUser) {
+  tripEstimate.classList.add('hidden');
+  tripSummary.classList.add('hidden');
+
+  if(boolean && currentUser.id) {
+    postMessage.innerText = "Your trip is booked!"
+  } else {
+    postMessage.innerText = "Booking unsuccessful. Please try again later."
+  }
+
+  postResponse.classList.remove('hidden')
+
 }
 
 function serverError(boolean) {
