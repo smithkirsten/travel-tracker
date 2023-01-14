@@ -9,7 +9,13 @@ button {
   color: #F4ECDC;
   cursor: pointer;
   border: none;
+  border-radius: 10px;
+  background-color: #170F3D;
 }
+
+/* input {
+  cursor: pointer;
+} */
 
 span {
   color:#170F3D;
@@ -60,6 +66,7 @@ h1 {
   background-color: #F1CB86;
   height: 5vh;
   width: 100%;
+  border-radius: 0px;
   transition: display 0.4s;
 }
 
@@ -76,6 +83,10 @@ h1 {
   transition: display 0.4s;
   display: none;
   overflow: hidden;
+}
+
+.logout-button {
+  background-color: rgba(23, 15, 61, 0.03);
 }
 
 .logo {
@@ -149,11 +160,6 @@ h2 {
   width: 95%;
 }
 
-button {
-  background-color: #170F3D;
-  font: #F4ECDC;
-}
-
 .cards-display {
   display: flex;
   flex-wrap: wrap;
@@ -172,10 +178,10 @@ button {
   text-align: center;
 }
 
-.show {
+/* .show {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .hidden {
   display: none;
