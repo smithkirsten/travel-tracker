@@ -160,12 +160,12 @@ function postDeclaration(boolean) {
   travSummary.classList.add('hidden');
 
   if(boolean) { //if wanting to reuse for agent, can also pass in currentUser.id for user and nothing for agent and check for both arguments
-    postMessage.innerText = "Your trip is booked!"
+    postMessage.innerText = "Your trip is booked!";
   } else {
-    postMessage.innerText = "Booking unsuccessful. Please try again later."
+    postMessage.innerText = "Booking unsuccessful. Please try again later.";
   }
 
-  postResponse.classList.remove('hidden')
+  postResponse.classList.remove('hidden');
 
 }
 
