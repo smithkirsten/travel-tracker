@@ -2,6 +2,7 @@ body {
   background: #F4ECDC;
   font-family: 'Inter', sans-serif;
   margin: 0px;
+  width: 100%;
 }
 
 button {
@@ -60,17 +61,21 @@ nav {
   color: black;
   background-color: #F1CB86;
   height: 5vh;
-  width: 7vw;
-  transition: 0.4s;
+  width: 8vw;
+  transition: display 0.4s;
 }
 
-.active, .profile-button:hover {
+.active, 
+.profile-button:hover {
   background-color: rgb(23, 15, 61, .66);
 }
 
 .logout-panel {
   background-color: rgb(23, 15, 61, .66);
   padding: 0 18px;
+  height: 5vh;
+  width: 5vw;
+  transition: display 0.4s;
   display: none;
   overflow: hidden;
 }

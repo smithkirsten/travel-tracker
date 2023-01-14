@@ -43,7 +43,7 @@ let nextTripID;
 window.addEventListener('load', loadForTraveler(5)) //also set min start date to today
 
 profileButton.addEventListener('click', () => {
-  logoutButton.classList.toggle('active');
+  profileButton.classList.toggle('active');
   display.logoutDrop();
 })
 
