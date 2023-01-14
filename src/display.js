@@ -155,11 +155,11 @@ function tripEstimate(trip, destRepo) {
   tripEst.classList.remove('hidden')
 }
 
-function postResponse(boolean, currentUser) {
-  tripEstimate.classList.add('hidden');
-  tripSummary.classList.add('hidden');
+function postDeclaration(boolean) {
+  tripEst.classList.add('hidden');
+  travSummary.classList.add('hidden');
 
-  if(boolean && currentUser.id) {
+  if(boolean) { //if wanting to reuse for agent, can also pass in currentUser.id for user and nothing for agent and check for both arguments
     postMessage.innerText = "Your trip is booked!"
   } else {
     postMessage.innerText = "Booking unsuccessful. Please try again later."
@@ -202,4 +202,4 @@ function disableElement(element, boolean) {
 
 
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, serverError, disableElement, clearInputs };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, postDeclaration, serverError, disableElement, clearInputs };

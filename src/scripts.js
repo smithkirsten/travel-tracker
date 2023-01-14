@@ -125,7 +125,7 @@ function assignTravelerData(values) {
 }
 
 function displayTravelerDOM() {
-  display.disableElement(estimateButton, 'true')
+  display.disableElement(estimateButton, 'true');
   display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
   display.disableElement(estimateButton, true);
@@ -156,14 +156,16 @@ function bookTrip() {
   apiCalls.sendData('POST', 'trips', newTripEst)
   .then(response => {
     console.log(response)
-    //display success 'your trip to DESTINATION is booked!'
+    display.postDeclaration(true);
+    
     //get request
     //resolve promise
     //redisplay DOM
   })
   .catch(error => {
     console.log(error)
-    //display error message
+    display.postDeclaration(false);
+    //timer redisplay summary
   })
   newTripEst = undefined;
   //set timer and display NEW summary
