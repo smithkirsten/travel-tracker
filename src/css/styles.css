@@ -201,16 +201,39 @@ h3 {
 }
 
 .card {
+  display: fle;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 30vh;
   width: 20vw;
-  
+  background-color: #E27A66;
+  padding: 5px;
+  background-size: cover;
 }
 
-.card-header {
-  background-size: cover;
+.card-body {
+  font-size: small;
+  font-weight: bolder;
+  text-align: center;
+  height: 80%;
+  width: 80%;
+  background-color: rgb(244, 236, 220, .85);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trip-status {
+  font-size: xx-small;
+}
+
+/* .card-header {
   height: 50%;
   text-align: center;
-}
+} */
 
 /* .show {
   display: flex;

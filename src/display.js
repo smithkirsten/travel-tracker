@@ -81,19 +81,19 @@ function resetCards() {
 function createTripCard(trip, cost, destination) {
   const date = dayjs(trip.date).format('MMMM D, YYYY')
   return `
-  <article class="card" id="${trip.id}">
-    <header class="card-header" style="background-image: url('${destination.image}')">
-    <h3 class="card-heading">${destination.destination}</h3>
+  <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
+    <header class="card-header">
     </header>
     <section class="card-body">
+      <h3 class="card-heading">${destination.destination}</h3>
       <p class="trip-date">${date}</p>
       <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
       <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
+      <footer class="card-footer">
+        <p class="trip-cost">total cost: <span>${cost}</span></p>
+        <p class="trip-status">${trip.status}</p>
+      </footer>
     </section>
-    <footer class="card-footer">
-      <p class="trip-cost">total cost: <span>${cost}</span></p>
-      <p class="trip-status">${trip.status}</p>
-    </footer>
   </article>`;
 };
 
