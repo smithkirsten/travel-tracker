@@ -186,6 +186,14 @@ h3 {
   border-radius: 30px;
 }
 
+.post-response {
+  margin-top: 10px;
+  font-size: 26px;
+  text-align: center;
+  border: 2px solid #F1CB86;
+  border-radius: 3px;
+}
+
 .cards-display {
   display: flex;
   flex-wrap: wrap;
