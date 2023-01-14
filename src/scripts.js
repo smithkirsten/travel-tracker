@@ -50,7 +50,10 @@ filters.addEventListener('change', () => {
 
 form.addEventListener('change', (event) => {
   event.preventDefault();
-  if(display.checkAllInputs) {
+  if(event.target.id === 'calendarStart') {
+    display.setEndCalendar();
+  }
+  if(display.checkAllInputs()) {
     display.disableElement(estimateButton, false);
   }
 })
@@ -104,6 +107,8 @@ function assignTravelerData(values) {
 }
 
 function displayTravelerDOM() {
+  display.disableElement(estimateButton, 'true')
+  console.log(estimateButton.disabled)
   display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
   display.disableElement(estimateButton, true);

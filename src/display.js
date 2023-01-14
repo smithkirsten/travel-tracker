@@ -97,7 +97,7 @@ function setCalendarMins() {
 
 function setEndCalendar() {
   if(!endCalendar.value || dayjs(endCalendar.value).isBefore(dayjs(startCalendar.value))){
-    endCalendar.value = undefined;
+    endCalendar.value = '';
     const start = dayjs(startCalendar.value) || dayjs(startCalendar.min);
     const end = start.add(1, 'day').format('YYYY-MM-DD')
     endCalendar.setAttribute('min', end)
@@ -105,7 +105,14 @@ function setEndCalendar() {
 }
 
 function checkAllInputs() {
-  return inputs.every(field => field.value);
+  //cannot use .every() bc inputs is a NodeList
+  let counter = 0;
+  inputs.forEach(input => {
+    if(input.value) {
+      counter++
+    }
+  })
+  return counter === 4 ? true : false;
 }
 
 function createTripEstimate(currentUser, nextTripID) {
