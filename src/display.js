@@ -2,6 +2,7 @@ const dayjs = require('dayjs');
 import Trip from '../src/Trip'
 
 //query selectors
+const logoutPanel = document.getElementById('logoutPanel');
 const welcomeMessages = document.querySelectorAll('.welcome-message');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
 const cardsDisplay = document.getElementById('cardsDisplay');
@@ -151,6 +152,14 @@ function tripEstimate(trip, destRepo) {
   tripEst.classList.remove('hidden');
 }
 
+function logoutDrop() {
+  if (logoutPanel.style.display === "block") {
+    logoutPanel.style.display = "none";
+  } else {
+    logoutPanel.style.display = "block";
+  }
+}
+
 function postDeclaration(boolean) {
   tripEst.classList.add('hidden');
   travSummary.classList.add('hidden');
@@ -182,4 +191,4 @@ function disableElement(element, boolean) {
   element.disabled = boolean;
 }
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, postDeclaration, serverError, disableElement, clearInputs };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, serverError, disableElement, clearInputs };

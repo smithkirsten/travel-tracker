@@ -42,6 +42,11 @@ let nextTripID;
 //event listeners
 window.addEventListener('load', loadForTraveler(5)) //also set min start date to today
 
+profileButton.addEventListener('click', () => {
+  logoutButton.classList.toggle('active');
+  display.logoutDrop();
+})
+
 filters.addEventListener('change', () => {
   display.resetCards();
   displayFilteredTrips(filters.value)
@@ -65,9 +70,6 @@ estimateButton.addEventListener('click', (event) => {
 
 bookButton.addEventListener('click', bookTrip)
 
-
-
-profileButton.addEventListener('click', showProfileDropDownOptions())
 
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)
@@ -174,9 +176,4 @@ function displayAgentDOM() {
   //helper functions to hide Traveler display 
   //helper functions to remove hidden on Agent display
   //display pending trips on load
-}
-
-function showProfileDropDownOptions() {
-	profileDownOptions.classList.toggle("show")
-	profileDownOptions.getAttribute("aria-expanded") === "false" ? profileDownOptions.setAttribute("aria-expanded", "true") : dropDownOptions.setAttribute("aria-expanded", "false");
 }
