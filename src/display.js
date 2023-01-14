@@ -10,6 +10,7 @@ const travSummary = document.getElementById('travSummary');
 const investDisp = document.getElementById('investDisp');
 const totalTrips = document.getElementById('totalTripsDisp');
 const sassyDisp = document.getElementById('sassyDisp');
+
 const destinationsMenu = document.getElementById('destinations');
 const travelersInput = document.getElementById('traverlersInput');
 const destinationInput = document.getElementById('destinations');
@@ -148,6 +149,17 @@ function tripEstimate(trip, destRepo) {
   tripEst.classList.remove('hidden')
 }
 
+function serverError(boolean) {
+  console.log(boolean)
+  if(boolean) {
+    document.querySelector('main').classList.add('hidden')
+    document.getElementById('bigError').classList.remove('hidden')
+  } else {
+    document.querySelector('main').classList.remove('hidden')
+    document.getElementById('bigError').classList.add('hidden')
+  }
+}
+
 function clearInputs() {
   inputs.forEach(input => input.value = '');
   tripEst.classList.add('hidden')
@@ -170,4 +182,4 @@ function disableElement(element, boolean) {
 
 
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, disableElement, clearInputs };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, serverError, disableElement, clearInputs };

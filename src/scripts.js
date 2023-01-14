@@ -72,14 +72,32 @@ profileButton.addEventListener('click', showProfileDropDownOptions())
 
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)
-    .then(data => data)
-    .catch(error => console.log(error));
+    .then(data => {
+      display.serverError(false);
+      return data;
+    })
+    .catch(error => {
+      display.serverError(true);
+      console.log(error)
+    });
   let tripsPromise = apiCalls.getData('trips')
-    .then(data => data.trips)
-    .catch(error => console.log(error));
+    .then(data => {
+      display.serverError(false);
+      return data.trips
+    })
+    .catch(error => {
+      display.serverError(true);
+      console.log(error)
+    });
   let destinationsPromise = apiCalls.getData('destinations')
-    .then(data => data.destinations)
-    .catch(error => console.log(error));
+    .then(data => {
+      display.serverError(false);
+      return data.destinations;
+    })
+    .catch(error => {
+      display.serverError(true);
+      console.log(error)
+    });
 
   resolvePromises([travelerPromise, tripsPromise, destinationsPromise]);
 };
@@ -108,7 +126,6 @@ function assignTravelerData(values) {
 
 function displayTravelerDOM() {
   display.disableElement(estimateButton, 'true')
-  console.log(estimateButton.disabled)
   display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
   display.disableElement(estimateButton, true);
