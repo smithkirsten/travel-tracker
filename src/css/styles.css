@@ -19,6 +19,14 @@ span {
 .login-page {
   background-color: #170F3D;
 }
+nav {
+  height: 30vh;
+  background-color: #F1CB86;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  padding: 5px;
+} 
 
 h1 {
   font-family: 'Kalam', cursive;
@@ -30,15 +38,6 @@ h1 {
   font-size: x-small;
   margin: 0px;
 }
-
-nav {
-  height: 30vh;
-  background-color: #F1CB86;
-  display: flex;
-  flex-direction:row;
-  justify-content: space-between;
-  padding: 5px;
-} 
 
 .left-nav {
   display: flex;
@@ -52,16 +51,15 @@ nav {
   align-items: flex-end;
 }
 
-.dropdown {
-  display: inline-block;
-  position: relative;
+.profile-dropdown {
+  width: 7vw;
 }
 
 .profile-button {
   color: black;
   background-color: #F1CB86;
   height: 5vh;
-  width: 8vw;
+  width: 100%;
   transition: display 0.4s;
 }
 
@@ -74,7 +72,7 @@ nav {
   background-color: rgb(23, 15, 61, .66);
   padding: 0 18px;
   height: 5vh;
-  width: 5vw;
+  width: 100%;
   transition: display 0.4s;
   display: none;
   overflow: hidden;
