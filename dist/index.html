@@ -61,7 +61,7 @@
   <main>
     <aside>
       <h2>Plan Your Next Trip</h2>
-      <form id="newTripForm">
+      <form class="trip-form" id="newTripForm">
         <label for="calendarStart" class="calendar-input">Takeoff</label>
         <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
         <label for="calendarEnd" class="calendar-input">Return</label>
@@ -73,7 +73,9 @@
           <option class="destinations" value="" disabled selected hidden>Destinations</option>
         </select>
         </div>
-        <button class="est-button" id="estButton">get estimate</button>
+        <div class="est-button-wrapper">
+          <button class="est-button" id="estButton">get estimate</button>
+        </div>
       </form>
       <div class="flip-box"id="userSumWrapper">
         <article class=" user-summary trav-view" id="travSummary">

@@ -20,7 +20,7 @@ span {
   background-color: #170F3D;
 }
 nav {
-  height: 30vh;
+  height: 25vh;
   background-color: #F1CB86;
   display: flex;
   flex-direction:row;
@@ -78,7 +78,6 @@ h1 {
   overflow: hidden;
 }
 
-
 .logo {
   width: 13vw;
   height: 24vh;
@@ -111,7 +110,20 @@ aside {
   flex-direction: column;
   align-items: center;
   width: 20vw;
-  height: 70vh;
+  height: 75vh;
+}
+
+h2 {
+  margin-bottom: 3px;
+}
+
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-size: small;
+  height: 30vh;
+  width: 90%;
 }
 
 .traveler-input {
@@ -122,10 +134,19 @@ aside {
   width: 15vw;
 }
 
+.est-button-wrapper {
+  text-align: center;
+}
+.est-button{
+  width: 10vw;
+}
+
 .flip-box {
-  width: 95%;
   background: #F4ECDC;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: small;
+  height: 30vh;
+  width: 95%;
 }
 
 button {
