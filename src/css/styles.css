@@ -1,6 +1,7 @@
 body {
   background: #F4ECDC;
   font-family: 'Inter', sans-serif;
+  margin: 0px;
 }
 
 button {
@@ -21,10 +22,12 @@ span {
 h1 {
   font-family: 'Kalam', cursive;
   font-size: 36px;
+  margin: 0px;
 }
 
 .catchphrase {
   font-size: x-small;
+  margin: 0px;
 }
 
 nav {
@@ -33,6 +36,7 @@ nav {
   display: flex;
   flex-direction:row;
   justify-content: space-between;
+  padding: 5px;
 } 
 
 .left-nav {
@@ -59,11 +63,6 @@ nav {
   width: 10vw;
 }
 
-.avatar {
-  width: 20px;
-  height: 20px;
-}
-
 .profile-dropdown-content {
   display: none;
   overflow: auto;
@@ -73,7 +72,8 @@ nav {
 
 .logo {
   width: 13vw;
-  height: 23vh;
+  height: 24vh;
+  margin-right: 5px;
 }
 
 .avatar {
