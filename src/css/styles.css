@@ -157,7 +157,33 @@ h2 {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: small;
   height: 30vh;
-  width: 95%;
+  width: 85%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.estimate {
+  font-size: small;
+  margin: 3px;
+}
+
+.submit-section {
+  display: flex;
+  justify-content: space-between;
+  border-top: #170F3D solid;
+  font-weight: bolder;
+  font-size: medium;
+  padding: 10px;
+}
+
+.book-button {
+  height: 8vh;
+  border-radius: 30px;
 }
 
 .cards-display {
