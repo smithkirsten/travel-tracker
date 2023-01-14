@@ -24,7 +24,8 @@ const logoutButton = document.getElementById('logoutButton');
 
 const filters = document.getElementById('filters');
 const estimateButton = document.getElementById('estButton');
-const bookButton = document.getElementById('bookButton')
+const bookButton = document.getElementById('bookButton');
+const form = document.getElementById('newTripForm');
 
 //global variables
 let currentUser;
@@ -40,12 +41,21 @@ let nextTripID;
 
 
 //event listeners
-window.addEventListener('load', loadForTraveler(5))
+window.addEventListener('load', loadForTraveler(5)) //also set min start date to today
 
 filters.addEventListener('change', () => {
-  console.log('hello!')
   display.resetCards();
   displayFilteredTrips(filters.value)
+})
+
+form.addEventListener('change', (event) => {
+  event.preventDefault();
+  if(event.target.id === 'calendarStart') {
+    display.setEndCalendar();
+  }
+  if(display.checkAllInputs()) {
+    display.disableElement(estimateButton, false);
+  }
 })
 
 estimateButton.addEventListener('click', (event) => {
@@ -62,14 +72,32 @@ profileButton.addEventListener('click', showProfileDropDownOptions())
 
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)
-    .then(data => data)
-    .catch(error => console.log(error));
+    .then(data => {
+      display.serverError(false);
+      return data;
+    })
+    .catch(error => {
+      display.serverError(true);
+      console.log(error)
+    });
   let tripsPromise = apiCalls.getData('trips')
-    .then(data => data.trips)
-    .catch(error => console.log(error));
+    .then(data => {
+      display.serverError(false);
+      return data.trips
+    })
+    .catch(error => {
+      display.serverError(true);
+      console.log(error)
+    });
   let destinationsPromise = apiCalls.getData('destinations')
-    .then(data => data.destinations)
-    .catch(error => console.log(error));
+    .then(data => {
+      display.serverError(false);
+      return data.destinations;
+    })
+    .catch(error => {
+      display.serverError(true);
+      console.log(error)
+    });
 
   resolvePromises([travelerPromise, tripsPromise, destinationsPromise]);
 };
@@ -97,7 +125,10 @@ function assignTravelerData(values) {
 }
 
 function displayTravelerDOM() {
+  display.disableElement(estimateButton, 'true');
+  display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
+  display.disableElement(estimateButton, true);
   display.userName(currentUser.name);
   display.userTotals(currentUser, destRepo);
   display.userTrips(currentUser.trips, destRepo);
@@ -120,16 +151,21 @@ function displayFilteredTrips(filter) {
 }
 
 function bookTrip() {
-  display.clearInputs()
+  display.clearInputs();
+  display.setCalendarMins();
   apiCalls.sendData('POST', 'trips', newTripEst)
   .then(response => {
     console.log(response)
-    //display success 'your trip to DESTINATION is booked!'
-
+    display.postDeclaration(true);
+    
+    //get request
+    //resolve promise
+    //redisplay DOM
   })
   .catch(error => {
     console.log(error)
-    //display error message
+    display.postDeclaration(false);
+    //timer redisplay summary
   })
   newTripEst = undefined;
   //set timer and display NEW summary

@@ -28,7 +28,9 @@
       </div>
     </article>
   </section>
-
+  <section class="big-error hidden" id="bigError">
+    <p>Something went wrong, please try again later</p>
+  </section>
   <nav>
     <div class="left-nav">
       <img class="logo" src="./images/sunset.png" alt="sunset logo">
@@ -59,7 +61,7 @@
   <main>
     <aside>
       <h2>Plan Your Next Trip</h2>
-      <form>
+      <form id="newTripForm">
         <label for="calendarStart" class="calendar-input">Takeoff</label>
         <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
         <label for="calendarEnd" class="calendar-input">Return</label>
@@ -68,7 +70,7 @@
         <input type="number" name="travelers_input" class="traveler-input new-trip-input" id="traverlersInput" min="1" max="50"required>
         <label for="destinations" class="hidden">Destinations</label>
         <select class="destinations new-trip-input" name="destinations" type="text" id="destinations" autofocus required>
-          <option class="destinations" name="destinations">Destinations</option>
+          <option class="destinations" value="" disabled selected hidden>Destinations</option>
         </select>
         </div>
         <button class="est-button" id="estButton">get estimate</button>
@@ -92,6 +94,10 @@
             <button class="book-button" id="bookButton">BOOK</button>
           </div> 
         </article>
+
+        <article class="post-response hidden" id="postBox">
+          <p id="postMessage"></p>
+        </article>
         <!-- <article class="user-summary agent-view">
           <h3>Welcome, Agent</h3>
           <p class="user-display" id="investDisp"></p>
@@ -100,11 +106,7 @@
         </article > -->
       </div>
     </aside>
-    <section class="cards-display" id="cardsDisplay">
-
-
-
-    </section>
+    <section class="cards-display" id="cardsDisplay"></section>
     <section class="hidden"id="noTripsDisplay">
       <div class="no-trips-display">
         <p id="noTripsMessage">no trips are available</p>

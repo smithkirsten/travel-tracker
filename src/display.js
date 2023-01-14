@@ -10,6 +10,7 @@ const travSummary = document.getElementById('travSummary');
 const investDisp = document.getElementById('investDisp');
 const totalTrips = document.getElementById('totalTripsDisp');
 const sassyDisp = document.getElementById('sassyDisp');
+
 const destinationsMenu = document.getElementById('destinations');
 const travelersInput = document.getElementById('traverlersInput');
 const destinationInput = document.getElementById('destinations');
@@ -23,6 +24,9 @@ const destinationEst = document.getElementById('destinationEst');
 const guestsEst = document.getElementById('guestsEst');
 const feeEst = document.getElementById('feeEst')
 const totalEst = document.getElementById('totalEst')
+
+const postResponse = document.getElementById('postBox');
+const postMessage = document.getElementById('postMessage');
 
 
 function destinationsDropDown(destinations) {
@@ -40,6 +44,9 @@ function userName(traveler) {
 };
 
 function userTotals(traveler, destinations) {
+  travSummary.classList.remove('hidden');
+  tripEst.classList.add('hidden');
+  postResponse.classList.add('hidden');
   if(traveler.trips.length < 1) {
     investDisp.innerText = 'Escape is calling...';
     totalTrips.innerText = 'Book your first trip';
@@ -89,30 +96,35 @@ function createTripCard(trip, cost, destination) {
   </article>`;
 };
 
-// function setTodaysDateToMaxDate() {
-// 	let today = new Date();
-// 	let dd = String(today.getDate()).padStart(2, '0');
-// 	let mm = String(today.getMonth() + 1).padStart(2, '0');
-// 	let yyyy = today.getFullYear();
-// 	today = `${yyyy}-${mm}-${dd}`;
-// 	activityCalendar.setAttribute("max", today);
-// 	hydrationCalendar.setAttribute("max", today);
-// 	sleepCalendar.setAttribute("max", today);
-// }
-
-function calendarMax() {
-  return;
+function setCalendarMins() {
+  const today = dayjs().format('YYYY-MM-DD');
+  startCalendar.setAttribute('min', today);
+  endCalendar.setAttribute('min', dayjs().add(1, 'day').format('YYYY-MM-DD'));
 }
 
-function calendarMin() {
-  return;
+function setEndCalendar() {
+  if(!endCalendar.value || dayjs(endCalendar.value).isBefore(dayjs(startCalendar.value))){
+    endCalendar.value = '';
+    const start = dayjs(startCalendar.value) || dayjs(startCalendar.min);
+    const end = start.add(1, 'day').format('YYYY-MM-DD');
+    endCalendar.setAttribute('min', end);
+  }
+}
+
+function checkAllInputs() {
+  //cannot use .every() bc inputs is a NodeList
+  let counter = 0;
+  inputs.forEach(input => {
+    if(input.value) {
+      counter++
+    }
+  })
+  return counter === 4 ? true : false;
 }
 
 function createTripEstimate(currentUser, nextTripID) {
   const start = dayjs(startCalendar.value);
-  const end = dayjs(endCalendar.value)
-
-  
+  const end = dayjs(endCalendar.value);
     return new Trip({
       id: nextTripID,
       userID: currentUser.id, 
@@ -126,28 +138,48 @@ function createTripEstimate(currentUser, nextTripID) {
 }
 
 function tripEstimate(trip, destRepo) {
-  travSummary.classList.add('hidden')
-
-  console.log(trip)
-
+  travSummary.classList.add('hidden');
+  postResponse.classList.add('hidden');
   nightsEst.innerText = `${trip.duration} days in`;
   destinationEst.innerText = destRepo.findDestByID(trip.destinationID).destination;
   guestsEst.innerText = `${trip.travelers} traveler`;
   if(trip.travelers > 1){
-    guestsEst.innerText += 's'
+    guestsEst.innerText += 's';
   }
-  feeEst.innerText = `agent fee ${trip.calcAgentFee(destRepo)}`
+  feeEst.innerText = `agent fee ${trip.calcAgentFee(destRepo)}`;
   totalEst.innerText = `total ${trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)}`;
+  tripEst.classList.remove('hidden');
+}
 
-  tripEst.classList.remove('hidden')
+function postDeclaration(boolean) {
+  tripEst.classList.add('hidden');
+  travSummary.classList.add('hidden');
+  if(boolean) { //if wanting to reuse for agent, can also pass in currentUser.id for user and nothing for agent and check for both arguments
+    postMessage.innerText = "Your trip is booked!";
+  } else {
+    postMessage.innerText = "Booking unsuccessful. Please try again later.";
+  }
+  postResponse.classList.remove('hidden');
+}
+
+function serverError(boolean) {
+  if(boolean) {
+    document.querySelector('main').classList.add('hidden');
+    document.getElementById('bigError').classList.remove('hidden');
+  } else {
+    document.querySelector('main').classList.remove('hidden');
+    document.getElementById('bigError').classList.add('hidden');
+  }
 }
 
 function clearInputs() {
   inputs.forEach(input => input.value = '');
-  tripEst.classList.add('hidden')
-  travSummary.classList.remove('hidden')
-
+  tripEst.classList.add('hidden');
+  travSummary.classList.remove('hidden');
 }
 
+function disableElement(element, boolean) {
+  element.disabled = boolean;
+}
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, calendarMax, calendarMin, createTripEstimate, tripEstimate, clearInputs };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, postDeclaration, serverError, disableElement, clearInputs };
