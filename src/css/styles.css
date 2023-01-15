@@ -18,8 +18,49 @@ button {
 } */
 
 .login-page {
-  background-color: #170F3D;
+  background-color: rgba(23, 15, 61, .85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
+
+.login-box {
+  justify-content: space-evenly;
+  background: rgb(241,203,134);
+  background: linear-gradient(0deg, rgba(241,203,134,1) 40%, rgba(226,122,102,1) 100%);
+  border: solid 2px #F4ECDC;
+  height: 45vh;
+  width: 55vw;
+}
+
+.login-right {
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 100%;
+    background: rgb(241,203,134);
+    background: linear-gradient(0deg, rgba(241,203,134,1) 40%, rgba(226,122,102,1) 100%);
+}
+
+.welcome {
+  text-align: center;
+}
+
+.login-form {
+  justify-content: space-evenly;
+  background: rgb(241,203,134);
+  border: solid 2px rgba(226,122,102,.3);
+  flex-direction: column;
+  height: 18vh;
+  width: 25vw;
+}
+
+.login-label {
+  font-size: x-small;
+}
+
 nav {
   height: 25vh;
   background: rgb(241,203,134);
