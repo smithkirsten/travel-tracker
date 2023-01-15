@@ -121,9 +121,11 @@ function createTripCard(trip, cost, destination) {
     <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
       <section class="card-body">
         <h3 class="card-heading">${destination.destination}</h3>
-        <p class="trip-deets trip-date">${date}</p>
-        <p class="trip-deets trip-duration">duration: <span>${trip.duration}</span> days</p>
-        <p class="trip-deets trip-travelers">travelers: <span>${trip.travelers}</span></p>
+        <div class="trip-deets">
+          <p class="trip-date">${date}</p>
+          <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
+          <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
+        </div>
         <footer class="card-footer">
           <p class="trip-cost">total cost: <span>$${cost}</span></p>
           <p class="trip-status">${trip.status}</p>
