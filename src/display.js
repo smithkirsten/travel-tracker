@@ -147,8 +147,8 @@ function tripEstimate(trip, destRepo) {
   if(trip.travelers > 1){
     guestsEst.innerText += 's';
   }
-  feeEst.innerText = `agent fee ${trip.calcAgentFee(destRepo)}`;
-  totalEst.innerText = `total ${trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)}`;
+  feeEst.innerText = `agent fee $${trip.calcAgentFee(destRepo)}`;
+  totalEst.innerText = `total $${trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)}`;
   tripEst.classList.remove('hidden');
 }
 
