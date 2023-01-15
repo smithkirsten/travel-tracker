@@ -91,6 +91,16 @@ function userTrips(trips, destinations) {
           el: ".swiper-pagination",
           clickable: true,
         },
+        a11y: {
+          prevSlideMessage: 'Previous slide',
+          nextSlideMessage: 'Next slide',
+          enabled: true,
+          lastSlideMessage: 'This is the last slide',
+        },
+        keyboard: {
+          enabled: true,
+          onlyInViewport: false,
+        },
       // loop: false,
       // pagination: { // If we need pagination
       // el: '.swiper-pagination',
