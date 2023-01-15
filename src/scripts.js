@@ -158,9 +158,11 @@ function bookTrip() {
   .then(response => {
     console.log(response)
     display.postDeclaration(true);
-    
-    //get request
-    //resolve promise
+    //set timer
+    setTimeout(() => {
+      display.resetCards();
+      loadForTraveler(currentUser.id);
+    }, 2000)
     //redisplay DOM
   })
   .catch(error => {
