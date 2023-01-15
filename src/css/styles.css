@@ -17,11 +17,6 @@ button {
   cursor: pointer;
 } */
 
-span {
-  color:#170F3D;
-  font-weight: bolder;
-}
-
 .login-page {
   background-color: #170F3D;
 }
@@ -203,25 +198,27 @@ h3 {
 }
 
 .card {
-  display: fle;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 30vh;
-  width: 20vw;
-  background-color: #E27A66;
-  padding: 5px;
+  width: 19vw;
   background-size: cover;
 }
 
 .card-body {
-  font-size: small;
+  font-size: 12px;
   font-weight: bolder;
   text-align: center;
   padding: 10px;
   height: 80%;
   width: 70%;
   background-color: rgb(244, 236, 220, .85);
+}
+
+.trip-deets {
+  margin: 2px;
 }
 
 .card-footer {
@@ -243,6 +240,12 @@ h3 {
   display: flex;
   flex-direction: column;
 } */
+
+span {
+  color:#170F3D;
+  font-weight: bolder;
+  font-size: 18px;
+}
 
 .hidden {
   display: none;

@@ -53,9 +53,9 @@ function userTotals(traveler, destinations) {
     totalTrips.innerText = 'Book your first trip';
     sassyDisp.innerText = 'and leave your real life behind';
   } else {
-    investDisp.innerText = `You have invested $${traveler.calcTotalSpent(destinations)} in avoidance`
-    totalTrips.innerText = `It has brought you to ${traveler.trips.length} new places`
-    sassyDisp.innerText = 'but the things it has gotten you out of is priceless'
+    investDisp.innerHTML = `You have invested <span>$${traveler.calcTotalSpent(destinations)}</span> in avoidance`
+    totalTrips.innerHTML = `It has brought you to <span>${traveler.trips.length}</span> new places`
+    sassyDisp.innerHTML = 'but the things it has gotten you out of is priceless'
   }
 }
 
@@ -86,9 +86,9 @@ function createTripCard(trip, cost, destination) {
     </header>
     <section class="card-body">
       <h3 class="card-heading">${destination.destination}</h3>
-      <p class="trip-date">${date}</p>
-      <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
-      <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
+      <p class="trip-deets trip-date">${date}</p>
+      <p class="trip-deets trip-duration">duration: <span>${trip.duration}</span> days</p>
+      <p class="trip-deets trip-travelers">travelers: <span>${trip.travelers}</span></p>
       <footer class="card-footer">
         <p class="trip-cost">total cost: <span>$${cost}</span></p>
         <p class="trip-status">${trip.status}</p>
