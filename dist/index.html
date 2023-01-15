@@ -25,9 +25,9 @@
         </div>
         <form class="login-page login-form" id="loginForm">
           <label for="usernameInput" class="login-label">username</label>
-          <input type="text" name="username" class="login-input" id="usernameInput" placeholder="usernameID" required>
+          <input type="text" name="usernameInput" class="login-input" id="usernameInput" placeholder="usernameID" required>
           <label for="passwordInput" class="login-label">password</label>
-          <input type="password" name="password" class="login-input" id="passwordInput" placeholder="******" required>
+          <input type="password" name="passwordInput" class="login-input" id="passwordInput" placeholder="******" required>
           <input type="submit" name="login" class="login-button" id="loginButton">
         </form>
       </div>
@@ -66,17 +66,18 @@
   <main>
     <aside>
       <h2>Plan Your Next Trip</h2>
-      <form class="trip-form" id="newTripForm">
-        <label for="calendarStart" class="calendar-input">Takeoff</label>
-        <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
-        <label for="calendarEnd" class="calendar-input">Return</label>
-        <input type="date" name="start_date" class="new-trip-input" id="calendarEnd" required>
-        <label for="travelersInput" class="travelers-input">Number of Travelers</label>
-        <input type="number" name="travelers_input" class="traveler-input new-trip-input" id="traverlersInput" min="1" max="50"required>
-        <label for="destinations" class="hidden">Destinations</label>
-        <select class="destinations new-trip-input" name="destinations" type="text" id="destinations" autofocus required>
-          <option class="destinations" value="" disabled selected hidden>Destinations</option>
-        </select>
+      <label class="hidden" for="newTripForm" id="formLabel">New Trip Form</label>
+      <form class="trip-form" id="newTripForm" aria-labelledby="formLabel">
+        <label for="calendarStart" id="calendarStartLabel" class="calendar-input">Takeoff</label>
+          <input type="date" name="calendarStart" class="new-trip-input" aria-labelledby="calendarStartLabel" id="calendarStart" required>
+        <label for="calendarEnd" id="calendarEndLabel" class="calendar-input">Return</label>
+          <input type="date" name="calendarEnd" class="new-trip-input" aria-labelledby="calendarEndLabel" id="calendarEnd" required>
+        <label for="travelersInput" class="travelers-input" id="traverlersInputLabel">Number of Travelers</label>
+          <input type="number" name="travelersInput" class="travelers-input new-trip-input" aria-labelledby="travelersInputLabel" id="travelersInput" min="1" max="50"required>
+        <label for="destinations" id="destinationLabel" class="destinations-input">Destinations</label>
+          <select class="destinations new-trip-input" name="destinations" type="text" id="destinations" aria-labelledby="destinationLabel" autofocus required>
+            <option class="destinations" value="" disabled selected hidden>Destinations</option>
+          </select>
         </div>
         <div class="est-button-wrapper">
           <button class="est-button" id="estButton">get estimate</button>

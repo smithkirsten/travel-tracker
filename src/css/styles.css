@@ -169,7 +169,7 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  font-size: small;
+  font-size: x-small;
   height: 30vh;
   width: 90%;
 }
