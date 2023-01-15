@@ -1,7 +1,10 @@
 const dayjs = require('dayjs');
-import Trip from '../src/Trip'
+import Trip from '../src/Trip';
 
 //query selectors
+const loginDisplay = document.getElementById('loginPage');
+const navBar = document.querySelector('nav');
+const accountDisplay = document.querySelector('main');
 const logoutPanel = document.getElementById('logoutPanel');
 const welcomeMessages = document.querySelectorAll('.welcome-message');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
@@ -17,23 +20,31 @@ const travelersInput = document.getElementById('traverlersInput');
 const destinationInput = document.getElementById('destinations');
 const startCalendar = document.getElementById('calendarStart');
 const endCalendar = document.getElementById('calendarEnd');
-const inputs = document.querySelectorAll('.new-trip-input')
+const inputs = document.querySelectorAll('.new-trip-input');
 
 const tripEst = document.getElementById('tripEstimate');
 const nightsEst = document.getElementById('nightsEst');
 const destinationEst = document.getElementById('destinationEst');
 const guestsEst = document.getElementById('guestsEst');
-const feeEst = document.getElementById('feeEst')
-const totalEst = document.getElementById('totalEst')
+const feeEst = document.getElementById('feeEst');
+const totalEst = document.getElementById('totalEst');
 
 const postResponse = document.getElementById('postBox');
 const postMessage = document.getElementById('postMessage');
 
+function login(boolean) {
+  if(boolean) {
+    //hide main section
+    //unhide login section
+  } else {
+
+  }
+}
 
 function destinationsDropDown(destinations) {
   destinations.forEach(destination => {
-    destinationsMenu.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`
-  })
+    destinationsMenu.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`;
+  });
 }
 
 function userName(traveler) {
@@ -61,14 +72,14 @@ function userTotals(traveler, destinations) {
 
 function userTrips(trips, destinations) {
   if(!trips) {
-    cardsDisplay.classList.add('hidden')
-    noTripsDisplay.classList.remove('hidden')
+    cardsDisplay.classList.add('hidden');
+    noTripsDisplay.classList.remove('hidden');
   } else {
-    cardsDisplay.classList.remove('hidden')
-    noTripsDisplay.classList.add('hidden')
+    cardsDisplay.classList.remove('hidden');
+    noTripsDisplay.classList.add('hidden');
     trips.forEach(trip => {
-      const destination = destinations.findDestByID(trip.destinationID)
-      const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations)
+      const destination = destinations.findDestByID(trip.destinationID);
+      const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations);
       cardsDisplay.innerHTML += createTripCard(trip, tripCost, destination);
     })
   }
@@ -79,7 +90,7 @@ function resetCards() {
 }
 
 function createTripCard(trip, cost, destination) {
-  const date = dayjs(trip.date).format('MMMM D, YYYY')
+  const date = dayjs(trip.date).format('MMMM D, YYYY');
   return `
   <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
     <header class="card-header">
@@ -196,4 +207,4 @@ function disableElement(element, boolean) {
   }
 }
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, serverError, disableElement, clearInputs };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, serverError, disableElement, clearInputs, login };

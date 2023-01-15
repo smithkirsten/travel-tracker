@@ -47,7 +47,10 @@ profileButton.addEventListener('click', () => {
   display.logoutDrop();
 })
 
-logoutButton.addEventListener('click', display.loginPage);
+logoutButton.addEventListener('click', () => {
+  display.login(true);
+  currentUser = undefined;
+});
 
 filters.addEventListener('change', () => {
   display.resetCards();
