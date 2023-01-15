@@ -239,6 +239,7 @@ h3 {
   width: 80vw;
   justify-content: space-evenly;
   align-content: space-around;
+  border: rgba(23, 15, 61, .15) 1px solid;
 }
 
 .card {
