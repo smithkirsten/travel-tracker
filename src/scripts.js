@@ -47,6 +47,8 @@ profileButton.addEventListener('click', () => {
   display.logoutDrop();
 })
 
+logoutButton.addEventListener('click', display.loginPage);
+
 filters.addEventListener('change', () => {
   display.resetCards();
   displayFilteredTrips(filters.value)
@@ -158,20 +160,17 @@ function bookTrip() {
   .then(response => {
     console.log(response)
     display.postDeclaration(true);
-    //set timer
     setTimeout(() => {
       display.resetCards();
       loadForTraveler(currentUser.id);
     }, 2000)
-    //redisplay DOM
   })
   .catch(error => {
     console.log(error)
     display.postDeclaration(false);
-    //timer redisplay summary
+    setTimeout(display.userTotals, 2000)
   })
   newTripEst = undefined;
-  //set timer and display NEW summary
 }
 
 function displayAgentDOM() {
