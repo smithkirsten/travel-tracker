@@ -13,17 +13,22 @@
 <body>
   <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   <section class="login-page hidden" id="loginPage">
-    <article class="login-page" id="loginBlock">
+    <article class="login-page login-box" id="loginBlock">
       <img class="logo" src="./images/sunset.png" alt="sunset logo">
-      <div class="login-page" id="loginForm">
-        <p class="welcome">Welcome to</p>
-        <h1>Simply Escape</h1>
-        <p class="catchphrase">Why face life's problems when you can run away</p>
-        <form id="loginInput">
+      <div class="login-page login-right" id="loginInputs">
+        <div class="welcome">
+          <p class="welcome">Welcome to</p>
+          <div class="company">
+            <h1>Simply Escape</h1>
+            <p class="catchphrase">Why face life's problems when you can run away</p>
+          </div>
+        </div>
+        <form class="login-page login-form" id="loginForm">
           <label for="usernameInput" class="login-label">username</label>
-          <input type="text" name="username" class="login-input" id="usernameInput" placeholder="usernameID" required>
+          <input type="text" name="usernameInput" class="login-input" id="usernameInput" placeholder="usernameID" required>
           <label for="passwordInput" class="login-label">password</label>
-          <input type="password" name="password" class="login-input" id="passwordInput" placeholder="******" required>
+          <input type="password" name="passwordInput" class="login-input" id="passwordInput" placeholder="******" required>
+          <input type="submit" name="login" class="login-button" id="loginButton">
         </form>
       </div>
     </article>
@@ -40,11 +45,11 @@
       </div>
     </div>
     <div class="nav-menus">
-      <div class="dropdown" id="profileDropdown">
+      <div class="profile-dropdown">
         <button class="profile-button">profile <img class="avatar" src="./images/blank-user-profile.png" alt="user avatar"></button>
-        <menu class="profile-dropdown-content" aria-expanded="false">
-          <button class="logout" id="logoutButton" aria-controls="logout">logout</button>
-        </menu>
+        <div class="logout-panel" id="logoutPanel">
+          <button class="logout-button" id="logoutButton">log out</button>
+        </div>
       </div>
       <div class="filter-dropdown">
         <label for="filters" class="filter-content">Filter by</label>
@@ -61,22 +66,25 @@
   <main>
     <aside>
       <h2>Plan Your Next Trip</h2>
-      <form id="newTripForm">
-        <label for="calendarStart" class="calendar-input">Takeoff</label>
-        <input type="date" name="start_date" class="new-trip-input" id="calendarStart" required>
-        <label for="calendarEnd" class="calendar-input">Return</label>
-        <input type="date" name="start_date" class="new-trip-input" id="calendarEnd" required>
-        <label for="travelersInput" class="travelers-input">Number of Travelers</label>
-        <input type="number" name="travelers_input" class="traveler-input new-trip-input" id="traverlersInput" min="1" max="50"required>
-        <label for="destinations" class="hidden">Destinations</label>
-        <select class="destinations new-trip-input" name="destinations" type="text" id="destinations" autofocus required>
-          <option class="destinations" value="" disabled selected hidden>Destinations</option>
-        </select>
+      <label class="hidden" for="newTripForm" id="formLabel">New Trip Form</label>
+      <form class="trip-form" id="newTripForm" aria-labelledby="formLabel">
+        <label for="calendarStart" id="calendarStartLabel" class="calendar-input">Takeoff</label>
+          <input type="date" name="calendarStart" class="new-trip-input" aria-labelledby="calendarStartLabel" id="calendarStart" required>
+        <label for="calendarEnd" id="calendarEndLabel" class="calendar-input">Return</label>
+          <input type="date" name="calendarEnd" class="new-trip-input" aria-labelledby="calendarEndLabel" id="calendarEnd" required>
+        <label for="travelersInput" class="travelers-input" id="traverlersInputLabel">Number of Travelers</label>
+          <input type="number" name="travelersInput" class="travelers-input new-trip-input" aria-labelledby="travelersInputLabel" id="travelersInput" min="1" max="50"required>
+        <label for="destinations" id="destinationLabel" class="destinations-input">Destinations</label>
+          <select class="destinations new-trip-input" name="destinations" type="text" id="destinations" aria-labelledby="destinationLabel" autofocus required>
+            <option class="destinations" value="" disabled selected hidden>Destinations</option>
+          </select>
         </div>
-        <button class="est-button" id="estButton">get estimate</button>
+        <div class="est-button-wrapper">
+          <button class="est-button" id="estButton">get estimate</button>
+        </div>
       </form>
-      <div id="userSumWrapper">
-        <article class="user-summary trav-view" id="travSummary">
+      <div class="flip-box"id="userSumWrapper">
+        <article class=" user-summary trav-view" id="travSummary">
           <h3 class="welcome-message">Welcome, User</h3>
           <p class="user-display" id="investDisp"></p>
           <p class="user-display" id="totalTripsDisp"></p>
@@ -84,13 +92,15 @@
         </article >
 
         <article class="trip-estimate hidden" id="tripEstimate">
-          <h3>Your Trip Estimate</h3>
-          <p class="estimate" id="nightsEst"></p>
-          <p class="estimate" id="destinationEst"></p>
-          <p class="estimate" id="guestsEst"></p>
-          <p class="estimate fee" id="feeEst"></p>
+          <h3 class="trip-est-header">Your Trip Estimate</h3>
+          <div class="est-breakdown">
+            <p class="estimate" id="nightsEst"></p>
+            <p class="estimate" id="destinationEst"></p>
+            <p class="estimate" id="guestsEst"></p>
+            <p class="estimate fee" id="feeEst"></p>
+          </div>
           <div class="submit-section">
-            <p class="estimate total" id="totalEst"></p>
+            <p class="total" id="totalEst"></p>
             <button class="book-button" id="bookButton">BOOK</button>
           </div> 
         </article>
@@ -98,7 +108,7 @@
         <article class="post-response hidden" id="postBox">
           <p id="postMessage"></p>
         </article>
-        <!-- <article class="user-summary agent-view">
+        <!-- <article class="agent-view">
           <h3>Welcome, Agent</h3>
           <p class="user-display" id="investDisp"></p>
           <p class="user-display" id="totalTripsDisp"></p>

@@ -1,7 +1,11 @@
 const dayjs = require('dayjs');
-import Trip from '../src/Trip'
+import Trip from '../src/Trip';
 
 //query selectors
+const loginDisplay = document.getElementById('loginPage');
+const navBar = document.querySelector('nav');
+const accountDisplay = document.querySelector('main');
+const logoutPanel = document.getElementById('logoutPanel');
 const welcomeMessages = document.querySelectorAll('.welcome-message');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
 const cardsDisplay = document.getElementById('cardsDisplay');
@@ -16,23 +20,34 @@ const travelersInput = document.getElementById('traverlersInput');
 const destinationInput = document.getElementById('destinations');
 const startCalendar = document.getElementById('calendarStart');
 const endCalendar = document.getElementById('calendarEnd');
-const inputs = document.querySelectorAll('.new-trip-input')
+const inputs = document.querySelectorAll('.new-trip-input');
 
 const tripEst = document.getElementById('tripEstimate');
 const nightsEst = document.getElementById('nightsEst');
 const destinationEst = document.getElementById('destinationEst');
 const guestsEst = document.getElementById('guestsEst');
-const feeEst = document.getElementById('feeEst')
-const totalEst = document.getElementById('totalEst')
+const feeEst = document.getElementById('feeEst');
+const totalEst = document.getElementById('totalEst');
 
 const postResponse = document.getElementById('postBox');
 const postMessage = document.getElementById('postMessage');
 
+function login(boolean) {
+  if(boolean) {
+    loginDisplay.classList.remove('hidden');
+    accountDisplay.classList.add('hidden');
+    navBar.classList.add('hidden');
+  } else {
+    loginDisplay.classList.add('hidden');
+    accountDisplay.classList.remove('hidden');
+    navBar.classList.remove('hidden');
+  }
+}
 
 function destinationsDropDown(destinations) {
   destinations.forEach(destination => {
-    destinationsMenu.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`
-  })
+    destinationsMenu.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`;
+  });
 }
 
 function userName(traveler) {
@@ -52,22 +67,22 @@ function userTotals(traveler, destinations) {
     totalTrips.innerText = 'Book your first trip';
     sassyDisp.innerText = 'and leave your real life behind';
   } else {
-    investDisp.innerText = `You have invested $${traveler.calcTotalSpent(destinations)} in avoidance`
-    totalTrips.innerText = `It has brought you to ${traveler.trips.length} new places`
-    sassyDisp.innerText = 'but the things it has gotten you out of is priceless'
+    investDisp.innerHTML = `You have invested <span>$${traveler.calcTotalSpent(destinations)}</span> in avoidance`
+    totalTrips.innerHTML = `It has brought you to <span>${traveler.trips.length}</span> new places`
+    sassyDisp.innerHTML = 'but the things it has gotten you out of is priceless'
   }
 }
 
 function userTrips(trips, destinations) {
   if(!trips) {
-    cardsDisplay.classList.add('hidden')
-    noTripsDisplay.classList.remove('hidden')
+    cardsDisplay.classList.add('hidden');
+    noTripsDisplay.classList.remove('hidden');
   } else {
-    cardsDisplay.classList.remove('hidden')
-    noTripsDisplay.classList.add('hidden')
+    cardsDisplay.classList.remove('hidden');
+    noTripsDisplay.classList.add('hidden');
     trips.forEach(trip => {
-      const destination = destinations.findDestByID(trip.destinationID)
-      const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations)
+      const destination = destinations.findDestByID(trip.destinationID);
+      const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations);
       cardsDisplay.innerHTML += createTripCard(trip, tripCost, destination);
     })
   }
@@ -78,21 +93,21 @@ function resetCards() {
 }
 
 function createTripCard(trip, cost, destination) {
-  const date = dayjs(trip.date).format('MMMM D, YYYY')
+  const date = dayjs(trip.date).format('MMMM D, YYYY');
   return `
-  <article class="card" id="${trip.id}">
-    <header class="card-header" style="background-image: url('${destination.image}')">
-    <h3 class="card-heading">${destination.destination}</h3>
+  <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
+    <header class="card-header">
     </header>
     <section class="card-body">
-      <p class="trip-date">${date}</p>
-      <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
-      <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
+      <h3 class="card-heading">${destination.destination}</h3>
+      <p class="trip-deets trip-date">${date}</p>
+      <p class="trip-deets trip-duration">duration: <span>${trip.duration}</span> days</p>
+      <p class="trip-deets trip-travelers">travelers: <span>${trip.travelers}</span></p>
+      <footer class="card-footer">
+        <p class="trip-cost">total cost: <span>$${cost}</span></p>
+        <p class="trip-status">${trip.status}</p>
+      </footer>
     </section>
-    <footer class="card-footer">
-      <p class="trip-cost">total cost: <span>${cost}</span></p>
-      <p class="trip-status">${trip.status}</p>
-    </footer>
   </article>`;
 };
 
@@ -146,9 +161,17 @@ function tripEstimate(trip, destRepo) {
   if(trip.travelers > 1){
     guestsEst.innerText += 's';
   }
-  feeEst.innerText = `agent fee ${trip.calcAgentFee(destRepo)}`;
-  totalEst.innerText = `total ${trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)}`;
+  feeEst.innerText = `agent fee $${trip.calcAgentFee(destRepo)}`;
+  totalEst.innerText = `total $${trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)}`;
   tripEst.classList.remove('hidden');
+}
+
+function logoutDrop() {
+  if (logoutPanel.style.display === "block") {
+    logoutPanel.style.display = "none";
+  } else {
+    logoutPanel.style.display = "block";
+  }
 }
 
 function postDeclaration(boolean) {
@@ -180,6 +203,11 @@ function clearInputs() {
 
 function disableElement(element, boolean) {
   element.disabled = boolean;
+  if(boolean) {
+    element.classList.add('disabled');
+  } else {
+    element.classList.remove('disabled');
+  }
 }
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, postDeclaration, serverError, disableElement, clearInputs };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, serverError, disableElement, clearInputs, login };

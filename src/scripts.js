@@ -19,7 +19,6 @@ import './images/blank-user-profile.png'
 
 //query selectors
 const profileButton = document.querySelector(".profile-button");
-const profileDownOptions = document.querySelector(".profile-dropdown-content");
 const logoutButton = document.getElementById('logoutButton');
 
 const filters = document.getElementById('filters');
@@ -42,6 +41,16 @@ let nextTripID;
 
 //event listeners
 window.addEventListener('load', loadForTraveler(5)) //also set min start date to today
+
+profileButton.addEventListener('click', () => {
+  profileButton.classList.toggle('active');
+  display.logoutDrop();
+})
+
+logoutButton.addEventListener('click', () => {
+  display.login(true);
+  currentUser = undefined;
+});
 
 filters.addEventListener('change', () => {
   display.resetCards();
@@ -66,9 +75,6 @@ estimateButton.addEventListener('click', (event) => {
 
 bookButton.addEventListener('click', bookTrip)
 
-
-
-profileButton.addEventListener('click', showProfileDropDownOptions())
 
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)
@@ -157,27 +163,21 @@ function bookTrip() {
   .then(response => {
     console.log(response)
     display.postDeclaration(true);
-    
-    //get request
-    //resolve promise
-    //redisplay DOM
+    setTimeout(() => {
+      display.resetCards();
+      loadForTraveler(currentUser.id);
+    }, 2000)
   })
   .catch(error => {
     console.log(error)
     display.postDeclaration(false);
-    //timer redisplay summary
+    setTimeout(display.userTotals, 2000)
   })
   newTripEst = undefined;
-  //set timer and display NEW summary
 }
 
 function displayAgentDOM() {
   //helper functions to hide Traveler display 
   //helper functions to remove hidden on Agent display
   //display pending trips on load
-}
-
-function showProfileDropDownOptions() {
-	profileDownOptions.classList.toggle("show")
-	profileDownOptions.getAttribute("aria-expanded") === "false" ? profileDownOptions.setAttribute("aria-expanded", "true") : dropDownOptions.setAttribute("aria-expanded", "false");
 }
