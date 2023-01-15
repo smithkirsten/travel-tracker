@@ -86,7 +86,7 @@ function userTrips(trips, destinations) {
     const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
         slidesPerView: 3,
-        spaceBetween: 30,
+        spaceBetween: 0,
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
@@ -101,18 +101,6 @@ function userTrips(trips, destinations) {
           enabled: true,
           onlyInViewport: false,
         },
-      // loop: false,
-      // pagination: { // If we need pagination
-      // el: '.swiper-pagination',
-      // },
-    // navigation: { // Navigation arrows
-    //   nextEl: '.swiper-button-next',
-    //   prevEl: '.swiper-button-prev',
-    // },
-  // And if we need scrollbar
-  // scrollbar: {
-  //   el: '.swiper-scrollbar',
-  //   }
     })
     trips.forEach(trip => {
       const destination = destinations.findDestByID(trip.destinationID);
@@ -131,8 +119,6 @@ function createTripCard(trip, cost, destination) {
   return `
   <div class="swiper-slide">
     <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
-      <header class="card-header">
-      </header>
       <section class="card-body">
         <h3 class="card-heading">${destination.destination}</h3>
         <p class="trip-deets trip-date">${date}</p>
