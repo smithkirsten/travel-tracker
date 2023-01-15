@@ -34,10 +34,13 @@ const postMessage = document.getElementById('postMessage');
 
 function login(boolean) {
   if(boolean) {
-    //hide main section
-    //unhide login section
+    loginDisplay.classList.remove('hidden');
+    accountDisplay.classList.add('hidden');
+    navBar.classList.add('hidden');
   } else {
-
+    loginDisplay.classList.add('hidden');
+    accountDisplay.classList.remove('hidden');
+    navBar.classList.remove('hidden');
   }
 }
 
