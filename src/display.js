@@ -189,6 +189,11 @@ function clearInputs() {
 
 function disableElement(element, boolean) {
   element.disabled = boolean;
+  if(boolean) {
+    element.classList.add('disabled');
+  } else {
+    element.classList.remove('disabled');
+  }
 }
 
 export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, serverError, disableElement, clearInputs };
