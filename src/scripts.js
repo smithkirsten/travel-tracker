@@ -1,6 +1,9 @@
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 //import 3rd party libraries
+  // import Swiper bundle with all modules installed
+  import Swiper from 'swiper/bundle';
+  import 'swiper/css/bundle';
 const dayjs = require('dayjs');
 //import classes
 import Traveler from '../src/Traveler';

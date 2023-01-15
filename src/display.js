@@ -1,4 +1,6 @@
 const dayjs = require('dayjs');
+  import Swiper from 'swiper/bundle';
+  import 'swiper/css/bundle';
 import Trip from '../src/Trip';
 
 //query selectors
@@ -9,6 +11,7 @@ const logoutPanel = document.getElementById('logoutPanel');
 const welcomeMessages = document.querySelectorAll('.welcome-message');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
 const cardsDisplay = document.getElementById('cardsDisplay');
+const swiperWrapper = document.querySelector('.swiper-wrapper');
 
 const travSummary = document.getElementById('travSummary');
 const investDisp = document.getElementById('investDisp');
@@ -80,35 +83,58 @@ function userTrips(trips, destinations) {
   } else {
     cardsDisplay.classList.remove('hidden');
     noTripsDisplay.classList.add('hidden');
+    const swiper = new Swiper('.swiper', {
+        direction: 'horizontal',
+        slidesPerView: 3,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      // loop: false,
+      // pagination: { // If we need pagination
+      // el: '.swiper-pagination',
+      // },
+    // navigation: { // Navigation arrows
+    //   nextEl: '.swiper-button-next',
+    //   prevEl: '.swiper-button-prev',
+    // },
+  // And if we need scrollbar
+  // scrollbar: {
+  //   el: '.swiper-scrollbar',
+  //   }
+    })
     trips.forEach(trip => {
       const destination = destinations.findDestByID(trip.destinationID);
       const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations);
-      cardsDisplay.innerHTML += createTripCard(trip, tripCost, destination);
+      swiperWrapper.innerHTML += createTripCard(trip, tripCost, destination);
     })
   }
 }
 
 function resetCards() {
-  cardsDisplay.innerHTML = '';
+  swiperWrapper.innerHTML = '';
 }
 
 function createTripCard(trip, cost, destination) {
   const date = dayjs(trip.date).format('MMMM D, YYYY');
   return `
-  <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
-    <header class="card-header">
-    </header>
-    <section class="card-body">
-      <h3 class="card-heading">${destination.destination}</h3>
-      <p class="trip-deets trip-date">${date}</p>
-      <p class="trip-deets trip-duration">duration: <span>${trip.duration}</span> days</p>
-      <p class="trip-deets trip-travelers">travelers: <span>${trip.travelers}</span></p>
-      <footer class="card-footer">
-        <p class="trip-cost">total cost: <span>$${cost}</span></p>
-        <p class="trip-status">${trip.status}</p>
-      </footer>
-    </section>
-  </article>`;
+  <div class="swiper-slide">
+    <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
+      <header class="card-header">
+      </header>
+      <section class="card-body">
+        <h3 class="card-heading">${destination.destination}</h3>
+        <p class="trip-deets trip-date">${date}</p>
+        <p class="trip-deets trip-duration">duration: <span>${trip.duration}</span> days</p>
+        <p class="trip-deets trip-travelers">travelers: <span>${trip.travelers}</span></p>
+        <footer class="card-footer">
+          <p class="trip-cost">total cost: <span>$${cost}</span></p>
+          <p class="trip-status">${trip.status}</p>
+        </footer>
+      </section>
+    </article>
+  </div>`;
 };
 
 function setCalendarMins() {

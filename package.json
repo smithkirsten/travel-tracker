@@ -30,6 +30,7 @@
     "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
   },
   "dependencies": {
-    "dayjs": "^1.11.7"
+    "dayjs": "^1.11.7",
+    "swiper": "^8.4.5"
   }
 }
