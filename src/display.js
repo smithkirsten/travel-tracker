@@ -5,7 +5,7 @@ import Trip from '../src/Trip';
 
 //query selectors
 const loginDisplay = document.getElementById('loginPage');
-const loginError = document.getElementById('loginError');
+const loginErrMsg = document.getElementById('loginError');
 
 const navBar = document.querySelector('nav');
 const accountDisplay = document.querySelector('main');
@@ -38,7 +38,8 @@ const postResponse = document.getElementById('postBox');
 const postMessage = document.getElementById('postMessage');
 
 function login(boolean) {
-  loginError.classList.add('hidden');
+  console.log(loginErrMsg)
+  loginErrMsg.classList.add('hidden');
   if(boolean) {
     loginDisplay.classList.remove('hidden');
     accountDisplay.classList.add('hidden');
@@ -212,8 +213,7 @@ function postDeclaration(boolean) {
 }
 
 function loginError() {
-  loginError.classList.remove('hidden');
-  console.log('login error');
+  loginErrMsg.classList.remove('hidden');
 }
 
 function serverError(boolean) {
