@@ -92,8 +92,6 @@ describe('Agent', () => {
     expect(agent.travelers[0].trips[2].status).to.equal('approved')
     agent.resolveTrip(9, 'denied');
     expect(agent.travelers[0].trips[2].status).to.equal('denied')
-    //I should be able to see and approve / deny trip requests
-      //dynamic method that takes in a boolean (approve if true, deny if false)
   });
 
   it('should be able to cancel a trip for a user', () => {

@@ -54,6 +54,16 @@ class Agent {
       })
     })
   }
+
+  deleteTrip(id) {
+    this.travelers.forEach(traveler => {
+      traveler.trips.forEach((trip, index) => {
+        if(trip.id === id) {
+          traveler.trips.splice(index, 1);
+        }
+      })
+    })
+  }
 }
 
 export default Agent;
