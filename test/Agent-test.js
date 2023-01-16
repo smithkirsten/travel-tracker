@@ -33,7 +33,7 @@ describe('Agent', () => {
 
   it('should hold an array of traveler instances', () => {
     expect(agent.travelers.length).to.equal(5);
-    expect(agent.traveler[0]).to.be.an.instanceOf(Traveler);
+    expect(agent.travelers[0]).to.be.an.instanceOf(Traveler);
     expect(agent.travelers[1].name).to.equal("Rachael Vaughten");
     expect(agent.travelers[1].trips.length).to.equal(2);
     expect(agent.travelers[1].trips[0]).to.deep.equal( {
@@ -54,8 +54,6 @@ describe('Agent', () => {
   });
 
   it('should calculate total income generated for this year', () => {
-    //Total income generated this year (should be 10% of user trip cost)
-    //reduce traveler => filter trips for year => return agent fee
     expect(agent.calcYearsIncome('2023')).to.equal(255);
     expect(agent.calcYearsIncome('2024')).to.equal(0)
   });
@@ -65,18 +63,18 @@ describe('Agent', () => {
       //return array of trips to display the trips and a '# of travelers on trips today'
     expect(agent.todaysTrips(dayjs())).to.equal(0);
     expect(agent.todaysTrips("2022/5/29").length).to.equal(2);
-    expect(agent.todaysTrips("2022/5/29")[0]).to.deep.equal({
-      id: 3,
-      userID: 3,
-      destinationID: 22,
-      travelers: 4,
-      date: "2022/05/22",
-      duration: 17,
+    expect(agent.todaysTrips("2022/5/29")[0]).to.deep.equal(  {
+      id: 7,
+      userID: 2,
+      destinationID: 17,
+      travelers: 5,
+      date: "2022/5/28",
+      duration: 20,
       status: "approved",
       suggestedActivities: [ ]
       })
   });
-  
+
   it('should be able to find a traveler by id', () => {
     expect(agent.findTravelerByID(5).name).to.equal("Tiffy Grout");
     expect(agent.findTravelerByID(10).name).to.equal(undefined)

@@ -5,6 +5,8 @@ import './css/styles.css';
   import Swiper from 'swiper/bundle';
   import 'swiper/css/bundle';
 const dayjs = require('dayjs');
+const isBetween = require('dayjs/plugin/isBetween');
+dayjs.extend(isBetween);
 //import classes
 import Traveler from '../src/Traveler';
 import Trip from '../src/Trip';
