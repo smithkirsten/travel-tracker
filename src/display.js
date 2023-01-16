@@ -211,6 +211,7 @@ function postDeclaration(boolean) {
 
 function loginError() {
   //username and password do not match
+  console.log('login error');
 }
 
 function serverError(boolean) {

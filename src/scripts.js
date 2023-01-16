@@ -21,7 +21,7 @@ import './images/sunset.png'
 import './images/blank-user-profile.png'
 
 //query selectors
-const loginButton = document.getElementById('loginButton')
+const loginButton = document.getElementById('loginButton');
 const username = document.getElementById('usernameInput');
 const password = document.getElementById('passwordInput');
 const profileButton = document.querySelector(".profile-button");
@@ -47,9 +47,14 @@ let nextTripID;
 
 //event listeners
 //window.addEventListener('load', loadForTraveler(5))
-window.addEventListener('load', display.login)
+window.addEventListener('load', () => {
+  display.login(true);
+})
 
-loginButton.addEventListener('click', checkLogin)
+loginButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  checkLogin();
+})
 
 profileButton.addEventListener('click', () => {
   profileButton.classList.toggle('active');
@@ -85,14 +90,20 @@ estimateButton.addEventListener('click', (event) => {
 bookButton.addEventListener('click', bookTrip)
 
 function checkLogin() {
+  console.log(username.value);
+  console.log(password.value);
   if(username.value === 'agent' && password.value === 'travel') { //control for caps?
+   
     loadForAgent();
     return;
   }
-  const id = username.match(/\d+/g);
-  const string = username.slice(0, 8);
+  const id = +username.value.match(/\d+/g);
+  const string = username.value.slice(0, 8);
+  console.log(string, id)
   if(string === 'username' && id <= 50 && id > 0) {
+    console.log('successful login!')
     loadForTraveler(id)
+    display.login(false)
   } else {
     display.loginError()
   }
