@@ -302,6 +302,14 @@ h3 {
   color: rgba(226,122,102,.9);
 }
 
+.big-error, .no-trips-display {
+  text-align: center;
+  width: 80vw;
+  height: 70vh;
+  background: #F4ECDC;
+  border: rgba(226,122,102,.4) inset;
+}
+
 span {
   color:#170F3D;
   font-weight: bolder;
