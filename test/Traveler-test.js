@@ -56,12 +56,12 @@ describe('Traveler', () => {
       status: "approved",
       suggestedActivities: [ ]
       })
-    expect(traveler.findTrip(4)).to.equal(false)
+    expect(traveler.findTrip(4)).to.equal(undefined)
   });
 
   it('should calculate total cost of all trips', () => {
     expect(traveler.calcTotalSpent(destRepo)).to.equal('10329.00');
-    expect(badData.calcTotalSpent(destRepo)).to.equal(false) //or could return null to use ?? in future functions?
+    expect(badData.calcTotalSpent(destRepo)).to.equal(undefined) //or could return null to use ?? in future functions?
   });
 
   it('should be able to filter trips by status', () => {

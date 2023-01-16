@@ -9,8 +9,7 @@ class Traveler {
   };
 
   findTrip(id) {
-    const trip = this.trips.find(trip => trip.id === id);
-    return trip ? trip : false;
+    return this.trips?.find(trip => trip.id === id);
   };
 
   calcTotalSpent(destRepo) {
@@ -18,7 +17,7 @@ class Traveler {
       total += trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo);
       return total;
     }, 0);
-    return total ? total.toFixed(2) : false;
+    return total ? total.toFixed(2) : undefined;
   };
 
   tripsByStatus(status) {
