@@ -50,11 +50,13 @@ describe('Agent', () => {
 
   it('should hold the destRepo object as a property', () => {
     expect(agent.destRepo).to.be.an.instanceOf(DestRepo);
-    expect(agent.destRepo.destinations.length).to.equal(8)
+    expect(agent.destRepo.destinations.length).to.equal(8);
   });
 
   it('should calculate total income generated for this year', () => {
     //Total income generated this year (should be 10% of user trip cost)
+    //reduce traveler => filter trips for year => return agent fee
+    expect(agent.calcYearsIncome('2023')).to.equal(255);
   });
 
   it('find travelers on trips for today', () => {
