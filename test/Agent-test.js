@@ -57,19 +57,41 @@ describe('Agent', () => {
     //Total income generated this year (should be 10% of user trip cost)
     //reduce traveler => filter trips for year => return agent fee
     expect(agent.calcYearsIncome('2023')).to.equal(255);
+    expect(agent.calcYearsIncome('2024')).to.equal(0)
   });
 
   it('find travelers on trips for today', () => {
     //Travelers on trips for today’s date (number, names, however you want to display this!)
       //return array of trips to display the trips and a '# of travelers on trips today'
+    expect(agent.todaysTrips(dayjs())).to.equal(0);
+    expect(agent.todaysTrips("2022/5/29").length).to.equal(2);
+    expect(agent.todaysTrips("2022/5/29")[0]).to.deep.equal({
+      id: 3,
+      userID: 3,
+      destinationID: 22,
+      travelers: 4,
+      date: "2022/05/22",
+      duration: 17,
+      status: "approved",
+      suggestedActivities: [ ]
+      })
   });
+  it('should be able to find a traveler by id', () => {
+    expect(agent.findTravelerByID(5).name).to.equal("Tiffy Grout");
+    expect(agent.findTravelerByID(10).name).to.equal(undefined)
+  })
 
   it('should be able to search user by name', () => {
     //return an object to populate a traveler card displayed to agent
     //View their name, a list of all of their trips, and the total amount they’ve spent (including 10% agent cut)
+    expect(agent.findTravelerByName("Leila Thebeaud").id).to.deep.equal(4)
+    expect(agent.findTravelerByName("Peanut Butter").id).to.equal(undefined)
   });
 
-  it('should be able to locate a user with a trip id', () => {});
+  it('should be able to locate a user with a trip id', () => {
+    //pass in trip id?
+    expect(agent.findTravelerFromTrip(4).name).to.equal("Rachael Vaughten")
+  });
 
   it('should be able to approve and deny pending trips', () => {
     //I should be able to see and approve / deny trip requests
