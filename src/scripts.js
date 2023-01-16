@@ -21,6 +21,9 @@ import './images/sunset.png'
 import './images/blank-user-profile.png'
 
 //query selectors
+const loginButton = document.getElementById('loginButton')
+const username = document.getElementById('usernameInput');
+const password = document.getElementById('passwordInput');
 const profileButton = document.querySelector(".profile-button");
 const logoutButton = document.getElementById('logoutButton');
 
@@ -43,22 +46,10 @@ let nextTripID;
 
 
 //event listeners
-window.addEventListener('load', loadForTraveler(5))
-//on load, display.login
+//window.addEventListener('load', loadForTraveler(5))
+window.addEventListener('load', display.login)
 
-//eventListener -> login button
-
-//check inputs
-  //password === 'travel' && username === 'agent' (control for case)
-    //load for agent
-    //return;
-  
-  //const id = username.match(\d)
-  //const string = first 8 characters
-  //check username -> string === 'username' && 1 < id < 50
-    //load for agent (pass in id)
-  
-
+loginButton.addEventListener('click', checkLogin)
 
 profileButton.addEventListener('click', () => {
   profileButton.classList.toggle('active');
@@ -93,6 +84,22 @@ estimateButton.addEventListener('click', (event) => {
 
 bookButton.addEventListener('click', bookTrip)
 
+function checkLogin() {
+  if(username.value === 'agent' && password.value === 'travel') { //control for caps?
+    //load for agent
+    return;
+  }
+  const id = username.match(/\d+/g);
+  const string = username.slice(0, 8);
+
+
+  //check username -> string === 'username' && 1 < id < 50
+    //load for agent (pass in id)
+}
+
+function loadForAgent() {
+  
+}
 
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)
