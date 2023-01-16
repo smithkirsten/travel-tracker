@@ -4,8 +4,9 @@ import Traveler from '../src/Traveler'
 import DestRepo from '../src/DestRepo'
 
 class Agent {
-  constructor() {
-
+  constructor(travelers, destRepo) {
+    this.travelers = travelers;
+    this.destRepo = destRepo;
   }
 }
 

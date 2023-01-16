@@ -76,6 +76,7 @@ describe('Agent', () => {
       suggestedActivities: [ ]
       })
   });
+  
   it('should be able to find a traveler by id', () => {
     expect(agent.findTravelerByID(5).name).to.equal("Tiffy Grout");
     expect(agent.findTravelerByID(10).name).to.equal(undefined)
