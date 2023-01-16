@@ -40,6 +40,10 @@ class Agent {
   findTravelerByID(id) {
     return this.travelers.find(traveler => traveler.id === id);
   }
+
+  findTravelerByName(name) {
+    return this.travelers.find(traveler => traveler.name === name);
+  }
 }
 
 export default Agent;

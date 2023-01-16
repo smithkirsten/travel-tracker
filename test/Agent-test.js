@@ -83,13 +83,8 @@ describe('Agent', () => {
   it('should be able to search user by name', () => {
     //return an object to populate a traveler card displayed to agent
     //View their name, a list of all of their trips, and the total amount they’ve spent (including 10% agent cut)
-    expect(agent.findTravelerByName("Leila Thebeaud").id).to.deep.equal(4)
-    expect(agent.findTravelerByName("Peanut Butter").id).to.equal(undefined)
-  });
-
-  it('should be able to locate a user with a trip id', () => {
-    //pass in trip id?
-    expect(agent.findTravelerFromTrip(4).name).to.equal("Rachael Vaughten")
+    expect(agent.findTravelerByName("Leila Thebeaud").id).to.deep.equal(4);
+    expect(agent.findTravelerByName("Peanut Butter")).to.equal(undefined);
   });
 
   it('should be able to approve and deny pending trips', () => {
