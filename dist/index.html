@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Kalam&family=Montserrat:wght@300&family=Nanum+Gothic&family=Poppins:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
   <section class="login-page hidden" id="loginPage">
     <article class="login-page login-box" id="loginBlock">
       <img class="logo" src="./images/sunset.png" alt="sunset logo">
@@ -28,7 +27,8 @@
           <input type="text" name="usernameInput" class="login-input" id="usernameInput" placeholder="usernameID" required>
           <label for="passwordInput" class="login-label">password</label>
           <input type="password" name="passwordInput" class="login-input" id="passwordInput" placeholder="******" required>
-          <input type="submit" name="login" class="login-button" id="loginButton">
+          <p class="login-error hidden" id="loginError">*please enter a valid username and password</p>
+          <button type="submit" class="login-button" id="loginButton">sign in</button>
         </form>
       </div>
     </article>
@@ -46,7 +46,7 @@
     </div>
     <div class="nav-menus">
       <div class="profile-dropdown">
-        <button class="profile-button">profile <img class="avatar" src="./images/blank-user-profile.png" alt="user avatar"></button>
+        <button class="profile-button" id="profileButton">profile <img class="avatar" src="./images/blank-user-profile.png" alt="user avatar"></button>
         <div class="logout-panel" id="logoutPanel">
           <button class="logout-button" id="logoutButton">log out</button>
         </div>
@@ -118,27 +118,18 @@
     </aside>
     <section class="cards-display" id="cardsDisplay">
       <div class="swiper">
-        <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
         </div>
-        <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
-        <!-- If we need navigation buttons -->
-        <!-- <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div> -->
-        <!-- If we need scrollbar -->
-        <!-- <div class="swiper-scrollbar"></div> -->
       </div>
     </section>
-    <section class="hidden"id="noTripsDisplay">
+    <section class="no-trips-display hidden"id="noTripsDisplay">
       <div class="no-trips-display">
         <p id="noTripsMessage">no trips are available</p>
       </div>
     </section>
   </main>
 
-
-  
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>

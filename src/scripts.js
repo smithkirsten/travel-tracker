@@ -21,6 +21,9 @@ import './images/sunset.png'
 import './images/blank-user-profile.png'
 
 //query selectors
+const loginButton = document.getElementById('loginButton');
+const username = document.getElementById('usernameInput');
+const password = document.getElementById('passwordInput');
 const profileButton = document.querySelector(".profile-button");
 const logoutButton = document.getElementById('logoutButton');
 
@@ -43,7 +46,14 @@ let nextTripID;
 
 
 //event listeners
-window.addEventListener('load', loadForTraveler(5)) //also set min start date to today
+window.addEventListener('load', () => {
+  display.login(true);
+})
+
+loginButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  checkLogin();
+})
 
 profileButton.addEventListener('click', () => {
   profileButton.classList.toggle('active');
@@ -52,6 +62,7 @@ profileButton.addEventListener('click', () => {
 
 logoutButton.addEventListener('click', () => {
   display.login(true);
+  display.logoutDrop();
   currentUser = undefined;
 });
 
@@ -73,11 +84,31 @@ form.addEventListener('change', (event) => {
 estimateButton.addEventListener('click', (event) => {
   event.preventDefault();
   newTripEst = display.createTripEstimate(currentUser, nextTripID);
-  display.tripEstimate(newTripEst, destRepo)
+  display.tripEstimate(newTripEst, destRepo);
 })
 
-bookButton.addEventListener('click', bookTrip)
+bookButton.addEventListener('click', bookTrip);
 
+function checkLogin() {
+
+  if(username.value === 'agent' && password.value === 'travel') { //control for caps?
+    loadForAgent();
+    return;
+  }
+  const id = +username.value.match(/\d+/g);
+  const string = username.value.slice(0, 8);
+  if(string === 'username' && id <= 50 && id > 0 && password.value === 'travel') {
+    loadForTraveler(id);
+    display.login(false);
+    display.clearLogin();
+  } else {
+    display.loginError();
+  }
+}
+
+function loadForAgent() {
+  console.log('load for agent')
+}
 
 function loadForTraveler(userId) {
   let travelerPromise = apiCalls.getData(`travelers/${userId}`)

@@ -5,8 +5,12 @@ import Trip from '../src/Trip';
 
 //query selectors
 const loginDisplay = document.getElementById('loginPage');
+const loginErrMsg = document.getElementById('loginError');
+const loginInputs = document.querySelectorAll('.login-input')
+
 const navBar = document.querySelector('nav');
 const accountDisplay = document.querySelector('main');
+const profileButton = document.getElementById('profileButton')
 const logoutPanel = document.getElementById('logoutPanel');
 const welcomeMessages = document.querySelectorAll('.welcome-message');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
@@ -19,7 +23,7 @@ const totalTrips = document.getElementById('totalTripsDisp');
 const sassyDisp = document.getElementById('sassyDisp');
 
 const destinationsMenu = document.getElementById('destinations');
-const travelersInput = document.getElementById('traverlersInput');
+const travelersInput = document.getElementById('travelersInput');
 const destinationInput = document.getElementById('destinations');
 const startCalendar = document.getElementById('calendarStart');
 const endCalendar = document.getElementById('calendarEnd');
@@ -36,6 +40,8 @@ const postResponse = document.getElementById('postBox');
 const postMessage = document.getElementById('postMessage');
 
 function login(boolean) {
+  console.log(loginErrMsg)
+  loginErrMsg.classList.add('hidden');
   if(boolean) {
     loginDisplay.classList.remove('hidden');
     accountDisplay.classList.add('hidden');
@@ -151,7 +157,6 @@ function setEndCalendar() {
 }
 
 function checkAllInputs() {
-  //cannot use .every() bc inputs is a NodeList
   let counter = 0;
   inputs.forEach(input => {
     if(input.value) {
@@ -193,6 +198,7 @@ function tripEstimate(trip, destRepo) {
 function logoutDrop() {
   if (logoutPanel.style.display === "block") {
     logoutPanel.style.display = "none";
+    profileButton.classList.remove('.active')
   } else {
     logoutPanel.style.display = "block";
   }
@@ -209,6 +215,10 @@ function postDeclaration(boolean) {
   postResponse.classList.remove('hidden');
 }
 
+function loginError() {
+  loginErrMsg.classList.remove('hidden');
+}
+
 function serverError(boolean) {
   if(boolean) {
     document.querySelector('main').classList.add('hidden');
@@ -217,6 +227,11 @@ function serverError(boolean) {
     document.querySelector('main').classList.remove('hidden');
     document.getElementById('bigError').classList.add('hidden');
   }
+}
+
+function clearLogin() {
+  console.log(loginInputs)
+  loginInputs.forEach(field => field.value = '');
 }
 
 function clearInputs() {
@@ -234,4 +249,4 @@ function disableElement(element, boolean) {
   }
 }
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, serverError, disableElement, clearInputs, login };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };
