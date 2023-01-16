@@ -6,10 +6,11 @@ import Trip from '../src/Trip';
 //query selectors
 const loginDisplay = document.getElementById('loginPage');
 const loginErrMsg = document.getElementById('loginError');
-const loginInputs = document.querySelectorAll('login-input')
+const loginInputs = document.querySelectorAll('.login-input')
 
 const navBar = document.querySelector('nav');
 const accountDisplay = document.querySelector('main');
+const profileButton = document.getElementById('profileButton')
 const logoutPanel = document.getElementById('logoutPanel');
 const welcomeMessages = document.querySelectorAll('.welcome-message');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
@@ -197,6 +198,7 @@ function tripEstimate(trip, destRepo) {
 function logoutDrop() {
   if (logoutPanel.style.display === "block") {
     logoutPanel.style.display = "none";
+    profileButton.classList.remove('.active')
   } else {
     logoutPanel.style.display = "block";
   }
@@ -228,6 +230,7 @@ function serverError(boolean) {
 }
 
 function clearLogin() {
+  console.log(loginInputs)
   loginInputs.forEach(field => field.value = '');
 }
 
