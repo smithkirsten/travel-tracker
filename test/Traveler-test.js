@@ -56,7 +56,7 @@ describe('Traveler', () => {
       status: "approved",
       suggestedActivities: [ ]
       })
-    expect(traveler.findTrip(4)).to.equal(undefined)
+    expect(traveler.findTrip(4)).to.equal(undefined);
   });
 
   it('should calculate total cost of all trips', () => {

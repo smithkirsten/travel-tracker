@@ -94,12 +94,17 @@ describe('Agent', () => {
   });
 
   it('should be able to approve and deny pending trips', () => {
+    agent.approveTrip(9, true);
+    expect(agent.travelers[0].trips[2].status).to.equal('approved')
+    agent.approveTrip(9, false);
+    expect(agent.travelers[0].trips[2].status).to.equal('denied')
     //I should be able to see and approve / deny trip requests
       //dynamic method that takes in a boolean (approve if true, deny if false)
   });
 
   it('should be able to cancel a trip for a user', () => {
-    //Delete an upcoming trip for that user
-    //deletes from data model
+    agent.deleteTrip(1);
+    expect(agent.travelers[4].findTrip(1)).to.equal(undefined)
+    //deletes from data model-- will still need to DELETE from API
   });
 });
