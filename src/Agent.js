@@ -26,9 +26,6 @@ class Agent {
   }
 
   todaysTrips(today) {
-    //for each trip: calculate date range based on duration
-      //date add duration
-      //ask if today isBetween start and end date
     const trips = this.travelers.reduce((trips, traveler) => {
       const tripsToday = traveler.trips.filter(trip => {
         const end = dayjs(trip.date).add(trip.duration, 'day');
@@ -38,6 +35,10 @@ class Agent {
       return trips.flat();
     }, [])
     return trips.length > 0 ? trips : 0;
+  }
+
+  findTravelerByID(id) {
+    return this.travelers.find(traveler => traveler.id === id);
   }
 }
 
