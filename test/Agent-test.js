@@ -88,9 +88,9 @@ describe('Agent', () => {
   });
 
   it('should be able to approve and deny pending trips', () => {
-    agent.approveTrip(9, true);
+    agent.resolveTrip(9, 'approved');
     expect(agent.travelers[0].trips[2].status).to.equal('approved')
-    agent.approveTrip(9, false);
+    agent.resolveTrip(9, 'denied');
     expect(agent.travelers[0].trips[2].status).to.equal('denied')
     //I should be able to see and approve / deny trip requests
       //dynamic method that takes in a boolean (approve if true, deny if false)

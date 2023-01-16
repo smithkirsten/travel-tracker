@@ -44,6 +44,16 @@ class Agent {
   findTravelerByName(name) {
     return this.travelers.find(traveler => traveler.name === name);
   }
+
+  resolveTrip(id, status) {
+    this.travelers.forEach(traveler => {
+      traveler.trips.forEach(trip => {
+        if(trip.id === id) {
+          trip.status = status;
+        }
+      })
+    })
+  }
 }
 
 export default Agent;
