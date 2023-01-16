@@ -233,9 +233,12 @@ h3 {
   border-radius: 3px;
 }
 
-.swiper {
+.swiper,
+.big-error, 
+.no-trips-display  {
   width: 80vw;
   height: 70vh;
+  background-color: rgb(244, 236, 220, .85);
   border: rgba(241,203,134,.4) inset;
 }
 
@@ -304,9 +307,6 @@ h3 {
 
 .big-error, .no-trips-display {
   text-align: center;
-  width: 80vw;
-  height: 70vh;
-  background: #F4ECDC;
   border: rgba(226,122,102,.4) inset;
 }
 
