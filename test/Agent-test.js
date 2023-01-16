@@ -27,11 +27,31 @@ describe('Agent', () => {
     //will need to filter trips in promise resolve and assign to travelers before passing into agent?
   })
 
-  it('should be an instance of Agent', () => {});
+  it('should be an instance of Agent', () => {
+    expect(agent).to.be.an.instanceOf(Agent);
+  });
 
-  it('should hold an array of traveler instances', () => {});
+  it('should hold an array of traveler instances', () => {
+    expect(agent.travelers.length).to.equal(5);
+    expect(agent.traveler[0]).to.be.an.instanceOf(Traveler);
+    expect(agent.travelers[1].name).to.equal("Rachael Vaughten");
+    expect(agent.travelers[1].trips.length).to.equal(2);
+    expect(agent.travelers[1].trips[0]).to.deep.equal( {
+      id: 4,
+      userID: 2,
+      destinationID: 14,
+      travelers: 2,
+      date: "2022/02/25",
+      duration: 10,
+      status: "approved",
+      suggestedActivities: [ ]
+      })
+  });
 
-  it('should hold the destRepo object as a property')
+  it('should hold the destRepo object as a property', () => {
+    expect(agent.destRepo).to.be.an.instanceOf(DestRepo);
+    expect(agent.destRepo.destinations.length).to.equal(8)
+  });
 
   it('should calculate total income generated for this year', () => {
     //Total income generated this year (should be 10% of user trip cost)
