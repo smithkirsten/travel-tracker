@@ -58,7 +58,7 @@ describe('Agent', () => {
     expect(agent.calcYearsIncome('2024')).to.equal(0)
   });
 
-  it('find travelers on trips for today', () => {
+  it('should find travelers on trips for today', () => {
     //Travelers on trips for today’s date (number, names, however you want to display this!)
       //return array of trips to display the trips and a '# of travelers on trips today'
     expect(agent.todaysTrips(dayjs())).to.equal(0);
@@ -87,11 +87,9 @@ describe('Agent', () => {
     expect(agent.findTravelerByName("Peanut Butter")).to.equal(undefined);
   });
 
-  it('should be able to approve and deny pending trips', () => {
-    agent.resolveTrip(9, 'approved');
+  it('should be able to approve pending trips', () => {
+    agent.approveTrip(9, 'approved');
     expect(agent.travelers[0].trips[2].status).to.equal('approved')
-    agent.resolveTrip(9, 'denied');
-    expect(agent.travelers[0].trips[2].status).to.equal('denied')
   });
 
   it('should be able to cancel a trip for a user', () => {
@@ -99,4 +97,19 @@ describe('Agent', () => {
     expect(agent.travelers[4].findTrip(1)).to.equal(undefined)
     //deletes from data model-- will still need to DELETE from API
   });
+
+  it('should find all pending trips for all users', () => {
+    expect(agent.pendingTrips()).to.deep.equal ([{
+      id: 9,
+      userID: 1,
+      destinationID: 17,
+      travelers: 2,
+      date: "2023/04/30",
+      duration: 5,
+      status: "pending",
+      suggestedActivities: [ ]
+    }])
+    agent.approveTrip(9);
+    expect(agent.pendingTrips()).to.equal(undefined);
+  })
 });

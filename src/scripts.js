@@ -37,13 +37,6 @@ let destRepo;
 let newTripEst;
 let nextTripID;
 
-//login
-  //on page load: login page
-  //verify login info
-  //if user -> Get Traveler, Destinations, Trips
-  //if agent -> Get TravelerS, Destinations, Trips
-
-
 //event listeners
 window.addEventListener('load', () => {
   display.login(true);
@@ -89,8 +82,7 @@ estimateButton.addEventListener('click', (event) => {
 bookButton.addEventListener('click', bookTrip);
 
 function checkLogin() {
-
-  if(username.value === 'agent' && password.value === 'travel') { //control for caps?
+  if(username.value === 'agent' && password.value === 'travel') {
     loadForAgent();
     return;
   }
@@ -172,15 +164,25 @@ function loadForTraveler(userId) {
 function resolvePromises(promisesPromises) {
   Promise.all(promisesPromises)
     .then(values => {
-      //conditional based on login to assign traveler or agent login
-      assignTravelerData(values);
-
-      //conditional to displayTravelerDOM
-      displayTravelerDOM();
-      //or displayAgentDOM
-   
+      if(promisesPromises[0].length > 1) {
+        assignAgentData(values);
+        displayAgentDOM();
+      } else {
+        assignTravelerData(values);
+        displayTravelerDOM();
+      }
     })
   };
+
+function assignAgentData(values) {
+  const destRepo = destRepo = new DestRepo(values[2]);
+  const trips = values[1].map(trip => new Trip(trip));
+  const travelers = values[0].map(traveler => {
+    const userTrips = trips.filter(trip => trip.userID === traveler.id);
+    return new Traveler (traveler, userTrips);
+  });
+  currentUser = new Agent(travelers, destRepo);
+}
   
 function assignTravelerData(values) {
   currentUser = new Traveler(values[0], []);
@@ -189,6 +191,16 @@ function assignTravelerData(values) {
   .filter(trip => trip.userID === currentUser.id)
   .forEach(trip => currentUser.trips.push(new Trip(trip)));
   destRepo = new DestRepo(values[2]);
+}
+
+
+function displayAgentDOM() {
+
+  //display pending trips in cards
+
+  //helper functions to hide Traveler display 
+  //helper functions to remove hidden on Agent display
+  //display pending trips on load
 }
 
 function displayTravelerDOM() {
@@ -237,8 +249,3 @@ function bookTrip() {
   newTripEst = undefined;
 }
 
-function displayAgentDOM() {
-  //helper functions to hide Traveler display 
-  //helper functions to remove hidden on Agent display
-  //display pending trips on load
-}

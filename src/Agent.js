@@ -25,6 +25,14 @@ class Agent {
     return income;
   }
 
+  pendingTrips() {
+    const pending = this.travelers.reduce((pending, traveler) => {
+      pending.push(traveler.trips.filter(trip => trip.status === 'pending'));
+      return pending.flat();
+    }, []);
+    return pending.length > 0 ? pending : undefined; 
+  }
+
   todaysTrips(today) {
     const trips = this.travelers.reduce((trips, traveler) => {
       const tripsToday = traveler.trips.filter(trip => {
@@ -45,11 +53,11 @@ class Agent {
     return this.travelers.find(traveler => traveler.name === name);
   }
 
-  resolveTrip(id, status) {
+  approveTrip(id) {
     this.travelers.forEach(traveler => {
       traveler.trips.forEach(trip => {
         if(trip.id === id) {
-          trip.status = status;
+          trip.status = 'approved';
         }
       })
     })
