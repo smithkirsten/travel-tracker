@@ -42,16 +42,16 @@ describe('Trip', () => {
 
   it('should calculate a 10% agent fee for each trip', () => {
     expect(trip.calcAgentFee(destRepo)).to.equal(529);
-    expect(badTrip.calcAgentFee(destRepo)).to.equal(false);
+    expect(badTrip.calcAgentFee(destRepo)).to.equal(undefined);
   });
 
   it('should calculate the cost of the trip, excluding 10% agent fee', () => {
     expect(trip.calcTripCost(destRepo)).to.equal(5290);
-    expect(badTrip.calcTripCost(destRepo)).to.equal(false);
+    expect(badTrip.calcTripCost(destRepo)).to.equal(undefined);
   });
 
   it('should return the destination as a string', () => {
     expect(trip.findDestName(destRepo)).to.equal('Castries, St Lucia');
-    expect(badTrip.findDestName(destRepo)).to.equal(false);
+    expect(badTrip.findDestName(destRepo)).to.equal(undefined);
   });
 });
