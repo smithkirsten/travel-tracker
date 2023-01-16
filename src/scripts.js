@@ -12,13 +12,10 @@ import Traveler from '../src/Traveler';
 import Trip from '../src/Trip';
 import DestRepo from '../src/DestRepo'
 import Agent from '../src/Agent'
-// import Destination from '../src/Destination'
 
 //import functions
 import apiCalls from '../src/apiCalls'
 import display from '../src/display'
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
 import './images/sunset.png'
 import './images/blank-user-profile.png'
 
@@ -109,7 +106,35 @@ function checkLogin() {
 }
 
 function loadForAgent() {
-  console.log('load for agent')
+  let travelersPromise = apiCalls.getData('travelers')
+  .then(data => {
+    display.serverError(false);
+    return data;
+  })
+  .catch(error => {
+    display.serverError(true);
+    console.log(error)
+  });
+  let tripsPromise = apiCalls.getData('trips')
+  .then(data => {
+    display.serverError(false);
+    return data.trips;
+  })
+  .catch(error => {
+    display.serverError(true);
+    console.log(error)
+  });
+  let destinationsPromise = apiCalls.getData('destinations')
+  .then(data => {
+    display.serverError(false);
+    return data.destinations;
+  })
+  .catch(error => {
+    display.serverError(true);
+    console.log(error)
+  });
+
+  resolvePromises([travelersPromise, tripsPromise, destinationsPromise]);
 }
 
 function loadForTraveler(userId) {
