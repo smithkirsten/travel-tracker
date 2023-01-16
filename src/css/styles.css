@@ -297,6 +297,11 @@ h3 {
   font-size: 18px;
 }
 
+.login-error {
+  font-size: x-small;
+  color: rgba(226,122,102,.9);
+}
+
 span {
   color:#170F3D;
   font-weight: bolder;

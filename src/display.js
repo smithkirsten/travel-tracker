@@ -19,7 +19,7 @@ const totalTrips = document.getElementById('totalTripsDisp');
 const sassyDisp = document.getElementById('sassyDisp');
 
 const destinationsMenu = document.getElementById('destinations');
-const travelersInput = document.getElementById('traverlersInput');
+const travelersInput = document.getElementById('travelersInput');
 const destinationInput = document.getElementById('destinations');
 const startCalendar = document.getElementById('calendarStart');
 const endCalendar = document.getElementById('calendarEnd');
@@ -151,7 +151,6 @@ function setEndCalendar() {
 }
 
 function checkAllInputs() {
-  //cannot use .every() bc inputs is a NodeList
   let counter = 0;
   inputs.forEach(input => {
     if(input.value) {

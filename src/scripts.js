@@ -46,7 +46,6 @@ let nextTripID;
 
 
 //event listeners
-//window.addEventListener('load', loadForTraveler(5))
 window.addEventListener('load', () => {
   display.login(true);
 })
@@ -84,24 +83,21 @@ form.addEventListener('change', (event) => {
 estimateButton.addEventListener('click', (event) => {
   event.preventDefault();
   newTripEst = display.createTripEstimate(currentUser, nextTripID);
-  display.tripEstimate(newTripEst, destRepo)
+  display.tripEstimate(newTripEst, destRepo);
 })
 
-bookButton.addEventListener('click', bookTrip)
+bookButton.addEventListener('click', bookTrip);
 
 function checkLogin() {
-  console.log(username.value);
-  console.log(password.value);
+
   if(username.value === 'agent' && password.value === 'travel') { //control for caps?
-   
     loadForAgent();
     return;
   }
   const id = +username.value.match(/\d+/g);
   const string = username.value.slice(0, 8);
   console.log(string, id)
-  if(string === 'username' && id <= 50 && id > 0) {
-    console.log('successful login!')
+  if(string === 'username' && id <= 50 && id > 0 && password.value === 'travel') {
     loadForTraveler(id)
     display.login(false)
   } else {
