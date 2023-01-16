@@ -195,8 +195,12 @@ function assignTravelerData(values) {
 
 
 function displayAgentDOM() {
-
+  //hide filter button
+  filters.classList.add('hidden')
   //display pending trips in cards
+  //display agent search sidebar
+  //display agent summary
+
 
   //helper functions to hide Traveler display 
   //helper functions to remove hidden on Agent display
@@ -204,6 +208,7 @@ function displayAgentDOM() {
 }
 
 function displayTravelerDOM() {
+  filters.classList.remove('hidden')
   display.disableElement(estimateButton, 'true');
   display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
@@ -248,4 +253,5 @@ function bookTrip() {
   })
   newTripEst = undefined;
 }
+
 
