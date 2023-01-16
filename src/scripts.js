@@ -86,19 +86,20 @@ bookButton.addEventListener('click', bookTrip)
 
 function checkLogin() {
   if(username.value === 'agent' && password.value === 'travel') { //control for caps?
-    //load for agent
+    loadForAgent();
     return;
   }
   const id = username.match(/\d+/g);
   const string = username.slice(0, 8);
-
-
-  //check username -> string === 'username' && 1 < id < 50
-    //load for agent (pass in id)
+  if(string === 'username' && id <= 50 && id > 0) {
+    loadForTraveler(id)
+  } else {
+    display.loginError()
+  }
 }
 
 function loadForAgent() {
-  
+  console.log('load for agent')
 }
 
 function loadForTraveler(userId) {

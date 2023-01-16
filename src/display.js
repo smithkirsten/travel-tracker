@@ -209,6 +209,10 @@ function postDeclaration(boolean) {
   postResponse.classList.remove('hidden');
 }
 
+function loginError() {
+  //username and password do not match
+}
+
 function serverError(boolean) {
   if(boolean) {
     document.querySelector('main').classList.add('hidden');
@@ -234,4 +238,4 @@ function disableElement(element, boolean) {
   }
 }
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, serverError, disableElement, clearInputs, login };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearInputs, login };
