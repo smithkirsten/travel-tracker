@@ -23,6 +23,9 @@ class Traveler {
 
   tripsByStatus(status) {
     const trips = this.trips?.filter(trip => trip.status === status);
+    if(!this.trips) {
+      return undefined;
+    }
     return trips.length > 0 ? trips : undefined;
   };
 

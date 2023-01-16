@@ -68,8 +68,8 @@ describe('Traveler', () => {
     expect(traveler.tripsByStatus('pending').length).to.equal(1);
     expect(traveler.tripsByStatus('pending')[0].id).to.equal(9);
     expect(traveler.tripsByStatus('approved')[0].id).to.equal(5);
-    expect(badData.tripsByStatus('pending')).to.equal(false);
-    expect(badData.tripsByStatus('approved')).to.equal(false);
+    expect(badData.tripsByStatus('pending')).to.equal(undefined);
+    expect(badData.tripsByStatus('approved')).to.equal(undefined);
   });
 
   it('should be able to filter for past and upcoming trips', () => {
