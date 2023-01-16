@@ -96,12 +96,12 @@ function checkLogin() {
   }
   const id = +username.value.match(/\d+/g);
   const string = username.value.slice(0, 8);
-  console.log(string, id)
   if(string === 'username' && id <= 50 && id > 0 && password.value === 'travel') {
-    loadForTraveler(id)
-    display.login(false)
+    loadForTraveler(id);
+    display.login(false);
+    display.clearLogin();
   } else {
-    display.loginError()
+    display.loginError();
   }
 }
 

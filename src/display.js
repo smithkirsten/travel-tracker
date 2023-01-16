@@ -6,6 +6,7 @@ import Trip from '../src/Trip';
 //query selectors
 const loginDisplay = document.getElementById('loginPage');
 const loginErrMsg = document.getElementById('loginError');
+const loginInputs = document.querySelectorAll('login-input')
 
 const navBar = document.querySelector('nav');
 const accountDisplay = document.querySelector('main');
@@ -226,6 +227,10 @@ function serverError(boolean) {
   }
 }
 
+function clearLogin() {
+  loginInputs.forEach(field => field.value = '');
+}
+
 function clearInputs() {
   inputs.forEach(input => input.value = '');
   tripEst.classList.add('hidden');
@@ -241,4 +246,4 @@ function disableElement(element, boolean) {
   }
 }
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearInputs, login };
+export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };
