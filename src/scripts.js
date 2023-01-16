@@ -43,7 +43,22 @@ let nextTripID;
 
 
 //event listeners
-window.addEventListener('load', loadForTraveler(5)) //also set min start date to today
+window.addEventListener('load', loadForTraveler(5))
+//on load, display.login
+
+//eventListener -> login button
+
+//check inputs
+  //password === 'travel' && username === 'agent' (control for case)
+    //load for agent
+    //return;
+  
+  //const id = username.match(\d)
+  //const string = first 8 characters
+  //check username -> string === 'username' && 1 < id < 50
+    //load for agent (pass in id)
+  
+
 
 profileButton.addEventListener('click', () => {
   profileButton.classList.toggle('active');
