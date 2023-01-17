@@ -42,6 +42,7 @@ const postResponse = document.getElementById('postBox');
 const postMessage = document.getElementById('postMessage');
 
 function login(boolean) {
+
   loginErrMsg.classList.add('hidden');
   if(boolean) {
     loginDisplay.classList.remove('hidden');
@@ -96,13 +97,14 @@ function userTotals(traveler, destinations) {
   }
 }
 
-function userTrips(trips, destinations) {
+function userTrips(trips, destinations, agent) { //pass in currentUser as 3rd param only if agent view
   if(!trips) {
     cardsDisplay.classList.add('hidden');
     noTripsDisplay.classList.remove('hidden');
   } else {
     cardsDisplay.classList.remove('hidden');
     noTripsDisplay.classList.add('hidden');
+
     const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
         slidesPerView: 3,
@@ -122,16 +124,55 @@ function userTrips(trips, destinations) {
           onlyInViewport: false,
         },
     })
-    trips.forEach(trip => {
-      const destination = destinations.findDestByID(trip.destinationID);
-      const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations);
-      swiperWrapper.innerHTML += createTripCard(trip, tripCost, destination);
-    })
+
+    if(agent) {
+      trips.forEach(trip => {
+        const destination = destinations.findDestByID(trip.destinationID);
+        const traveler = agent.findTravelerByID(trip.userID);
+        swiperWrapper.innerHTML += createAgentCard(trip, traveler.name, destination);
+      })
+
+    } else {
+      trips.forEach(trip => {
+        const destination = destinations.findDestByID(trip.destinationID);
+        const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations);
+        swiperWrapper.innerHTML += createTripCard(trip, tripCost, destination);
+      })
+    }
   }
 }
 
 function resetCards() {
   swiperWrapper.innerHTML = '';
+}
+
+function createAgentCard(trip, traveler, destination) {
+  const date = dayjs(trip.date).format('MMMM D, YYYY');
+  const tripCost = trip.calcTripCost(destinations);
+  const fee = trip.calcAgentFee(destinations);
+
+  if (trip.status === 'approved')
+  return `
+  <div class="swiper-slide">
+    <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
+      <section class="card-body">
+        <h3 class="card-heading">Trip #${trip.id}: ${traveler}</h3>
+        <div class="trip-deets">
+          <p class="trip-date">${date}</p>
+          <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
+          <p class="trip-location">${destination.destination}</p>
+          <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
+          <p class="trip-cost">total cost: <span>$${tripCost}</span></p>
+        </div>
+        <footer class="card-footer">
+          <button id="cancelButton" class="cancel-button">cancel trip</button>
+          <p id="agentFee" class="agent-fee">Agent Fee: ${fee}</p>
+          <p class="trip-status">${trip.status}</p>
+        </footer>
+      </section>
+    </article>
+  </div>`;
+
 }
 
 function createTripCard(trip, cost, destination) {

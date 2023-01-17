@@ -206,6 +206,7 @@ function displayAgentDOM() {
   display.userName('agent');
   display.agentTotals(currentUser);
   //display pending trips in cards
+  display.userTrips(currentUser.pendingTrips(), currentUser.destRepo, currentUser)
   //display agent search sidebar
 
 
