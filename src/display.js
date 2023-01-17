@@ -24,10 +24,7 @@ const swiperWrapper = document.querySelector('.swiper-wrapper');
 const tripPlanner = document.getElementById('tripPlanner');
 const agentFilter = document.getElementById('agentFilter')
 
-const travSummary = document.getElementById('travSummary');
-const investDisp = document.getElementById('investDisp');
-const totalTrips = document.getElementById('totalTripsDisp');
-const sassyDisp = document.getElementById('sassyDisp');
+const travelersMenu = document.getElementById('travelersMenu')
 
 const destinationsMenu = document.getElementById('destinations');
 const travelersInput = document.getElementById('travelersInput');
@@ -35,6 +32,11 @@ const destinationInput = document.getElementById('destinations');
 const startCalendar = document.getElementById('calendarStart');
 const endCalendar = document.getElementById('calendarEnd');
 const inputs = document.querySelectorAll('.new-trip-input');
+
+const travSummary = document.getElementById('travSummary');
+const investDisp = document.getElementById('investDisp');
+const totalTrips = document.getElementById('totalTripsDisp');
+const sassyDisp = document.getElementById('sassyDisp');
 
 const tripEst = document.getElementById('tripEstimate');
 const nightsEst = document.getElementById('nightsEst');
@@ -77,6 +79,12 @@ function destinationsDropDown(destinations) {
   destinations.forEach(destination => {
     destinationsMenu.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`;
   });
+}
+
+function travelersDropDown(travelers) {
+    travelers.forEach(destination => {
+      travelersMenu.innerHTML += `<option value="${traveler.id}">${destination.name}</option>`;
+    });
 }
 
 function userName(traveler) {
@@ -264,6 +272,10 @@ function tripEstimate(trip, destRepo) {
   tripEst.classList.remove('hidden');
 }
 
+function displayClient() {
+
+}
+
 function logoutDrop() {
   if (logoutPanel.style.display === "block") {
     logoutPanel.style.display = "none";
@@ -326,4 +338,4 @@ function disableElement(element, boolean) {
   }
 }
 
-export default { userName, sidebar, agentTotals, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };
+export default { userName, sidebar, agentTotals, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, displayClient, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };

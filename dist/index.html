@@ -90,9 +90,10 @@
         <form class="agent-filter" id="agentFilter"  aria-labelledby="filterFormLabel">
           <label for="searchDay" class="travelers-input">Find trips by day</label>
             <input type="date" name="searchDayCal" class="search-day-input" id="searchDay">
-          <label for="searchBar" class="travelers-input">Find client</label>
-            <input type="search" name="searchBar" id="searchBar" class="search-travelers">
-            <button id="findClientButton" class="find-client-button">Find Client</button>
+          <label for="travelersMenu" class="travelers-input">Find client</label>
+            <select class="new-trip-input" name ="travelersMenu" type="text" id="travelersMenu" autofocus>
+              <option class="clients" value="" disabled selected hidden>Client List</option>
+            </select>
           <button id="pendingButton" class="pending-button">See Pending Trips</button>
         </form>
       </article>

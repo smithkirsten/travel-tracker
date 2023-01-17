@@ -32,7 +32,6 @@ const estimateButton = document.getElementById('estButton');
 const bookButton = document.getElementById('bookButton');
 const form = document.getElementById('newTripForm');
 const agentFilter = document.getElementById('agentFilter');
-const findClientButton =  document.getElementById('findClientButton');
 const pendingButton = document.getElementById('pendingButton');
 
 const cardArea = document.getElementById('swiper');
@@ -85,6 +84,14 @@ agentFilter.addEventListener('change', (event) => {
     const date = document.getElementById('searchDay').value;
     display.resetCards();
     displayTripsByDay(date);
+  }
+  if(event.target.id === 'travelersMenu') {
+    const traveler = document.getElementById('travelersMenu').value;
+    console.log(traveler)
+    display.resetCards();
+    //find client by name or id?
+    displayTripsByClient();
+    display.displayClient();
   }
 })
 
