@@ -159,9 +159,9 @@ function userTrips(trips, repo) { //pass in currentUser as 3rd param only if age
 
         swiperWrapper.innerHTML += createAgentCard(trip, traveler.name, tripCost, fee, destination);
       })
+      agentCardButtons(repo);
 
     } else if (repo.destinations){
-      console.log(repo.destinations)
       trips.forEach(trip => {
         const destination = repo.findDestByID(trip.destinationID);
         const tripCost = trip.calcTripCost(repo) + trip.calcAgentFee(repo);
@@ -186,13 +186,63 @@ function createAgentCard(trip, traveler, tripCost, fee, destination) {
           <p id="agentFee" class="agent-fee">Agent Fee: <span>$${fee}</span></p>
         </div>
         <footer class="card-footer agent-footer">
-          <button class="card-button cancel-button">cancel</button>
+          <button id="cancel${trip.id}" class="card-button cancel-button">cancel</button>
           <p class="trip-status">${trip.status}</p>
-          <button class="card-button approve-button">approve</button>
+          <button id="approve${trip.id}" class="card-button approve-button">approve</button>
         </footer>
       </section>
     </article>
   </div>`;
+}
+
+function agentCardButtons(agent) {
+  console.log('assign button ability')
+  const cards = document.querySelectorAll('.card');
+  console.log('card elements: ', cards)
+
+  cards.forEach(card => { //can I refactor this?
+    let cancel = document.getElementById(`cancel${card.id}`);
+    let approve = document.getElementById(`approve${card.id}`);
+    console.log('cancel button: ', cancel)
+    console.log('approve button: ', approve)
+
+    let trip = agent.travelers.reduce((trip, traveler) => {
+      let match = traveler.findTrip(+card.id);
+      console.log('match: ', match)
+      if(match) {
+        trip = match;
+      }
+      return trip;
+    }, {})
+
+    console.log('trip found: ', trip)
+
+    switch(trip) {
+      case trip.status === 'pending':
+        //enable cancel
+        disableElement(cancel, false);
+        //enable approve
+        disableElement(approve, false);
+        break;
+      case trip.status === 'approved':
+        //disable approve
+        disableElement(approve, true);
+        break;
+      case dayjs(trip.date).isBefore(dayjs()):
+        //disable cancel
+        disableElement(cancel, true)
+        break;
+    }
+  })
+  //for each card in HTML
+    //find trip by id
+      //if status === "pending"
+        //enable cancel
+        //enable approve
+      //if status === "approved"
+        //disable approve
+      //if dayjs(trip.date).isAfter(today)
+        //enable cancel
 
 }
 
