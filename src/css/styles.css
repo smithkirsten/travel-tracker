@@ -13,6 +13,10 @@ button {
   background-color: #170F3D;
 }
 
+button:hover {
+  color: white;
+}
+
 .login-page {
   background-color: rgba(23, 15, 61, .85);
   display: flex;
@@ -327,7 +331,7 @@ span {
 
 .disabled {
   background-color: rgb(23, 15, 61, .66);
-  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .hidden {
