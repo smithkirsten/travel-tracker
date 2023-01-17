@@ -81,8 +81,6 @@ describe('Agent', () => {
   })
 
   it('should be able to search user by name', () => {
-    //return an object to populate a traveler card displayed to agent
-    //View their name, a list of all of their trips, and the total amount they’ve spent (including 10% agent cut)
     expect(agent.findTravelerByName("Leila Thebeaud").id).to.deep.equal(4);
     expect(agent.findTravelerByName("Peanut Butter")).to.equal(undefined);
   });
@@ -95,7 +93,6 @@ describe('Agent', () => {
   it('should be able to cancel a trip for a user', () => {
     agent.deleteTrip(1);
     expect(agent.travelers[4].findTrip(1)).to.equal(undefined)
-    //deletes from data model-- will still need to DELETE from API
   });
 
   it('should find all pending trips for all users', () => {
