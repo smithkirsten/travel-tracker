@@ -97,7 +97,7 @@ function userTotals(traveler, destinations) {
   }
 }
 
-function userTrips(trips, destinations, agent) { //pass in currentUser as 3rd param only if agent view
+function userTrips(trips, repo) { //pass in currentUser as 3rd param only if agent view
   if(!trips) {
     cardsDisplay.classList.add('hidden');
     noTripsDisplay.classList.remove('hidden');
@@ -125,17 +125,18 @@ function userTrips(trips, destinations, agent) { //pass in currentUser as 3rd pa
         },
     })
 
-    if(agent) {
+    if(repo.destRepo) {
       trips.forEach(trip => {
+        console.log(destinations)
         const destination = destinations.findDestByID(trip.destinationID);
         const traveler = agent.findTravelerByID(trip.userID);
         swiperWrapper.innerHTML += createAgentCard(trip, traveler.name, destination);
       })
 
-    } else {
+    } else if (repo.destinations){
       trips.forEach(trip => {
-        const destination = destinations.findDestByID(trip.destinationID);
-        const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations);
+        const destination = repo.findDestByID(trip.destinationID);
+        const tripCost = trip.calcTripCost(repo) + trip.calcAgentFee(repo);
         swiperWrapper.innerHTML += createTripCard(trip, tripCost, destination);
       })
     }
