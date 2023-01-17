@@ -14,7 +14,7 @@ class Trip {
   
   calcTripCost(destRepo) {
     const destination = destRepo.findDestByID(this.destinationID);
-    return destination ? (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) : undefined;
+    return destination ? +((this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration)).toFixed(2) : undefined;
   }
 
   calcAgentFee(destRepo) {
