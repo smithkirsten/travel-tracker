@@ -1,7 +1,5 @@
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 //import 3rd party libraries
-  // import Swiper bundle with all modules installed
   import Swiper from 'swiper/bundle';
   import 'swiper/css/bundle';
 const dayjs = require('dayjs');
@@ -32,6 +30,8 @@ const estimateButton = document.getElementById('estButton');
 const bookButton = document.getElementById('bookButton');
 const form = document.getElementById('newTripForm');
 const agentFilter = document.getElementById('agentFilter');
+const agentCalendar = document.getElementById('searchDay');
+const clientMenu = document.getElementById('travelersMenu');
 const pendingButton = document.getElementById('pendingButton');
 
 const cardArea = document.getElementById('swiper');
@@ -82,17 +82,21 @@ form.addEventListener('change', (event) => {
 
 agentFilter.addEventListener('change', (event) => {
   event.preventDefault();
+
   if(event.target.id === 'searchDay') {
-    const date = document.getElementById('searchDay').value;
+    const date = agentCalendar.value;
     display.resetCards();
     display.agentTotals(currentUser);
     displayTripsByDay(date);
+    clientMenu.value = '';
+    
   }
   if(event.target.id === 'travelersMenu') {
-    const traveler = +document.getElementById('travelersMenu').value;
+    const traveler = +clientMenu.value;
     display.resetCards();
     displayTripsByClient(traveler);
     display.displayClient(traveler, currentUser);
+    agentCalendar.value = '';
   }
 })
 
@@ -101,6 +105,8 @@ pendingButton.addEventListener('click', (event) => {
   display.resetCards();
   display.agentTotals(currentUser)
   displayPendingTrips();
+  agentCalendar.value = '';
+  clientMenu.value = '';
 })
 
 estimateButton.addEventListener('click', (event) => {
@@ -120,6 +126,8 @@ cardArea.addEventListener('click', (event) => {
     approveTrip(tripID)
   }
 })
+
+//functions
 
 function checkLogin() {
   if(username.value === 'agent' && password.value === 'travel') {
@@ -240,11 +248,7 @@ function displayAgentDOM() {
   displayPendingTrips();
   display.sidebar('agent');
   display.travelersDropDown(currentUser.travelers)
-
-  //helper functions to hide Traveler display 
-  //helper functions to remove hidden on Agent display
-
-  display.login(false);  //<- is this done in another function in display?
+  display.login(false);
 }
 
 function displayTravelerDOM() {
@@ -347,5 +351,3 @@ function bookTrip() {
   })
   newTripEst = undefined;
 }
-
-
