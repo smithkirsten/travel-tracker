@@ -50,6 +50,7 @@ window.addEventListener('load', () => {
 loginButton.addEventListener('click', (event) => {
   event.preventDefault();
   checkLogin();
+  display.clearLogin();
 });
 
 profileButton.addEventListener('click', () => {
