@@ -12,6 +12,8 @@ This was a final solo project of Mod 2 of Turing School of Software and Design. 
 
 ## Preview
 
+![Simply Escape](https://media.giphy.com/media/s4vpT9I1J0GX0w9cSy/giphy.gif)
+
 ## Built With
 
 * HTML, CSS, JavaScript
@@ -46,15 +48,15 @@ in both directories, followed by npm start. BOTH servers must be running to view
 Enter `control + c` in your terminal to stop the servers at any time.
 
 ## Login Info
-* To login as an agent: username: agent password: travel
-*To login as a client: username: username[id*] password: travel
+* To login as an agent: **username:** agent **password:** travel
+* To login as a client: **username:** username[id*] **password:** travel
 
 *id is a number between 1-50*
 
 ## Original Concept
 <img width="709" alt="figmaComp" src="https://user-images.githubusercontent.com/101011015/212983794-971dc9ab-2c0d-48d5-81cb-34ca47f45269.png">
 
-[Figma board] (https://www.figma.com/file/31v3Cxsm4vo8mtDDrlFyHL/Travel-Tracker?node-id=0%3A1&t=QU5aiua10w0eZNHp-1)
+[Figma board](https://www.figma.com/file/31v3Cxsm4vo8mtDDrlFyHL/Travel-Tracker?node-id=0%3A1&t=QU5aiua10w0eZNHp-1)
 *designed by Kirsten*
 
 
