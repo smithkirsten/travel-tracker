@@ -31,6 +31,8 @@ const estimateButton = document.getElementById('estButton');
 const bookButton = document.getElementById('bookButton');
 const form = document.getElementById('newTripForm');
 
+const cardArea = document.getElementById('swiper'); //maybe needs to be swiper wrapper or cards-display
+
 //global variables
 let currentUser;
 let destRepo;
@@ -80,6 +82,21 @@ estimateButton.addEventListener('click', (event) => {
 })
 
 bookButton.addEventListener('click', bookTrip);
+
+cardArea.addEventListener('click', (event) => {
+  if(event.target.classList.contains('cancel-button')) {
+    //remove card from data model
+    //DELETE trip
+    //reset cards
+    //redisplay cards of that user... or pending
+  }
+  if(event.target.classList.contains('approve-button')) {
+    //approve trip
+    //POST updated trip
+    //reset cards
+    //redisplay cards
+  }
+})
 
 function checkLogin() {
   if(username.value === 'agent' && password.value === 'travel') {
@@ -196,7 +213,11 @@ function assignTravelerData(values) {
 
 
 function displayAgentDOM() {
+  //////TEMPORARY! FIX!////////////// will need to unhide for traveler
+  document.getElementById("tripPlanner").classList.add("hidden")
   filters.classList.add('hidden');
+  /////////////////////////////////////
+
   display.userName('agent');
   display.agentTotals(currentUser);
   display.userTrips(currentUser.pendingTrips(), currentUser)
@@ -205,9 +226,8 @@ function displayAgentDOM() {
 
   //helper functions to hide Traveler display 
   //helper functions to remove hidden on Agent display
-  //display pending trips on load
-  //display.login(false) <- is this done in another function in display?
-  display.login(false);
+
+  display.login(false);  //<- is this done in another function in display?
 }
 
 function displayTravelerDOM() {
@@ -252,7 +272,7 @@ function cancelTrip() {
 }
 
 function approveTrip() {
-  
+
 }
 
 function bookTrip() {

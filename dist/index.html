@@ -65,6 +65,7 @@
 
   <main>
     <aside>
+    <div id="tripPlanner" class="trip-planner">
       <h2>Plan Your Next Trip</h2>
       <label class="hidden" for="newTripForm" id="formLabel">New Trip Form</label>
       <form class="trip-form" id="newTripForm" aria-labelledby="formLabel">
@@ -78,11 +79,11 @@
           <select class="destinations new-trip-input" name="destinations" type="text" id="destinations" aria-labelledby="destinationLabel" autofocus required>
             <option class="destinations" value="" disabled selected hidden>Destinations</option>
           </select>
-        </div>
         <div class="est-button-wrapper">
           <button class="est-button" id="estButton">get estimate</button>
         </div>
       </form>
+      </div>
       <div class="flip-box"id="userSumWrapper">
         <article class=" user-summary trav-view" id="travSummary">
           <h3 class="welcome-message">Welcome, User</h3>
@@ -117,7 +118,7 @@
       </div>
     </aside>
     <section class="cards-display" id="cardsDisplay">
-      <div class="swiper">
+      <div id="swiper" class="swiper">
         <div class="swiper-wrapper">
         </div>
         <div class="swiper-pagination"></div>

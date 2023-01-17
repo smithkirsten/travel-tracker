@@ -77,8 +77,8 @@ function agentTotals(currentUser) {
   postResponse.classList.add('hidden');
 
 
-  investDisp.innerText = `You have earned ${currentUser.calcYearsIncome(dayjs().year())} so far this year`;
-  totalTrips.innerText = `You have ${currentUser.todaysTrips(dayjs())}`;
+  investDisp.innerText = `You have earned $${currentUser.calcYearsIncome(dayjs().year())} so far this year`;
+  totalTrips.innerText = `You have ${currentUser.todaysTrips(dayjs())} clients on trips today`;
   sassyDisp.innerHTML = 'Get them to leave their troubles behind...'
 }
 
