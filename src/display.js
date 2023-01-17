@@ -210,15 +210,15 @@ function agentCardButtons(agent) {
       return trip;
     }, {})
 
+      if (dayjs(trip.date).isBefore(dayjs())) {
+        disableElement(cancel, true)
+      }
       if(trip.status === 'pending') {
         disableElement(cancel, false);
         disableElement(approve, false);
       } else if (trip.status === 'approved') {
         disableElement(approve, true);
       } 
-      if (dayjs(trip.date).isBefore(dayjs())) {
-        disableElement(cancel, true)
-      }
   })
 }
 
