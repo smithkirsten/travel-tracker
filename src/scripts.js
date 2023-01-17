@@ -27,7 +27,7 @@ const profileButton = document.querySelector(".profile-button");
 const logoutButton = document.getElementById('logoutButton');
 
 const filters = document.getElementById('filters');
-const filteredBy = document.querySelector('filter-content')
+const filteredBy = document.querySelector('.filter-content')
 const estimateButton = document.getElementById('estButton');
 const bookButton = document.getElementById('bookButton');
 const form = document.getElementById('newTripForm');
@@ -215,7 +215,7 @@ function displayAgentDOM() {
 
   display.userName('agent');
   display.agentTotals(currentUser);
-  display.userTrips(currentUser.pendingTrips(), currentUser)
+  displayPendingTrips();
   //display agent search sidebar
 
 
@@ -263,7 +263,7 @@ function displayTripsByDay() {
 }
 function displayPendingTrips() {
   filteredBy.innerText = 'Pending Trips';
-
+  display.userTrips(currentUser.pendingTrips(), currentUser)
 }
 
 function cancelTrip(tripID) {
