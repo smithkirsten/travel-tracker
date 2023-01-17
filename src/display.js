@@ -101,9 +101,8 @@ function agentTotals(currentUser) {
   travSummary.classList.remove('hidden');
   tripEst.classList.add('hidden');
   postResponse.classList.add('hidden');
-
-
-  investDisp.innerText = `You have earned $${currentUser.calcYearsIncome(dayjs().year())} so far this year`;
+  const income = currentUser.calcYearsIncome(dayjs().year()).toFixed(2)
+  investDisp.innerText = `You have earned $${income} so far this year`;
   totalTrips.innerText = `You have ${currentUser.todaysTrips(dayjs())} clients on trips today`;
   sassyDisp.innerHTML = 'Get them to leave their troubles behind...'
 }

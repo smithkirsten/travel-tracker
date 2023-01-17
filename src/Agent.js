@@ -22,7 +22,7 @@ class Agent {
       })
       return income;
     }, 0)
-    return income;
+    return +income.toFixed(2);
   }
 
   pendingTrips() {
@@ -57,7 +57,7 @@ class Agent {
     this.travelers.forEach(traveler => {
       traveler.trips.forEach(trip => {
         if(trip.id === id) {
-          trip.status = 'status';
+          trip.status = 'approved';
         }
       })
     })
