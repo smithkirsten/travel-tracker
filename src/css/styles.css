@@ -309,7 +309,7 @@ h3 {
   align-items: center;
   justify-content: space-around;
   font-size: x-small;
-  color: rgba(226,122,102,.9);
+  color: rgba(226,122,102,1);
   border: solid 1px rgba(226,122,102,.9);
 }
 
