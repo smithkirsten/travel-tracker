@@ -82,6 +82,8 @@ estimateButton.addEventListener('click', (event) => {
 bookButton.addEventListener('click', bookTrip);
 
 function checkLogin() {
+  console.log(username.value)
+  console.log(password.value)
   if(username.value === 'agent' && password.value === 'travel') {
     loadForAgent();
     return;
@@ -98,10 +100,11 @@ function checkLogin() {
 }
 
 function loadForAgent() {
+  console.log('Load For Agent')
   let travelersPromise = apiCalls.getData('travelers')
   .then(data => {
     display.serverError(false);
-    return data;
+    return data.travelers;
   })
   .catch(error => {
     display.serverError(true);
@@ -126,7 +129,7 @@ function loadForAgent() {
     console.log(error)
   });
 
-  resolvePromises([travelersPromise, tripsPromise, destinationsPromise]);
+  resolvePromises([travelersPromise, tripsPromise, destinationsPromise], 'agent');
 }
 
 function loadForTraveler(userId) {
@@ -158,13 +161,15 @@ function loadForTraveler(userId) {
       console.log(error)
     });
 
-  resolvePromises([travelerPromise, tripsPromise, destinationsPromise]);
+  resolvePromises([travelerPromise, tripsPromise, destinationsPromise], 'traveler');
 };
 
-function resolvePromises(promisesPromises) {
+function resolvePromises(promisesPromises, loadAs) {
+  console.log('resolve promises')
   Promise.all(promisesPromises)
     .then(values => {
-      if(promisesPromises[0].length > 1) {
+      if(loadAs === 'agent') {
+        console.log('Resolve agent promises')
         assignAgentData(values);
         displayAgentDOM();
       } else {
@@ -175,7 +180,8 @@ function resolvePromises(promisesPromises) {
   };
 
 function assignAgentData(values) {
-  const destRepo = destRepo = new DestRepo(values[2]);
+  console.log('Assign agent data: ', values)
+  const destRepo = new DestRepo(values[2]);
   const trips = values[1].map(trip => new Trip(trip));
   const travelers = values[0].map(traveler => {
     const userTrips = trips.filter(trip => trip.userID === traveler.id);
@@ -195,7 +201,7 @@ function assignTravelerData(values) {
 
 
 function displayAgentDOM() {
-  //hide filter button
+  console.log('Display agent DOM')
   filters.classList.add('hidden');
   display.userName('agent');
   display.agentTotals(currentUser);
@@ -207,6 +213,7 @@ function displayAgentDOM() {
   //helper functions to remove hidden on Agent display
   //display pending trips on load
   //display.login(false) <- is this done in another function in display?
+  display.login(false);
 }
 
 function displayTravelerDOM() {

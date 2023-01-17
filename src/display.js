@@ -42,7 +42,6 @@ const postResponse = document.getElementById('postBox');
 const postMessage = document.getElementById('postMessage');
 
 function login(boolean) {
-  console.log(loginErrMsg)
   loginErrMsg.classList.add('hidden');
   if(boolean) {
     loginDisplay.classList.remove('hidden');
