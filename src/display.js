@@ -127,13 +127,16 @@ function userTrips(trips, repo) { //pass in currentUser as 3rd param only if age
 
     if(repo.destRepo) {
       trips.forEach(trip => {
-        console.log(destinations)
-        const destination = destinations.findDestByID(trip.destinationID);
-        const traveler = agent.findTravelerByID(trip.userID);
-        swiperWrapper.innerHTML += createAgentCard(trip, traveler.name, destination);
+        const destination = repo.destRepo.findDestByID(trip.destinationID);
+        const traveler = repo.findTravelerByID(trip.userID);
+        const tripCost = trip.calcTripCost(repo.destRepo);
+        const fee = trip.calcAgentFee(repo.destRepo);
+
+        swiperWrapper.innerHTML += createAgentCard(trip, traveler.name, tripCost, fee, destination);
       })
 
     } else if (repo.destinations){
+      console.log(repo.destinations)
       trips.forEach(trip => {
         const destination = repo.findDestByID(trip.destinationID);
         const tripCost = trip.calcTripCost(repo) + trip.calcAgentFee(repo);
@@ -147,18 +150,15 @@ function resetCards() {
   swiperWrapper.innerHTML = '';
 }
 
-function createAgentCard(trip, traveler, destination) {
+function createAgentCard(trip, traveler, tripCost, fee, destination) {
   const date = dayjs(trip.date).format('MMMM D, YYYY');
-  const tripCost = trip.calcTripCost(destinations);
-  const fee = trip.calcAgentFee(destinations);
 
-  if (trip.status === 'approved')
   return `
   <div class="swiper-slide">
     <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
       <section class="card-body">
         <h3 class="card-heading">Trip #${trip.id}: ${traveler}</h3>
-        <div class="trip-deets">
+        <div class="trip-deets agent-deets">
           <p class="trip-date">${date}</p>
           <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
           <p class="trip-location">${destination.destination}</p>
