@@ -13,6 +13,13 @@ button {
   background-color: #170F3D;
 }
 
+button:focus {
+  outline: 2px double #C10A54;
+}
+input:focus {
+  outline: 2px double #C10A54;
+}
+
 button:hover {
   color: white;
 }
