@@ -71,7 +71,7 @@ function userName(traveler) {
   }
 };
 
-function agentTotals() {
+function agentTotals(currentUser) {
   travSummary.classList.remove('hidden');
   tripEst.classList.add('hidden');
   postResponse.classList.add('hidden');
@@ -264,4 +264,4 @@ function disableElement(element, boolean) {
   }
 }
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };
+export default { userName, agentTotals, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };

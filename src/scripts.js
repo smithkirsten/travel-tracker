@@ -198,7 +198,7 @@ function displayAgentDOM() {
   //hide filter button
   filters.classList.add('hidden');
   display.userName('agent');
-  //display agent summary
+  display.agentTotals(currentUser);
   //display pending trips in cards
   //display agent search sidebar
 
