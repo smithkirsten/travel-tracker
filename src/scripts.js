@@ -90,7 +90,6 @@ agentFilter.addEventListener('change', (event) => {
   }
   if(event.target.id === 'travelersMenu') {
     const traveler = +document.getElementById('travelersMenu').value;
-    console.log(traveler)
     display.resetCards();
     displayTripsByClient(traveler);
     display.displayClient(traveler, currentUser);
@@ -277,7 +276,6 @@ function displayFilteredTrips(filter) {
 function displayTripsByClient(id) {
   filteredBy.innerText = 'Client Trips';
   const trips = currentUser.findTravelerByID(id).trips;
-  console.log(trips)
   display.userTrips(trips, currentUser);
 };
 

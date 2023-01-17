@@ -203,7 +203,6 @@ function agentCardButtons(agent) {
 
     let trip = agent.travelers.reduce((trip, traveler) => {
       let match = traveler.findTrip(+card.id);
-      console.log('match: ', match)
       if(match) {
         trip = match;
       }
