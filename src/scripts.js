@@ -86,12 +86,12 @@ agentFilter.addEventListener('change', (event) => {
     displayTripsByDay(date);
   }
   if(event.target.id === 'travelersMenu') {
-    const traveler = document.getElementById('travelersMenu').value;
+    const traveler = +document.getElementById('travelersMenu').value;
     console.log(traveler)
     display.resetCards();
     //find client by name or id?
-    displayTripsByClient();
-    display.displayClient();
+    displayTripsByClient(traveler);
+    display.displayClient(traveler);
   }
 })
 
@@ -273,7 +273,8 @@ function displayFilteredTrips(filter) {
 
 function displayTripsByClient(id) {
   filteredBy.innerText = 'Client Trips';
-  const trips = currentUser.findTravelerByID(id).trips
+  const trips = currentUser.findTravelerByID(id).trips;
+  console.log(trips)
   display.userTrips(trips, currentUser);
 };
 
