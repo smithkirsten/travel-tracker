@@ -32,6 +32,8 @@ const estimateButton = document.getElementById('estButton');
 const bookButton = document.getElementById('bookButton');
 const form = document.getElementById('newTripForm');
 const agentFilter = document.getElementById('agentFilter');
+const findClientButton =  document.getElementById('findClientButton');
+const pendingButton = document.getElementById('pendingButton');
 
 const cardArea = document.getElementById('swiper');
 
