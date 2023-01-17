@@ -196,15 +196,10 @@ function createAgentCard(trip, traveler, tripCost, fee, destination) {
 }
 
 function agentCardButtons(agent) {
-  console.log('assign button ability')
   const cards = document.querySelectorAll('.card');
-  console.log('card elements: ', cards)
-
   cards.forEach(card => { //can I refactor this?
     let cancel = document.getElementById(`cancel${card.id}`);
     let approve = document.getElementById(`approve${card.id}`);
-    console.log('cancel button: ', cancel)
-    console.log('approve button: ', approve)
 
     let trip = agent.travelers.reduce((trip, traveler) => {
       let match = traveler.findTrip(+card.id);
@@ -215,35 +210,16 @@ function agentCardButtons(agent) {
       return trip;
     }, {})
 
-    console.log('trip found: ', trip)
-
-    
       if(trip.status === 'pending') {
-        //enable cancel
-        console.log('pending')
         disableElement(cancel, false);
-        //enable approve
         disableElement(approve, false);
       } else if (trip.status === 'approved') {
-        console.log('approved')
-        //disable approve
         disableElement(approve, true);
-      } else if (dayjs(trip.date).isBefore(dayjs())) {
-        console.log('too late, bro')
-        //disable cancel
+      } 
+      if (dayjs(trip.date).isBefore(dayjs())) {
         disableElement(cancel, true)
       }
   })
-  //for each card in HTML
-    //find trip by id
-      //if status === "pending"
-        //enable cancel
-        //enable approve
-      //if status === "approved"
-        //disable approve
-      //if dayjs(trip.date).isAfter(today)
-        //enable cancel
-
 }
 
 function createTripCard(trip, cost, destination) {
