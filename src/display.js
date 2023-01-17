@@ -197,7 +197,7 @@ function createAgentCard(trip, traveler, tripCost, fee, destination) {
 
 function agentCardButtons(agent) {
   const cards = document.querySelectorAll('.card');
-  cards.forEach(card => { //can I refactor this?
+  cards.forEach(card => {
     let cancel = document.getElementById(`cancel${card.id}`);
     let approve = document.getElementById(`approve${card.id}`);
 
