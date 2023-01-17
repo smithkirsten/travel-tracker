@@ -45,17 +45,17 @@ let nextTripID;
 //event listeners
 window.addEventListener('load', () => {
   display.login(true);
-})
+});
 
 loginButton.addEventListener('click', (event) => {
   event.preventDefault();
   checkLogin();
-})
+});
 
 profileButton.addEventListener('click', () => {
   profileButton.classList.toggle('active');
   display.logoutDrop();
-})
+});
 
 logoutButton.addEventListener('click', () => {
   display.login(true);

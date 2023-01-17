@@ -275,7 +275,7 @@ function createTripEstimate(currentUser, nextTripID) {
       id: nextTripID,
       userID: currentUser.id, 
       destinationID: +destinationInput.value, 
-      travelers: travelersInput.value,
+      travelers: +travelersInput.value,
       date: dayjs(startCalendar.value).format('YYYY/MM/DD'), 
       duration: end.diff(start, 'day'), 
       status: 'pending', 
@@ -320,7 +320,7 @@ function logoutDrop() {
 function postDeclaration(postStatus) {
   tripEst.classList.add('hidden');
   travSummary.classList.add('hidden');
-  if(postStatus === 'true') {
+  if(postStatus === true) {
     postMessage.innerText = "Your trip is booked!";
   } else if(postStatus === 'cancelled') {
     postMessage.innerText = "That trip has been cancelled";
@@ -351,7 +351,6 @@ function serverError(boolean) {
 }
 
 function clearLogin() {
-  console.log(loginInputs)
   loginInputs.forEach(field => field.value = '');
 }
 

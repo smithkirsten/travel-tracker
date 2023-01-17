@@ -14,6 +14,7 @@ function getData(type) {
 
 //pass in trips,updateTrip, destinations
 function sendData(method, type, postData) {
+  console.log('trip to send: ', postData)
   const url = `http://localhost:3001/api/v1/${type}`;
   return fetch(url, {
     method: method,
