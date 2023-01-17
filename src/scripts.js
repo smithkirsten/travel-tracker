@@ -198,13 +198,14 @@ function displayAgentDOM() {
   //hide filter button
   filters.classList.add('hidden')
   //display pending trips in cards
-  //display agent search sidebar
   //display agent summary
+  //display agent search sidebar
 
 
   //helper functions to hide Traveler display 
   //helper functions to remove hidden on Agent display
   //display pending trips on load
+  //display.login(false) <- is this done in another function in display?
 }
 
 function displayTravelerDOM() {
