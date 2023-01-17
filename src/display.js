@@ -255,13 +255,17 @@ function logoutDrop() {
   }
 }
 
-function postDeclaration(boolean) {
+function postDeclaration(postStatus) {
   tripEst.classList.add('hidden');
   travSummary.classList.add('hidden');
-  if(boolean) { //if wanting to reuse for agent, can also pass in currentUser.id for user and nothing for agent and check for both arguments
+  if(postStatus === 'true') {
     postMessage.innerText = "Your trip is booked!";
+  } else if(postStatus === 'cancelled') {
+    postMessage.innerText = "That trip has been cancelled";
+  } else if(postStatus === 'approved') {
+    postMessage.innerText = "That trip has been approved!";
   } else {
-    postMessage.innerText = "Booking unsuccessful. Please try again later.";
+    postMessage.innerText = "Failed entry. Please try again later.";
   }
   postResponse.classList.remove('hidden');
 }

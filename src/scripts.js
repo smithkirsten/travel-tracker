@@ -84,20 +84,15 @@ estimateButton.addEventListener('click', (event) => {
 bookButton.addEventListener('click', bookTrip);
 
 cardArea.addEventListener('click', (event) => {
+  const tripID = event.target.closest('.card').id;
   if(event.target.classList.contains('cancel-button')) {
     //get id of trip
-    const tripID = event.target.closest('.card').id;
-    //DELETE trip
     cancelTrip(tripID);
-    //reset cards
-    //redisplay cards of that user... or pending
   }
   if(event.target.classList.contains('approve-button')) {
     //get id of trip
-    //approve trip
-    //POST updated trip
-    //reset cards
-    //redisplay cards
+    approveTrip(tripID)
+    console.log('approved!')
   }
 })
 
@@ -271,11 +266,10 @@ function displayPendingTrips() {
 }
 
 function cancelTrip(tripID) {
-
   apiCalls.sendData('DELETE', `trips/${tripID}`)
   .then(response => {
     console.log(response)
-    display.postDeclaration(true);
+    display.postDeclaration('cancelled');
     setTimeout(() => {
       display.resetCards();
       //should I do a whole new GET or just change the data model and redisplay?
@@ -287,19 +281,22 @@ function cancelTrip(tripID) {
     display.postDeclaration(false);
     setTimeout(display.userTotals, 2000)
   })
-
 }
 
-function approveTrip() {
+function approveTrip(tripID) {
+  const updatedTrip = {
+    id: tripID,
+    status: 'approved',
+  };
 
-  apiCalls.sendData('POST', 'updateTrip', newTripEst)
+  apiCalls.sendData('POST', 'updateTrip', updatedTrip)
   .then(response => {
     console.log(response)
-    display.postDeclaration(true);
+    display.postDeclaration('approved');
     setTimeout(() => {
       display.resetCards();
       //should I do a whole new GET or just change the data model and redisplay?
-      loadForAgent(currentUser.id);
+      loadForAgent();
     }, 2000)
   })
   .catch(error => {
@@ -307,8 +304,7 @@ function approveTrip() {
     display.postDeclaration(false);
     setTimeout(display.userTotals, 2000)
   })
-
-}
+};
 
 function bookTrip() {
   display.clearInputs();
