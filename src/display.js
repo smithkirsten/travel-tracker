@@ -160,15 +160,15 @@ function createAgentCard(trip, traveler, tripCost, fee, destination) {
         <h3 class="card-heading">Trip #${trip.id}: ${traveler}</h3>
         <div class="trip-deets agent-deets">
           <p class="trip-date">${date}</p>
-          <p class="trip-duration">duration: <span>${trip.duration}</span> days</p>
+          <p class="trip-duration"><span>${trip.duration}</span> days, <span>${trip.travelers}</span> travelers</p>
           <p class="trip-location">${destination.destination}</p>
-          <p class="trip-travelers">travelers: <span>${trip.travelers}</span></p>
-          <p class="trip-cost">total cost: <span>$${tripCost}</span></p>
+          <p class="trip-cost">total cost: $${tripCost}</p>
+          <p id="agentFee" class="agent-fee">Agent Fee: <span>$${fee}</span></p>
         </div>
-        <footer class="card-footer">
-          <button id="cancelButton" class="cancel-button">cancel trip</button>
-          <p id="agentFee" class="agent-fee">Agent Fee: ${fee}</p>
+        <footer class="card-footer agent-footer">
+          <button class="card-button cancel-button">cancel</button>
           <p class="trip-status">${trip.status}</p>
+          <button class="card-button approve-button">approve</button>
         </footer>
       </section>
     </article>
