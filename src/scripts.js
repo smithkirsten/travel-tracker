@@ -196,9 +196,10 @@ function assignTravelerData(values) {
 
 function displayAgentDOM() {
   //hide filter button
-  filters.classList.add('hidden')
-  //display pending trips in cards
+  filters.classList.add('hidden');
+  display.userName('agent');
   //display agent summary
+  //display pending trips in cards
   //display agent search sidebar
 
 

@@ -62,12 +62,25 @@ function destinationsDropDown(destinations) {
 }
 
 function userName(traveler) {
-  if(!traveler) {
+  if(traveler === 'agent') {
+    welcomeMessages.forEach(message => message.innerText = 'Welcome, Agent!');
+  } else if(!traveler) {
     welcomeMessages.forEach(message => message.innerText = 'Welcome, Traveler!');
   } else {
     welcomeMessages.forEach(message => message.innerText = `Welcome, ${traveler}`);
   }
 };
+
+function agentTotals() {
+  travSummary.classList.remove('hidden');
+  tripEst.classList.add('hidden');
+  postResponse.classList.add('hidden');
+
+
+  investDisp.innerText = `You have earned ${currentUser.calcYearsIncome(dayjs().year())} so far this year`;
+  totalTrips.innerText = `You have ${currentUser.todaysTrips(dayjs())}`;
+  sassyDisp.innerHTML = 'Get them to leave their troubles behind...'
+}
 
 function userTotals(traveler, destinations) {
   travSummary.classList.remove('hidden');
