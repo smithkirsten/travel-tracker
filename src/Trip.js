@@ -13,15 +13,13 @@ class Trip {
   }
   
   calcTripCost(destRepo) {
-    //calculates trip without agent fee
-    //must be combined with agent fee to display total cost to user
     const destination = destRepo.findDestByID(this.destinationID);
-    return destination ? (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) : undefined;
+    return destination ? +((this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration)).toFixed(2) : undefined;
   }
 
   calcAgentFee(destRepo) {
     const tripCost = this.calcTripCost(destRepo)
-    return tripCost ? tripCost * .1: undefined;
+    return tripCost ? +(tripCost * .1).toFixed(2): undefined;
   }
   
   findDestName(destRepo) {

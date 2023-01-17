@@ -13,9 +13,16 @@ button {
   background-color: #170F3D;
 }
 
-/* input {
-  cursor: pointer;
-} */
+button:focus {
+  outline: 2px double #C10A54;
+}
+input:focus {
+  outline: 2px double #C10A54;
+}
+
+button:hover {
+  color: white;
+}
 
 .login-page {
   background-color: rgba(23, 15, 61, .85);
@@ -165,7 +172,7 @@ h2 {
   margin-bottom: 3px;
 }
 
-.trip-form {
+.trip-form, .agent-filter {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -300,6 +307,19 @@ h3 {
   font-size: 18px;
 }
 
+.agent-deets {
+  margin: -7px;
+  font-size: 11px;
+}
+
+.agent-footer {
+  align-items: center;
+  justify-content: space-around;
+  font-size: x-small;
+  color: rgba(226,122,102,1);
+  border: solid 1px rgba(226,122,102,.9);
+}
+
 .login-error {
   font-size: x-small;
   color: rgba(226,122,102,.9);
@@ -318,7 +338,7 @@ span {
 
 .disabled {
   background-color: rgb(23, 15, 61, .66);
-  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .hidden {

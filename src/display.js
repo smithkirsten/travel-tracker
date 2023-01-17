@@ -1,4 +1,6 @@
 const dayjs = require('dayjs');
+const isBetween = require('dayjs/plugin/isBetween');
+dayjs.extend(isBetween);
   import Swiper from 'swiper/bundle';
   import 'swiper/css/bundle';
 import Trip from '../src/Trip';
@@ -12,15 +14,17 @@ const navBar = document.querySelector('nav');
 const accountDisplay = document.querySelector('main');
 const profileButton = document.getElementById('profileButton')
 const logoutPanel = document.getElementById('logoutPanel');
+const filteredBy = document.querySelector('.filter-content');
+const filters = document.getElementById('filters');
 const welcomeMessages = document.querySelectorAll('.welcome-message');
 const noTripsDisplay = document.getElementById('noTripsDisplay');
 const cardsDisplay = document.getElementById('cardsDisplay');
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 
-const travSummary = document.getElementById('travSummary');
-const investDisp = document.getElementById('investDisp');
-const totalTrips = document.getElementById('totalTripsDisp');
-const sassyDisp = document.getElementById('sassyDisp');
+const tripPlanner = document.getElementById('tripPlanner');
+const agentFilter = document.getElementById('agentFilter')
+
+const travelersMenu = document.getElementById('travelersMenu')
 
 const destinationsMenu = document.getElementById('destinations');
 const travelersInput = document.getElementById('travelersInput');
@@ -28,6 +32,11 @@ const destinationInput = document.getElementById('destinations');
 const startCalendar = document.getElementById('calendarStart');
 const endCalendar = document.getElementById('calendarEnd');
 const inputs = document.querySelectorAll('.new-trip-input');
+
+const travSummary = document.getElementById('travSummary');
+const investDisp = document.getElementById('investDisp');
+const totalTrips = document.getElementById('totalTripsDisp');
+const sassyDisp = document.getElementById('sassyDisp');
 
 const tripEst = document.getElementById('tripEstimate');
 const nightsEst = document.getElementById('nightsEst');
@@ -40,7 +49,7 @@ const postResponse = document.getElementById('postBox');
 const postMessage = document.getElementById('postMessage');
 
 function login(boolean) {
-  console.log(loginErrMsg)
+  profileButton.classList.remove('active')
   loginErrMsg.classList.add('hidden');
   if(boolean) {
     loginDisplay.classList.remove('hidden');
@@ -53,19 +62,50 @@ function login(boolean) {
   }
 }
 
+function sidebar(user) {
+  if(user === 'agent') {
+    agentFilter.classList.remove('hidden');
+    tripPlanner.classList.add('hidden');
+    filters.classList.add('hidden');
+  } else {
+    agentFilter.classList.add('hidden');
+    tripPlanner.classList.remove('hidden');
+    filters.classList.remove('hidden');
+    filteredBy.innerText = 'Filter by';
+  }
+}
+
 function destinationsDropDown(destinations) {
   destinations.forEach(destination => {
     destinationsMenu.innerHTML += `<option value="${destination.id}">${destination.destination}</option>`;
   });
 }
 
+function travelersDropDown(travelers) {
+    travelers.forEach(traveler => {
+      travelersMenu.innerHTML += `<option value="${traveler.id}">${traveler.name}</option>`;
+    });
+}
+
 function userName(traveler) {
-  if(!traveler) {
+  if(traveler === 'agent') {
+    welcomeMessages.forEach(message => message.innerText = 'Welcome, Agent!');
+  } else if(!traveler) {
     welcomeMessages.forEach(message => message.innerText = 'Welcome, Traveler!');
   } else {
     welcomeMessages.forEach(message => message.innerText = `Welcome, ${traveler}`);
   }
 };
+
+function agentTotals(currentUser) {
+  travSummary.classList.remove('hidden');
+  tripEst.classList.add('hidden');
+  postResponse.classList.add('hidden');
+  const income = currentUser.calcYearsIncome(dayjs().year()).toFixed(2)
+  investDisp.innerText = `You have earned $${income} so far this year`;
+  totalTrips.innerText = `You have ${currentUser.todaysTrips(dayjs())} clients on trips today`;
+  sassyDisp.innerHTML = 'Get them to leave their troubles behind...'
+}
 
 function userTotals(traveler, destinations) {
   travSummary.classList.remove('hidden');
@@ -82,13 +122,14 @@ function userTotals(traveler, destinations) {
   }
 }
 
-function userTrips(trips, destinations) {
+function userTrips(trips, repo) { //pass in currentUser as 3rd param only if agent view
   if(!trips) {
     cardsDisplay.classList.add('hidden');
     noTripsDisplay.classList.remove('hidden');
   } else {
     cardsDisplay.classList.remove('hidden');
     noTripsDisplay.classList.add('hidden');
+
     const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
         slidesPerView: 3,
@@ -108,16 +149,76 @@ function userTrips(trips, destinations) {
           onlyInViewport: false,
         },
     })
-    trips.forEach(trip => {
-      const destination = destinations.findDestByID(trip.destinationID);
-      const tripCost = trip.calcTripCost(destinations) + trip.calcAgentFee(destinations);
-      swiperWrapper.innerHTML += createTripCard(trip, tripCost, destination);
-    })
+
+    if(repo.destRepo) {
+      trips.forEach(trip => {
+        const destination = repo.destRepo.findDestByID(trip.destinationID);
+        const traveler = repo.findTravelerByID(trip.userID);
+        const tripCost = trip.calcTripCost(repo.destRepo);
+        const fee = trip.calcAgentFee(repo.destRepo);
+
+        swiperWrapper.innerHTML += createAgentCard(trip, traveler.name, tripCost, fee, destination);
+      })
+      agentCardButtons(repo);
+
+    } else if (repo.destinations){
+      trips.forEach(trip => {
+        const destination = repo.findDestByID(trip.destinationID);
+        const tripCost = trip.calcTripCost(repo) + trip.calcAgentFee(repo);
+        swiperWrapper.innerHTML += createTripCard(trip, tripCost, destination);
+      })
+    }
   }
 }
 
-function resetCards() {
-  swiperWrapper.innerHTML = '';
+function createAgentCard(trip, traveler, tripCost, fee, destination) {
+  const date = dayjs(trip.date).format('MMMM D, YYYY');
+  return `
+  <div class="swiper-slide">
+    <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
+      <section class="card-body">
+        <h3 class="card-heading">Trip #${trip.id}: ${traveler}</h3>
+        <div class="trip-deets agent-deets">
+          <p class="trip-date">${date}</p>
+          <p class="trip-duration"><span>${trip.duration}</span> days, <span>${trip.travelers}</span> travelers</p>
+          <p class="trip-location">${destination.destination}</p>
+          <p class="trip-cost">total cost: $${tripCost}</p>
+          <p id="agentFee" class="agent-fee">Agent Fee: <span>$${fee}</span></p>
+        </div>
+        <footer class="card-footer agent-footer">
+          <button id="cancel${trip.id}" class="card-button cancel-button">cancel</button>
+          <p class="trip-status">${trip.status}</p>
+          <button id="approve${trip.id}" class="card-button approve-button">approve</button>
+        </footer>
+      </section>
+    </article>
+  </div>`;
+}
+
+function agentCardButtons(agent) {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    let cancel = document.getElementById(`cancel${card.id}`);
+    let approve = document.getElementById(`approve${card.id}`);
+
+    let trip = agent.travelers.reduce((trip, traveler) => {
+      let match = traveler.findTrip(+card.id);
+      if(match) {
+        trip = match;
+      }
+      return trip;
+    }, {})
+
+      if (dayjs(trip.date).isBefore(dayjs())) {
+        disableElement(cancel, true)
+      }
+      if(trip.status === 'pending') {
+        disableElement(cancel, false);
+        disableElement(approve, false);
+      } else if (trip.status === 'approved') {
+        disableElement(approve, true);
+      } 
+  })
 }
 
 function createTripCard(trip, cost, destination) {
@@ -173,7 +274,7 @@ function createTripEstimate(currentUser, nextTripID) {
       id: nextTripID,
       userID: currentUser.id, 
       destinationID: +destinationInput.value, 
-      travelers: travelersInput.value,
+      travelers: +travelersInput.value,
       date: dayjs(startCalendar.value).format('YYYY/MM/DD'), 
       duration: end.diff(start, 'day'), 
       status: 'pending', 
@@ -195,6 +296,17 @@ function tripEstimate(trip, destRepo) {
   tripEst.classList.remove('hidden');
 }
 
+function displayClient(id, agent) {
+  const traveler = agent.findTravelerByID(id);
+
+  travSummary.classList.remove('hidden');
+  postResponse.classList.add('hidden');
+
+  investDisp.innerText = `${traveler.name}`;
+  totalTrips.innerText = `${traveler.travelerType}`;
+  sassyDisp.innerText = `total spent: $${traveler.calcTotalSpent(agent.destRepo)}`;
+}
+
 function logoutDrop() {
   if (logoutPanel.style.display === "block") {
     logoutPanel.style.display = "none";
@@ -204,15 +316,23 @@ function logoutDrop() {
   }
 }
 
-function postDeclaration(boolean) {
+function postDeclaration(postStatus) {
   tripEst.classList.add('hidden');
   travSummary.classList.add('hidden');
-  if(boolean) { //if wanting to reuse for agent, can also pass in currentUser.id for user and nothing for agent and check for both arguments
+  if(postStatus === true) {
     postMessage.innerText = "Your trip is booked!";
+  } else if(postStatus === 'cancelled') {
+    postMessage.innerText = "That trip has been cancelled";
+  } else if(postStatus === 'approved') {
+    postMessage.innerText = "That trip has been approved!";
   } else {
-    postMessage.innerText = "Booking unsuccessful. Please try again later.";
+    postMessage.innerText = "Failed entry. Please try again later.";
   }
   postResponse.classList.remove('hidden');
+}
+
+function resetCards() {
+  swiperWrapper.innerHTML = '';
 }
 
 function loginError() {
@@ -230,7 +350,6 @@ function serverError(boolean) {
 }
 
 function clearLogin() {
-  console.log(loginInputs)
   loginInputs.forEach(field => field.value = '');
 }
 
@@ -249,4 +368,4 @@ function disableElement(element, boolean) {
   }
 }
 
-export default { userName, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };
+export default { userName, sidebar, agentTotals, userTotals, userTrips, destinationsDropDown, travelersDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, displayClient, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };

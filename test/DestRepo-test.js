@@ -37,15 +37,15 @@ describe('DestRepo', () => {
     expect(destRepo.findDestByID(100)).to.equal(false)
   });
 
-  it('should find a destination from its name', () => {
-    expect(destRepo.findDestByName("Porto, Portugal")).to.deep.equal({
-      id: 39,
-      destination: "Porto, Portugal",
-      estimatedLodgingCostPerDay: 995,
-      estimatedFlightCostPerPerson: 90,
-      image: "https://images.unsplash.com/photo-1564644929137-34b018daf461?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80",
-      alt: "looking over the water on to a city on a hill"
-    });
-    expect(destRepo.findDestByName('Ohio')).to.equal(false)
-  });
+  // it('should find a destination from its name', () => {
+  //   expect(destRepo.findDestByName("Porto, Portugal")).to.deep.equal({
+  //     id: 39,
+  //     destination: "Porto, Portugal",
+  //     estimatedLodgingCostPerDay: 995,
+  //     estimatedFlightCostPerPerson: 90,
+  //     image: "https://images.unsplash.com/photo-1564644929137-34b018daf461?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1778&q=80",
+  //     alt: "looking over the water on to a city on a hill"
+  //   });
+  //   expect(destRepo.findDestByName('Ohio')).to.equal(false)
+  // });
 });

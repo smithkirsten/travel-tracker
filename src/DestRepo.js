@@ -8,7 +8,7 @@ class DestRepo {
     return destination ? destination : false;
   };
 
-  findDestByName(name) { //do I use this??
+  findDestByName(name) {
     const destination = this.destinations.find(destination => destination.destination === name);
     return destination ? destination : false;
   }
