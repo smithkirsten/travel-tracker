@@ -271,20 +271,16 @@ function displayFilteredTrips(filter) {
   }
 }
 
-function displayTripsByClient() {
-  ///param for id or name
+function displayTripsByClient(id) {
   filteredBy.innerText = 'Client Trips';
-
-  display.userTrips(XXX, currentUser)
-
-
+  const trips = currentUser.findTravelerByID(id).trips
+  display.userTrips(trips, currentUser);
 };
 
 function displayTripsByDay(date) {
-  filteredBy.innerText = 'Current Trips';
   const day = dayjs(date)
+  filteredBy.innerText = `Trips active trips for ${dayjs(day).format('MMMM D, YYYY')}`;
   display.userTrips(currentUser.todaysTrips(day), currentUser)
-
 };
 
 function displayPendingTrips() {
