@@ -85,12 +85,15 @@ bookButton.addEventListener('click', bookTrip);
 
 cardArea.addEventListener('click', (event) => {
   if(event.target.classList.contains('cancel-button')) {
-    //remove card from data model
+    //get id of trip
+    const tripID = event.target.closest('.card').id;
     //DELETE trip
+    cancelTrip(tripID);
     //reset cards
     //redisplay cards of that user... or pending
   }
   if(event.target.classList.contains('approve-button')) {
+    //get id of trip
     //approve trip
     //POST updated trip
     //reset cards
@@ -267,11 +270,43 @@ function displayPendingTrips() {
 
 }
 
-function cancelTrip() {
+function cancelTrip(tripID) {
+
+  apiCalls.sendData('DELETE', `trips/${tripID}`)
+  .then(response => {
+    console.log(response)
+    display.postDeclaration(true);
+    setTimeout(() => {
+      display.resetCards();
+      //should I do a whole new GET or just change the data model and redisplay?
+      loadForAgent();
+    }, 2000)
+  })
+  .catch(error => {
+    console.log(error)
+    display.postDeclaration(false);
+    setTimeout(display.userTotals, 2000)
+  })
 
 }
 
 function approveTrip() {
+
+  apiCalls.sendData('POST', 'updateTrip', newTripEst)
+  .then(response => {
+    console.log(response)
+    display.postDeclaration(true);
+    setTimeout(() => {
+      display.resetCards();
+      //should I do a whole new GET or just change the data model and redisplay?
+      loadForAgent(currentUser.id);
+    }, 2000)
+  })
+  .catch(error => {
+    console.log(error)
+    display.postDeclaration(false);
+    setTimeout(display.userTotals, 2000)
+  })
 
 }
 
