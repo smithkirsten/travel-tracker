@@ -82,8 +82,8 @@ function destinationsDropDown(destinations) {
 }
 
 function travelersDropDown(travelers) {
-    travelers.forEach(destination => {
-      travelersMenu.innerHTML += `<option value="${traveler.id}">${destination.name}</option>`;
+    travelers.forEach(traveler => {
+      travelersMenu.innerHTML += `<option value="${traveler.id}">${traveler.name}</option>`;
     });
 }
 
@@ -338,4 +338,4 @@ function disableElement(element, boolean) {
   }
 }
 
-export default { userName, sidebar, agentTotals, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, displayClient, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };
+export default { userName, sidebar, agentTotals, userTotals, userTrips, destinationsDropDown, travelersDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, displayClient, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };

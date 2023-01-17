@@ -237,8 +237,7 @@ function displayAgentDOM() {
   display.agentTotals(currentUser);
   displayPendingTrips();
   display.sidebar('agent');
-
-
+  display.travelersDropDown(currentUser.travelers)
 
   //helper functions to hide Traveler display 
   //helper functions to remove hidden on Agent display
