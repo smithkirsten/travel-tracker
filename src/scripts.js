@@ -82,8 +82,6 @@ estimateButton.addEventListener('click', (event) => {
 bookButton.addEventListener('click', bookTrip);
 
 function checkLogin() {
-  console.log(username.value)
-  console.log(password.value)
   if(username.value === 'agent' && password.value === 'travel') {
     loadForAgent();
     return;
@@ -165,11 +163,9 @@ function loadForTraveler(userId) {
 };
 
 function resolvePromises(promisesPromises, loadAs) {
-  console.log('resolve promises')
   Promise.all(promisesPromises)
     .then(values => {
       if(loadAs === 'agent') {
-        console.log('Resolve agent promises')
         assignAgentData(values);
         displayAgentDOM();
       } else {
@@ -180,7 +176,6 @@ function resolvePromises(promisesPromises, loadAs) {
   };
 
 function assignAgentData(values) {
-  console.log('Assign agent data: ', values)
   const destRepo = new DestRepo(values[2]);
   const trips = values[1].map(trip => new Trip(trip));
   const travelers = values[0].map(traveler => {
@@ -201,11 +196,9 @@ function assignTravelerData(values) {
 
 
 function displayAgentDOM() {
-  console.log('Display agent DOM')
   filters.classList.add('hidden');
   display.userName('agent');
   display.agentTotals(currentUser);
-  //display pending trips in cards
   display.userTrips(currentUser.pendingTrips(), currentUser)
   //display agent search sidebar
 
@@ -219,7 +212,7 @@ function displayAgentDOM() {
 
 function displayTravelerDOM() {
   filters.classList.remove('hidden')
-  display.disableElement(estimateButton, 'true');
+  // display.disableElement(estimateButton, 'true');
   display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
   display.disableElement(estimateButton, true);
@@ -242,6 +235,24 @@ function displayFilteredTrips(filter) {
     default:
       display.userTrips(currentUser.trips, destRepo);
   }
+}
+
+function displayTripsByClient() {
+
+}
+function displayTripsByDay() {
+
+}
+function displayPendingTrips() {
+
+}
+
+function cancelTrip() {
+
+}
+
+function approveTrip() {
+  
 }
 
 function bookTrip() {

@@ -146,13 +146,8 @@ function userTrips(trips, repo) { //pass in currentUser as 3rd param only if age
   }
 }
 
-function resetCards() {
-  swiperWrapper.innerHTML = '';
-}
-
 function createAgentCard(trip, traveler, tripCost, fee, destination) {
   const date = dayjs(trip.date).format('MMMM D, YYYY');
-
   return `
   <div class="swiper-slide">
     <article class="card" id="${trip.id}" style="background-image: url('${destination.image}')">
@@ -269,6 +264,10 @@ function postDeclaration(boolean) {
     postMessage.innerText = "Booking unsuccessful. Please try again later.";
   }
   postResponse.classList.remove('hidden');
+}
+
+function resetCards() {
+  swiperWrapper.innerHTML = '';
 }
 
 function loginError() {
