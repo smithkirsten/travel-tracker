@@ -57,7 +57,7 @@ class Agent {
     this.travelers.forEach(traveler => {
       traveler.trips.forEach(trip => {
         if(trip.id === id) {
-          trip.status = 'approved';
+          trip.status = 'status';
         }
       })
     })

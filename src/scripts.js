@@ -95,13 +95,6 @@ agentFilter.addEventListener('change', (event) => {
   }
 })
 
-findClientButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  const name = document.getElementById('searchBar').value;
-  display.resetCards();
-  displayTripsByClient(name);
-})
-
 pendingButton.addEventListener('click', (event) => {
   event.preventDefault();
   display.resetCards();
@@ -244,7 +237,7 @@ function displayAgentDOM() {
   display.agentTotals(currentUser);
   displayPendingTrips();
   display.sidebar('agent');
-  //display agent search sidebar
+
 
 
   //helper functions to hide Traveler display 
@@ -280,18 +273,25 @@ function displayFilteredTrips(filter) {
 }
 
 function displayTripsByClient() {
+  ///param for id or name
   filteredBy.innerText = 'Client Trips';
 
+  display.userTrips(XXX, currentUser)
 
-}
-function displayTripsByDay() {
+
+};
+
+function displayTripsByDay(date) {
   filteredBy.innerText = 'Current Trips';
+  const day = dayjs(date)
+  display.userTrips(currentUser.todaysTrips(day), currentUser)
 
-}
+};
+
 function displayPendingTrips() {
   filteredBy.innerText = 'Pending Trips';
   display.userTrips(currentUser.pendingTrips(), currentUser)
-}
+};
 
 function cancelTrip(tripID) {
   apiCalls.sendData('DELETE', `trips/${tripID}`)
@@ -308,7 +308,7 @@ function cancelTrip(tripID) {
     display.postDeclaration(false);
     setTimeout(display.userTotals, 2000)
   })
-}
+};
 
 function approveTrip(tripID) {
   const updatedTrip = {
