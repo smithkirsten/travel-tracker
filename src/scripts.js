@@ -27,6 +27,7 @@ const profileButton = document.querySelector(".profile-button");
 const logoutButton = document.getElementById('logoutButton');
 
 const filters = document.getElementById('filters');
+const filteredBy = document.querySelector('filter-content')
 const estimateButton = document.getElementById('estButton');
 const bookButton = document.getElementById('bookButton');
 const form = document.getElementById('newTripForm');
@@ -225,8 +226,8 @@ function displayAgentDOM() {
 }
 
 function displayTravelerDOM() {
-  filters.classList.remove('hidden')
-  // display.disableElement(estimateButton, 'true');
+  filters.classList.remove('hidden');
+  filteredBy.innerText = 'Filter by';
   display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
   display.disableElement(estimateButton, true);
@@ -252,12 +253,16 @@ function displayFilteredTrips(filter) {
 }
 
 function displayTripsByClient() {
+  filteredBy.innerText = 'Client Trips';
+
 
 }
 function displayTripsByDay() {
+  filteredBy.innerText = 'Current Trips';
 
 }
 function displayPendingTrips() {
+  filteredBy.innerText = 'Pending Trips';
 
 }
 
