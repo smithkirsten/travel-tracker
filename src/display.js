@@ -19,6 +19,9 @@ const noTripsDisplay = document.getElementById('noTripsDisplay');
 const cardsDisplay = document.getElementById('cardsDisplay');
 const swiperWrapper = document.querySelector('.swiper-wrapper');
 
+const tripPlanner = document.getElementById('tripPlanner');
+const agentFilter = document.getElementById('agentFilter')
+
 const travSummary = document.getElementById('travSummary');
 const investDisp = document.getElementById('investDisp');
 const totalTrips = document.getElementById('totalTripsDisp');
@@ -52,6 +55,19 @@ function login(boolean) {
     loginDisplay.classList.add('hidden');
     accountDisplay.classList.remove('hidden');
     navBar.classList.remove('hidden');
+  }
+}
+
+function sidebar(user) {
+  if(user === 'agent') {
+    agentFilter.classList.remove('hidden');
+    tripPlanner.classList.add('hidden');
+    filters.classList.add('hidden');
+  } else {
+    agentFilter.classList.add('hidden');
+    tripPlanner.classList.remove('hidden');
+    filters.classList.remove('hidden');
+    filteredBy.innerText = 'Filter by';
   }
 }
 
@@ -308,4 +324,4 @@ function disableElement(element, boolean) {
   }
 }
 
-export default { userName, agentTotals, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };
+export default { userName, sidebar, agentTotals, userTotals, userTrips, destinationsDropDown, resetCards, setCalendarMins, setEndCalendar, checkAllInputs, createTripEstimate, tripEstimate, logoutDrop, postDeclaration, loginError, serverError, disableElement, clearLogin, clearInputs, login };

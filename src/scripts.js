@@ -208,14 +208,10 @@ function assignTravelerData(values) {
 
 
 function displayAgentDOM() {
-  //////TEMPORARY! FIX!////////////// will need to unhide for traveler
-  document.getElementById("tripPlanner").classList.add("hidden")
-  filters.classList.add('hidden');
-  /////////////////////////////////////
-
   display.userName('agent');
   display.agentTotals(currentUser);
   displayPendingTrips();
+  display.sidebar('agent');
   //display agent search sidebar
 
 
@@ -226,11 +222,10 @@ function displayAgentDOM() {
 }
 
 function displayTravelerDOM() {
-  filters.classList.remove('hidden');
-  filteredBy.innerText = 'Filter by';
   display.setCalendarMins();
   display.destinationsDropDown(destRepo.destinations);
   display.disableElement(estimateButton, true);
+  display.sidebar('traveler')
   display.userName(currentUser.name);
   display.userTotals(currentUser, destRepo);
   display.userTrips(currentUser.trips, destRepo);
