@@ -53,25 +53,25 @@ class Agent {
     return this.travelers.find(traveler => traveler.name === name);
   }
 
-  approveTrip(id) {
-    this.travelers.forEach(traveler => {
-      traveler.trips.forEach(trip => {
-        if(trip.id === id) {
-          trip.status = 'approved';
-        }
-      })
-    })
-  }
+  // approveTrip(id) {
+  //   this.travelers.forEach(traveler => {
+  //     traveler.trips.forEach(trip => {
+  //       if(trip.id === id) {
+  //         trip.status = 'approved';
+  //       }
+  //     })
+  //   })
+  // }
 
-  deleteTrip(id) {
-    this.travelers.forEach(traveler => {
-      traveler.trips.forEach((trip, index) => {
-        if(trip.id === id) {
-          traveler.trips.splice(index, 1);
-        }
-      })
-    })
-  }
+  // deleteTrip(id) {
+  //   this.travelers.forEach(traveler => {
+  //     traveler.trips.forEach((trip, index) => {
+  //       if(trip.id === id) {
+  //         traveler.trips.splice(index, 1);
+  //       }
+  //     })
+  //   })
+  // }
 }
 
 export default Agent;

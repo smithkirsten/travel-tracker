@@ -59,6 +59,7 @@ profileButton.addEventListener('click', () => {
 
 logoutButton.addEventListener('click', () => {
   display.login(true);
+  display.resetCards();
   display.logoutDrop();
   currentUser = undefined;
 });
