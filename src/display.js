@@ -272,8 +272,15 @@ function tripEstimate(trip, destRepo) {
   tripEst.classList.remove('hidden');
 }
 
-function displayClient() {
+function displayClient(id, agent) {
+  const traveler = agent.findTravelerByID(id);
 
+  travSummary.classList.remove('hidden');
+  postResponse.classList.add('hidden');
+
+  investDisp.innerText = `${traveler.name}`;
+  totalTrips.innerText = `${traveler.travelerType}`;
+  sassyDisp.innerText = `total spent: $${traveler.calcTotalSpent(agent.destRepo)}`;
 }
 
 function logoutDrop() {

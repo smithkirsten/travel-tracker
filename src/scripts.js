@@ -83,21 +83,22 @@ agentFilter.addEventListener('change', (event) => {
   if(event.target.id === 'searchDay') {
     const date = document.getElementById('searchDay').value;
     display.resetCards();
+    display.agentTotals(currentUser);
     displayTripsByDay(date);
   }
   if(event.target.id === 'travelersMenu') {
     const traveler = +document.getElementById('travelersMenu').value;
     console.log(traveler)
     display.resetCards();
-    //find client by name or id?
     displayTripsByClient(traveler);
-    display.displayClient(traveler);
+    display.displayClient(traveler, currentUser);
   }
 })
 
 pendingButton.addEventListener('click', (event) => {
   event.preventDefault();
   display.resetCards();
+  display.agentTotals(currentUser)
   displayPendingTrips();
 })
 
