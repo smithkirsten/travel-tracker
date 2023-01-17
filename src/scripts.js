@@ -31,6 +31,7 @@ const filteredBy = document.querySelector('.filter-content');
 const estimateButton = document.getElementById('estButton');
 const bookButton = document.getElementById('bookButton');
 const form = document.getElementById('newTripForm');
+const agentFilter = document.getElementById('agentFilter');
 
 const cardArea = document.getElementById('swiper');
 
@@ -74,6 +75,28 @@ form.addEventListener('change', (event) => {
   if(display.checkAllInputs()) {
     display.disableElement(estimateButton, false);
   }
+})
+
+agentFilter.addEventListener('change', (event) => {
+  event.preventDefault();
+  if(event.target.id === 'searchDay') {
+    const date = document.getElementById('searchDay').value;
+    display.resetCards();
+    displayTripsByDay(date);
+  }
+})
+
+findClientButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  const name = document.getElementById('searchBar').value;
+  display.resetCards();
+  displayTripsByClient(name);
+})
+
+pendingButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  display.resetCards();
+  displayPendingTrips();
 })
 
 estimateButton.addEventListener('click', (event) => {

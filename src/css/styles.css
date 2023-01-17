@@ -161,7 +161,7 @@ h2 {
   margin-bottom: 3px;
 }
 
-.trip-form {
+.trip-form, .agent-filter {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

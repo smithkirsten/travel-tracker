@@ -88,10 +88,11 @@
         <h2>Manage Bookings</h2>
         <label class="hidden" for="agentFilterForm" id="filterFormLabel">Filter Bookings By</label>
         <form class="agent-filter" id="agentFilter"  aria-labelledby="filterFormLabel">
-          <label for="searchDay" class="travelers-input"></label>
+          <label for="searchDay" class="travelers-input">Find trips by day</label>
             <input type="date" name="searchDayCal" class="search-day-input" id="searchDay">
-          <label for="searchBar" class="travelers-input"></label>
+          <label for="searchBar" class="travelers-input">Find client</label>
             <input type="search" name="searchBar" id="searchBar" class="search-travelers">
+            <button id="findClientButton" class="find-client-button">Find Client</button>
           <button id="pendingButton" class="pending-button">See Pending Trips</button>
         </form>
       </article>
