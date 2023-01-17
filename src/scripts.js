@@ -31,7 +31,7 @@ const estimateButton = document.getElementById('estButton');
 const bookButton = document.getElementById('bookButton');
 const form = document.getElementById('newTripForm');
 
-const cardArea = document.getElementById('swiper'); //maybe needs to be swiper wrapper or cards-display
+const cardArea = document.getElementById('swiper');
 
 //global variables
 let currentUser;
@@ -84,15 +84,12 @@ estimateButton.addEventListener('click', (event) => {
 bookButton.addEventListener('click', bookTrip);
 
 cardArea.addEventListener('click', (event) => {
-  const tripID = event.target.closest('.card').id;
+  const tripID = +event.target.closest('.card').id;
   if(event.target.classList.contains('cancel-button')) {
-    //get id of trip
     cancelTrip(tripID);
   }
   if(event.target.classList.contains('approve-button')) {
-    //get id of trip
     approveTrip(tripID)
-    console.log('approved!')
   }
 })
 
@@ -113,7 +110,6 @@ function checkLogin() {
 }
 
 function loadForAgent() {
-  console.log('Load For Agent')
   let travelersPromise = apiCalls.getData('travelers')
   .then(data => {
     display.serverError(false);
@@ -272,7 +268,6 @@ function cancelTrip(tripID) {
     display.postDeclaration('cancelled');
     setTimeout(() => {
       display.resetCards();
-      //should I do a whole new GET or just change the data model and redisplay?
       loadForAgent();
     }, 2000)
   })
@@ -288,14 +283,12 @@ function approveTrip(tripID) {
     id: tripID,
     status: 'approved',
   };
-
   apiCalls.sendData('POST', 'updateTrip', updatedTrip)
   .then(response => {
     console.log(response)
     display.postDeclaration('approved');
     setTimeout(() => {
       display.resetCards();
-      //should I do a whole new GET or just change the data model and redisplay?
       loadForAgent();
     }, 2000)
   })
