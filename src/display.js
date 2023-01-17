@@ -217,22 +217,22 @@ function agentCardButtons(agent) {
 
     console.log('trip found: ', trip)
 
-    switch(trip) {
-      case trip.status === 'pending':
+    
+      if(trip.status === 'pending') {
         //enable cancel
+        console.log('pending')
         disableElement(cancel, false);
         //enable approve
         disableElement(approve, false);
-        break;
-      case trip.status === 'approved':
+      } else if (trip.status === 'approved') {
+        console.log('approved')
         //disable approve
         disableElement(approve, true);
-        break;
-      case dayjs(trip.date).isBefore(dayjs()):
+      } else if (dayjs(trip.date).isBefore(dayjs())) {
+        console.log('too late, bro')
         //disable cancel
         disableElement(cancel, true)
-        break;
-    }
+      }
   })
   //for each card in HTML
     //find trip by id
